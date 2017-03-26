@@ -1,0 +1,338 @@
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="rofaeil.ashaiaa.idea.collegelife.MenuFragments.GraduationSheet.GraduationSheetFragment">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:collapsedTitleGravity="left"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_free_choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background"
+                            android:text="إختيار حر"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_free_choice_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/graduation_sheet_requirements_free_choice"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="32dp"
+                            android:text="0"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+
+                        <ProgressBar
+                            android:id="@+id/graduation_sheet_requirements_free_choice_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/graduation_sheet_requirements_free_choice"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="0"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_university_requirement"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background"
+                            android:text="متطلب جامعة"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_university_requirement_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/graduation_sheet_requirements_university_requirement"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="32dp"
+                            android:text="0"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+
+                        <ProgressBar
+                            android:id="@+id/graduation_sheet_requirements_university_requirement_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/graduation_sheet_requirements_university_requirement"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="0"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_faculty_requirement"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background"
+                            android:text="متطلب كلية"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_faculty_requirement_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/graduation_sheet_requirements_faculty_requirement"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="32dp"
+                            android:text="0"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+
+                        <ProgressBar
+                            android:id="@+id/graduation_sheet_requirements_faculty_requirement_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/graduation_sheet_requirements_faculty_requirement"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="0"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_major_forced"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background"
+                            android:text="رئيسي إجباري"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_major_forced_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/graduation_sheet_requirements_major_forced"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="32dp"
+                            android:text="0"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+
+                        <ProgressBar
+                            android:id="@+id/graduation_sheet_requirements_major_forced_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/graduation_sheet_requirements_major_forced"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="0"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_major_choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background"
+                            android:text="رئيسي إختياري"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_major_choice_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/graduation_sheet_requirements_major_choice"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="32dp"
+                            android:text="0"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+
+                        <ProgressBar
+                            android:id="@+id/graduation_sheet_requirements_major_choice_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/graduation_sheet_requirements_major_choice"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="0"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_minor_choice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background"
+                            android:text="فرعي اختياري"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/graduation_sheet_requirements_minor_choice_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/graduation_sheet_requirements_minor_choice"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="32dp"
+                            android:text="0"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+
+                        <ProgressBar
+                            android:id="@+id/graduation_sheet_requirements_minor_choice_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/graduation_sheet_requirements_minor_choice"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="0"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/graduation_sheet_subject_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>

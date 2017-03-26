@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">College Life</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="student_gender_array">
+        <item>ذكر</item>
+        <item>أنثي</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/graduation_sheet_subject_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    card:cardCornerRadius="10dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_old_id_logo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/old_id_logo_background"
+            android:gravity="center"
+            android:text="ر150b"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/graduation_sheet_subject_old_id_logo"
+            android:layout_toStartOf="@+id/graduation_sheet_subject_old_id_logo"
+            android:text="وسائط متعددة والوصول للمعلومات"
+            android:textColor="@android:color/tertiary_text_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/graduation_sheet_subject_name"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_toLeftOf="@+id/graduation_sheet_subject_old_id_logo"
+            android:layout_toStartOf="@+id/graduation_sheet_subject_old_id_logo"
+            android:text="مقرر تخصص رئيسي إجباري"
+            android:textColor="@android:color/tertiary_text_dark"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+
+        <ImageView
+            android:id="@+id/graduation_sheet_subject_hours_logo"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/graduation_sheet_subject_category"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/graduation_sheet_subject_semester_name"
+            android:layout_toStartOf="@+id/graduation_sheet_subject_semester_name"
+            android:background="@drawable/ic_logo_background"
+            android:src="@drawable/ic_hours_white_36dp" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_hours_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/graduation_sheet_subject_category"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="3dp"
+            android:layout_toLeftOf="@+id/graduation_sheet_subject_hours_logo"
+            android:layout_toStartOf="@+id/graduation_sheet_subject_hours_logo"
+            android:text="3"
+            android:textSize="19sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_semester_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/graduation_sheet_subject_category"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/graduation_sheet_subject_old_id_logo"
+            android:layout_toStartOf="@+id/graduation_sheet_subject_old_id_logo"
+            android:background="@drawable/text_logo_background"
+            android:text="الفصل"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_semester_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/graduation_sheet_subject_category"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toLeftOf="@+id/graduation_sheet_subject_semester_logo"
+            android:layout_toStartOf="@+id/graduation_sheet_subject_semester_logo"
+            android:text="معادلة2014"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_earned_grade_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/graduation_sheet_subject_semester_logo"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@id/graduation_sheet_subject_old_id_logo"
+            android:layout_toStartOf="@id/graduation_sheet_subject_old_id_logo"
+            android:background="@drawable/text_logo_background"
+            android:text="التقدير المكتسب"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_earned_grade_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/graduation_sheet_subject_semester_logo"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toLeftOf="@id/graduation_sheet_subject_earned_grade_logo"
+            android:layout_toStartOf="@id/graduation_sheet_subject_earned_grade_logo"
+            android:text="B+"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_actual_grade_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/graduation_sheet_subject_earned_grade_logo"
+            android:layout_below="@id/graduation_sheet_subject_semester_logo"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@id/graduation_sheet_subject_earned_grade_val"
+            android:layout_toStartOf="@id/graduation_sheet_subject_earned_grade_val"
+            android:background="@drawable/text_logo_background"
+            android:text="التقدير الفعلي"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_actual_grade_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/graduation_sheet_subject_semester_logo"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toLeftOf="@id/graduation_sheet_subject_actual_grade_logo"
+            android:layout_toStartOf="@id/graduation_sheet_subject_actual_grade_logo"
+            android:text="B+"
+            android:textSize="20sp" />
+
+
+        <ImageView
+            android:id="@+id/graduation_sheet_subject_point_icon_logo"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_below="@id/graduation_sheet_subject_earned_grade_logo"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@id/graduation_sheet_subject_old_id_logo"
+            android:layout_toStartOf="@id/graduation_sheet_subject_old_id_logo"
+            android:background="@drawable/ic_logo_background_right_corner"
+            android:src="@drawable/ic_points_white_36dp" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_point_text_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/graduation_sheet_subject_earned_grade_logo"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@id/graduation_sheet_subject_point_icon_logo"
+            android:layout_toStartOf="@id/graduation_sheet_subject_point_icon_logo"
+            android:background="@drawable/text_logo_background_left_corner"
+            android:text="point"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_point_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/graduation_sheet_subject_earned_grade_logo"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toLeftOf="@id/graduation_sheet_subject_point_text_logo"
+            android:layout_toStartOf="@id/graduation_sheet_subject_point_text_logo"
+            android:text="2.67"
+            android:textSize="20sp" />
+
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_nodes_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/graduation_sheet_subject_point_icon_logo"
+            android:layout_below="@id/graduation_sheet_subject_earned_grade_logo"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@+id/graduation_sheet_subject_point_num"
+            android:layout_toStartOf="@+id/graduation_sheet_subject_point_num"
+            android:background="@drawable/text_logo_background"
+            android:text="ملاحظات"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/graduation_sheet_subject_nodes_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/graduation_sheet_subject_earned_grade_logo"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toLeftOf="@id/graduation_sheet_subject_nodes_logo"
+            android:layout_toStartOf="@id/graduation_sheet_subject_nodes_logo"
+            android:text="حذف لخطأ في التسجيل"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+

@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/student_grades_semester_subjects_fragment_coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="rofaeil.ashaiaa.idea.collegelife.MainFragments.StudentGrades.SemesterSubject.SemesterSubjectActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/student_grades_semester_subjects_fragment_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="370dp"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/student_grades_semester_subjects_fragment_collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:collapsedTitleGravity="left"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/student_grades_semester_subjects_activity_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:layout_collapseMode="pin" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="?attr/actionBarSize"
+                android:background="@color/colorPrimary">
+
+                <Button
+                    android:id="@+id/student_grades_semester_subjects_activity_polling_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Polling"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/student_grades_semester_subjects_activity_semester_logo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:src="@drawable/ic_semester_white_36dp" />
+
+                <TextView
+
+                    android:id="@+id/student_grades_semester_subjects_activity_loaded_hours_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toLeftOf="@id/student_grades_semester_subjects_activity_semester_logo"
+                    android:layout_toStartOf="@id/student_grades_semester_subjects_activity_semester_logo"
+                    android:background="@drawable/text_logo_border_background"
+                    android:text="العبءالدراسي"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/student_grades_semester_subjects_activity_loaded_hours_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="7dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toLeftOf="@id/student_grades_semester_subjects_activity_loaded_hours_logo"
+                    android:layout_toStartOf="@id/student_grades_semester_subjects_activity_loaded_hours_logo"
+                    android:text="8"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/student_grades_semester_subjects_activity_cgpa_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/student_grades_semester_subjects_activity_loaded_hours_logo"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toLeftOf="@id/student_grades_semester_subjects_activity_semester_logo"
+                    android:layout_toStartOf="@id/student_grades_semester_subjects_activity_semester_logo"
+                    android:background="@drawable/text_logo_border_background"
+                    android:text="CGPA"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/student_grades_semester_subjects_activity_cgpa_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/student_grades_semester_subjects_activity_loaded_hours_logo"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_toLeftOf="@id/student_grades_semester_subjects_activity_cgpa_logo"
+                    android:layout_toStartOf="@id/student_grades_semester_subjects_activity_cgpa_logo"
+                    android:text="2.842"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+
+                <ImageView
+                    android:id="@+id/student_grades_semester_subjects_activity_cgpa_state"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/student_grades_semester_subjects_activity_loaded_hours_logo"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toLeftOf="@+id/student_grades_semester_subjects_activity_cgpa_num"
+                    android:layout_toStartOf="@+id/student_grades_semester_subjects_activity_cgpa_num"
+                    android:src="@drawable/ic_cgpa_up_white_48dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/student_grades_semester_subjects_activity_semester_logo"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/student_grades_semester_subjects_activity_gpa_logo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background"
+                            android:text="GPA"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/student_grades_semester_subjects_activity_gpa_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/student_grades_semester_subjects_activity_gpa_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="32dp"
+                            android:text="2.30"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp" />
+
+                        <ProgressBar
+                            android:id="@+id/student_grades_semester_subjects_activity_gpa_num_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/student_grades_semester_subjects_activity_gpa_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="100"
+                            android:progress="60"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:id="@+id/student_grades_semester_subjects_activity_earned_hour_logo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background">
+
+                            <TextView
+                                android:id="@+id/student_grades_semester_subjects_activity_earned_hours_text_logo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginTop="2dp"
+                                android:text="المكتسبه"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/student_grades_semester_subjects_activity_earned_hours_icon_logo"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="2dp"
+                                android:src="@drawable/ic_hours_white_36dp"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/student_grades_semester_subjects_activity_earned_hours_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/student_grades_semester_subjects_activity_earned_hour_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="32dp"
+                            android:text="18"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp"
+                            android:textStyle="normal" />
+
+                        <ProgressBar
+                            android:id="@+id/student_grades_semester_subjects_activity_earned_hours_num_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/student_grades_semester_subjects_activity_earned_hour_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="100"
+                            android:progress="60"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:id="@+id/student_grades_semester_subjects_activity_subjects_logo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/text_logo_border_background">
+
+                            <TextView
+                                android:id="@+id/student_grades_semester_subjects_activity_subjects_text_logo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="2dp"
+                                android:layout_marginTop="2dp"
+                                android:text="المواد"
+                                android:textColor="@android:color/white"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/student_grades_semester_subjects_activity_subjects_icon_logo"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="2dp"
+                                android:src="@drawable/subjects_logo"
+                                android:textColor="@android:color/white"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/student_grades_semester_subjects_activity_subjects_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/student_grades_semester_subjects_activity_subjects_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="32dp"
+                            android:text="8"
+                            android:textColor="@android:color/white"
+                            android:textSize="24sp"
+                            android:textStyle="normal" />
+
+                        <ProgressBar
+                            android:id="@+id/student_grades_semester_subjects_activity_subjects_num_progress_bar"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_below="@+id/student_grades_semester_subjects_activity_subjects_logo"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/progress_bar_circle_shape_background"
+                            android:indeterminate="false"
+                            android:max="100"
+                            android:progress="60"
+                            android:progressDrawable="@drawable/progress_bar_circular_color" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <fragment
+        android:id="@+id/student_grades_semester_subjects_fragment"
+        android:name="rofaeil.ashaiaa.idea.collegelife.MainFragments.StudentGrades.SemesterSubject.SemesterSubjectFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout="@layout/student_grades_semester_subjects_fragment" />
+
+</android.support.design.widget.CoordinatorLayout>
