@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/navigation_menu_header_background"
@@ -12,33 +13,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text=""
+        android:layout_marginTop="10dp"
         android:textColor="@android:color/white"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        tools:text="عماد عبد الرحمن انور علي السيد" />
 
     <TextView
         android:id="@+id/navigation_menu_header_name_logo"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_below="@+id/student_my_profile_header_name_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="19dp"
         android:background="@drawable/old_id_logo_background"
         android:gravity="center"
-        android:text=""
         android:textColor="@android:color/white"
-        android:textSize="35sp" />
+        android:textSize="35sp"
+        tools:text="E" />
 
     <ProgressBar
         android:id="@+id/navigation_menu_header_earned_hours_progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_below="@+id/student_my_profile_header_name_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
+        android:layout_marginLeft="13.5dp"
+        android:layout_marginTop="11.5dp"
         android:background="@drawable/student_head_logo_progress_bar_circle_shape_background"
         android:indeterminate="false"
         android:max="140"
@@ -48,10 +49,10 @@
     <ProgressBar
         android:id="@+id/navigation_menu_header_cgpa_progress_bar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="97dp"
-        android:layout_height="97dp"
+        android:layout_width="77dp"
+        android:layout_height="77dp"
         android:layout_below="@+id/student_my_profile_header_name_text"
-        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/student_head_logo_progress_bar_circle_shape_background"
         android:indeterminate="false"
@@ -64,28 +65,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/student_my_profile_header_name_text"
+        android:layout_marginLeft="37dp"
         android:layout_marginTop="4dp"
-        android:layout_toEndOf="@+id/navigation_menu_header_cgpa_progress_bar"
-        android:layout_toRightOf="@+id/navigation_menu_header_cgpa_progress_bar"
         android:background="@drawable/student_head_level_background"
         android:text="0"
         android:textColor="@android:color/white"
         android:textSize="15sp" />
 
-</RelativeLayout><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:fitsSystemWindows="true"--><!--android:onClick="myProfileLayoutPressed"--><!--android:orientation="horizontal">-->
+    <TextView
+        android:id="@+id/navigation_menu_header_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/student_my_profile_header_name_text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/navigation_menu_header_cgpa_progress_bar"
+        android:layout_toRightOf="@+id/navigation_menu_header_cgpa_progress_bar"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        tools:text="2015116356" />
 
+    <TextView
+        android:id="@+id/navigation_menu_header_major"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/navigation_menu_header_id"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/navigation_menu_header_cgpa_progress_bar"
+        android:layout_toRightOf="@+id/navigation_menu_header_cgpa_progress_bar"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        tools:text="الحاسب الالي" />
 
-    <!--<ImageView--><!--android:id="@+id/image_drawer"--><!--android:layout_width="0dp"--><!--android:layout_height="wrap_content"--><!--android:layout_weight="1"--><!--android:src="@drawable/faculty_of_science_logo" />-->
-
-    <!--<LinearLayout--><!--android:layout_width="0dp"--><!--android:layout_height="match_parent"--><!--android:layout_marginTop="16dp"--><!--android:layout_weight="2"--><!--android:orientation="vertical">-->
-
-
-    <!--<TextView--><!--android:id="@+id/person_name"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_margin="8dp"--><!--android:text="Loading Student Name"--><!--android:textSize="12sp" />-->
-
-    <!--<TextView--><!--android:id="@+id/student_id_drawer"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_margin="8dp"--><!--android:text="Loading Student ID"--><!--android:textSize="12sp" />-->
-
-    <!--<TextView--><!--android:id="@+id/student_departments_drawer"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_margin="8dp"--><!--android:text="Loading Major and minor"--><!--android:textSize="12sp" />-->
-
-    <!--</LinearLayout>-->
-
-    <!--</LinearLayout>-->
+</RelativeLayout>
