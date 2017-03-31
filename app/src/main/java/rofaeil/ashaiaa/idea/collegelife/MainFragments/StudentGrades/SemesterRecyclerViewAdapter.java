@@ -16,11 +16,6 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester;
 import rofaeil.ashaiaa.idea.collegelife.MainFragments.StudentGrades.SemesterSubject.SemesterSubjectActivity;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geIconRightCornerBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextLeftCornerBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
-
 /**
  * Created by emad on 1/1/2017.
  */
@@ -45,10 +40,9 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
 
         Semester semester = mSemesters.get(position);
-        int backgroundId = semester.getBackgroundId();
-        int semesterTextBackgroundResource = geTextBackgroundResource(backgroundId);
-        int semesterTextLeftCornerBackgroundResource = geTextLeftCornerBackgroundResource(backgroundId);
-        int semesterIconRightCornerBackgroundResource = geIconRightCornerBackgroundResource(backgroundId);
+        int semesterTextBackgroundResource = semester.getTextBackgroundResource();
+        int semesterTextLeftCornerBackgroundResource = semester.getTextLeftCornerBackgroundResource();
+        int semesterIconRightCornerBackgroundResource = semester.getIconRightCornerBackgroundResource();
 
         holder.semester_name.setText(semester.getName());
         holder.subject_num.setText("" + semester.getSubjects().size() + "");
@@ -57,7 +51,7 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
         holder.semester_loaded_hours.setText(semester.getSemesterLoad());
         holder.semester_earned_hours.setText(semester.getEarnedHours());
 
-        holder.semester_logo.setBackgroundResource(getSubjectOldIdBackgroundResource(backgroundId));
+        holder.semester_logo.setBackgroundResource(semester.getOldIdBackgroundResource());
         holder.semester_cgpa_logo.setBackgroundResource(semesterTextBackgroundResource);
         holder.semester_gpa_logo.setBackgroundResource(semesterTextBackgroundResource);
         holder.semester_loaded_hours_logo.setBackgroundResource(semesterTextBackgroundResource);
