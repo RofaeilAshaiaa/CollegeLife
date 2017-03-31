@@ -11,13 +11,13 @@
     <android.support.design.widget.AppBarLayout
         android:id="@+id/student_grades_semester_subjects_fragment_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="370dp"
-        android:fitsSystemWindows="true">
+        android:layout_height="370dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/student_grades_semester_subjects_fragment_collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
             app:collapsedTitleGravity="left"
             app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
