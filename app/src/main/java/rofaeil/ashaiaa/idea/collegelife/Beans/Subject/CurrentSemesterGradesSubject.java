@@ -14,6 +14,24 @@ public class CurrentSemesterGradesSubject extends Subject {
     private String Lab;
     private String Final;
     private String Total;
+    private int TextBackgroundResource;
+    private int OldIdBackgroundResource;
+
+    public int getTextBackgroundResource() {
+        return TextBackgroundResource;
+    }
+
+    public void setTextBackgroundResource(int textBackgroundResource) {
+        TextBackgroundResource = textBackgroundResource;
+    }
+
+    public int getOldIdBackgroundResource() {
+        return OldIdBackgroundResource;
+    }
+
+    public void setOldIdBackgroundResource(int oldIdBackgroundResource) {
+        OldIdBackgroundResource = oldIdBackgroundResource;
+    }
 
     public String getOral() {
         return Oral;
