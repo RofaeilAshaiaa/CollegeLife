@@ -27,8 +27,8 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.StudentGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 import rofaeil.ashaiaa.idea.collegelife.databinding.ReviewRegisteredSubjectsFragmentBinding;
 
-import static rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester.calculate_total_hours_of_semester;
-import static rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester.extractLastSemesterReviewSubjects;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.calculate_total_hours_of_semester;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.extractLastSemesterReviewSubjects;
 
 public class ReviewRegisteredSubjectsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
 
