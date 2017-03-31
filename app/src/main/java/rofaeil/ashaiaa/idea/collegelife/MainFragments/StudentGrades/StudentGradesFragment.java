@@ -31,6 +31,10 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.StudentGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geIconRightCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextLeftCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
 
 
 public class StudentGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
@@ -132,6 +136,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
 
             Semester mSemester = new Semester();
             ArrayList<StudentGradesSubject> mSubjects = new ArrayList<>();
+            int BackgroundId = new Random().nextInt(10);
 
             Element mSemester_table = mSemesters_tables.get(i);
 
@@ -140,7 +145,11 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             mSemester.setSemesterLoad(mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_FormView1_" + i + "_SemesterLoadLabel").text());
             mSemester.setEarnedHours(mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_FormView1_" + i + "_SemesterCHLabel").text());
             mSemester.setCGPA(mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_FormView1_" + i + "_CGPALabel").text());
-            mSemester.setBackgroundId(new Random().nextInt(10));
+            mSemester.setBackgroundId(BackgroundId);
+            mSemester.setOldIdBackgroundResource(getSubjectOldIdBackgroundResource(BackgroundId));
+            mSemester.setTextBackgroundResource(geTextBackgroundResource(BackgroundId));
+            mSemester.setIconRightCornerBackgroundResource(geIconRightCornerBackgroundResource(BackgroundId));
+            mSemester.setTextLeftCornerBackgroundResource(geTextLeftCornerBackgroundResource(BackgroundId));
 
             Element mSemester_Subjects_table = mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_GridView1_" + i + "");
             Elements mSemester_Subjects = mSemester_Subjects_table.getElementsByTag("tr");
