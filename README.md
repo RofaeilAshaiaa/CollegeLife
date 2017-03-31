@@ -1,6 +1,5 @@
 # Work List #
 
-* Toolbar in semester grades activity in API higher than 19
 * Exam put table loader id in FinalData class
 * Exam table random background color 
 * Add fall exam table in nav
@@ -16,3 +15,4 @@
 # Finished #
 
 * Nav header design
+* Toolbar in semester grades activity in API higher than 19
