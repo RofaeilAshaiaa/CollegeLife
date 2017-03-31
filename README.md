@@ -20,4 +20,4 @@
 
 # Features to Add: #
 
-*Add JobService to check the exam table if changed or not and notify the student if exam(s) date(s) changed!
+* Add JobService to check the exam table if changed or not and notify the student if exam(s) date(s) changed!
