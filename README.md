@@ -16,3 +16,8 @@
 
 * Nav header design
 * Toolbar in semester grades activity in API higher than 19
+
+
+# Features to Add: #
+
+*Add JobService to check the exam table if changed or not and notify the student if exam(s) date(s) changed!
