@@ -2,7 +2,7 @@
 
 1. Toolbar in semester grades activity in API higher than 19
 2. Exam put table loader id in FinalData class
-3. Nav header design
+3. Nav header design (finished)
 4. Exam table random background color 
 5. Add fall exam table in nav
 6. Make unused item in nav hidden
