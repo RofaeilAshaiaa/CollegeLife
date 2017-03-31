@@ -175,6 +175,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView mStudentNameLogo = (TextView) findViewById(R.id.navigation_menu_header_name_logo);
         TextView mStudentName = (TextView) findViewById(R.id.student_my_profile_header_name_text);
         TextView mStudentLevel = (TextView) findViewById(R.id.navigation_menu_header_level_val);
+        TextView mStudentID = (TextView) findViewById(R.id.navigation_menu_header_id);
+        TextView mStudentMajor = (TextView) findViewById(R.id.navigation_menu_header_major);
+
+        mStudentID.setText(mStudentHome.getID());
+        mStudentMajor.setText(mStudentHome.getMajor());
         mStudentLevel.setText("" + getStudentLevel(mStudentHome.getLevel()) + "");
         ProgressBar mStudentCGPAProgressBar = (ProgressBar) findViewById(R.id.navigation_menu_header_cgpa_progress_bar);
         mStudentCGPAProgressBar.setProgress((int) Double.parseDouble(mStudentHome.getCGPA()));
