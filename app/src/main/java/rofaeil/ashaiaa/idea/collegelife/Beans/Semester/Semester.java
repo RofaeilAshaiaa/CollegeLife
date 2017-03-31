@@ -21,6 +21,10 @@ public class Semester {
     private String SemesterLoad;
     private ArrayList<StudentGradesSubject> Subjects;
     private int BackgroundId;
+    private int OldIdBackgroundResource;
+    private int TextBackgroundResource;
+    private int TextLeftCornerBackgroundResource;
+    private int IconRightCornerBackgroundResource;
 
     public static ArrayList<StudentGradesSubject> extractLastSemesterReviewSubjects(Document document) {
 
@@ -100,6 +104,38 @@ public class Semester {
 
 
         return total_hours;
+    }
+
+    public int getOldIdBackgroundResource() {
+        return OldIdBackgroundResource;
+    }
+
+    public void setOldIdBackgroundResource(int oldIdBackgroundResource) {
+        OldIdBackgroundResource = oldIdBackgroundResource;
+    }
+
+    public int getTextBackgroundResource() {
+        return TextBackgroundResource;
+    }
+
+    public void setTextBackgroundResource(int textBackgroundResource) {
+        TextBackgroundResource = textBackgroundResource;
+    }
+
+    public int getTextLeftCornerBackgroundResource() {
+        return TextLeftCornerBackgroundResource;
+    }
+
+    public void setTextLeftCornerBackgroundResource(int textLeftCornerBackgroundResource) {
+        TextLeftCornerBackgroundResource = textLeftCornerBackgroundResource;
+    }
+
+    public int getIconRightCornerBackgroundResource() {
+        return IconRightCornerBackgroundResource;
+    }
+
+    public void setIconRightCornerBackgroundResource(int iconRightCornerBackgroundResource) {
+        IconRightCornerBackgroundResource = iconRightCornerBackgroundResource;
     }
 
     public int getBackgroundId() {
