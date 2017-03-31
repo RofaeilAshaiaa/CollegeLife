@@ -28,6 +28,7 @@ public class StaticMethods {
         Elements mSubjects_raws = mSubject_table.getElementsByTag("tr");
 
         for (int i = 1; i < mSubjects_raws.size(); i++) {
+            int BackgroundId = new Random().nextInt(9);
             CurrentSemesterGradesSubject mSubject = new CurrentSemesterGradesSubject();
             mSubject.setID(mSubjects_raws.get(i).getAllElements().get(1).text());
             mSubject.setOldID(mSubjects_raws.get(i).getAllElements().get(2).text());
@@ -40,7 +41,9 @@ public class StaticMethods {
             mSubject.setLab(mSubjects_raws.get(i).getAllElements().get(11).text());
             mSubject.setFinal(mSubjects_raws.get(i).getAllElements().get(12).text());
             mSubject.setTotal(mSubjects_raws.get(i).getAllElements().get(13).text());
-            mSubject.setBackgroundId(new Random().nextInt(9));
+            mSubject.setBackgroundId(BackgroundId);
+            mSubject.setOldIdBackgroundResource(getSubjectOldIdBackgroundResource(BackgroundId));
+            mSubject.setTextBackgroundResource(geTextBackgroundResource(BackgroundId));
             mSubjects.add(mSubject);
         }
         return mSubjects;
