@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.CurrentSemesterGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
-
 /**
  * Created by emad on 1/2/2017.
  */
@@ -38,11 +35,9 @@ public class CurrentSemesterRecycleViewAdapter extends RecyclerView.Adapter<Curr
     public void onBindViewHolder(RecycleViewHolder holder, int position) {
 
         CurrentSemesterGradesSubject subject = mSubjects.get(position);
-        int backgroundId = subject.getBackgroundId();
-        int subjectTextBackgroundResource = geTextBackgroundResource(backgroundId);
+        int subjectTextBackgroundResource = subject.getTextBackgroundResource();
 
         holder.subject_old_id.setText(subject.getOldID());
-        holder.subject_old_id.setBackgroundResource(getSubjectOldIdBackgroundResource(backgroundId));
         holder.subject_name.setText(subject.getName());
         holder.subject_midTerm_num.setText(subject.getMidTerm());
         holder.subject_oral_num.setText(subject.getOral());
@@ -51,6 +46,7 @@ public class CurrentSemesterRecycleViewAdapter extends RecyclerView.Adapter<Curr
         holder.subject_final_num.setText(subject.getFinal());
         holder.subject_total_num.setText(subject.getTotal());
 
+        holder.subject_old_id.setBackgroundResource(subject.getOldIdBackgroundResource());
         holder.subject_midTerm_logo.setBackgroundResource(subjectTextBackgroundResource);
         holder.subject_oral_logo.setBackgroundResource(subjectTextBackgroundResource);
         holder.subject_total_term_logo.setBackgroundResource(subjectTextBackgroundResource);
