@@ -12,36 +12,6 @@
             android:checked="false"
             android:title="Graduation Document" />
 
-
-        <item
-            android:id="@+id/register_specialization"
-            android:checked="false"
-            android:title="Register Specialization" />
-
-        <item
-            android:id="@+id/register_special_degree"
-            android:checked="false"
-            android:title="Register Special Degree" />
-        <item
-            android:id="@+id/change_specialization"
-            android:checked="false"
-            android:title="Change Specialization" />
-        <item
-            android:id="@+id/result_change_specialization"
-            android:checked="false"
-            android:title="Result of Change Specialization" />
-
-    </group>
-
-    <group
-        android:id="@+id/grp2"
-        android:checkableBehavior="single"
-        android:visible="true">
-        <item
-            android:checked="false"
-            android:title="Settings">
-
-        </item>
         <item
             android:id="@+id/change_password"
             android:checked="false"
@@ -59,14 +29,37 @@
             android:checked="false"
             android:title="Contact us" />
 
-        <item
-            android:id="@+id/settings"
-            android:checked="false"
-            android:title="Settings">
+        <!--<item-->
+            <!--android:id="@+id/register_specialization"-->
+            <!--android:checked="false"-->
+            <!--android:title="Register Specialization" />-->
 
-        </item>
-
+        <!--<item-->
+            <!--android:id="@+id/register_special_degree"-->
+            <!--android:checked="false"-->
+            <!--android:title="Register Special Degree" />-->
+        <!--<item-->
+            <!--android:id="@+id/change_specialization"-->
+            <!--android:checked="false"-->
+            <!--android:title="Change Specialization" />-->
+        <!--<item-->
+            <!--android:id="@+id/result_change_specialization"-->
+            <!--android:checked="false"-->
+            <!--android:title="Result of Change Specialization" />-->
 
     </group>
+
+    <!--<group-->
+        <!--android:id="@+id/grp2"-->
+        <!--android:checkableBehavior="single"-->
+        <!--android:visible="true">-->
+        <!--<item-->
+            <!--android:checked="false"-->
+            <!--android:title="Settings">-->
+
+        <!--</item>-->
+
+
+    <!--</group>-->
 
 </menu>
