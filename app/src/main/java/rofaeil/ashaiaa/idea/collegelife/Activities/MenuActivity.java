@@ -35,22 +35,21 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         menuActivityBinding = DataBindingUtil.setContentView(this, R.layout.menu_activity);
+        String selected_item = getIntent().getStringExtra("selected_item");
 
-        initializeToolbar();
+        initializeToolbar(selected_item);
         initializeSlidingPaneLayout();
 
-        String selected_item = getIntent().getStringExtra("selected_item");
         if (selected_item != null) {
             replace_selected_fragment(selected_item);
         }
     }
 
-    public void initializeToolbar() {
+    public void initializeToolbar(String selected_item) {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        String selected_item = getIntent().getStringExtra("selected_item");
         switch (selected_item) {
             case "my_profile":
                 getSupportActionBar().setTitle("My Profile");
@@ -170,99 +169,5 @@ public class MenuActivity extends AppCompatActivity {
 
         }
     }
-
-//    @Override
-//    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//        //Checking if the item is in checked state or not, if not make it in checked state
-//        if (menuItem.isChecked()) menuItem.setChecked(false);
-//        else menuItem.setChecked(true);
-//        //Closing menu_drawer on item click
-//        mDrawerLayout.closeDrawers();
-//
-//        //Check to see which item was being clicked and perform appropriate action
-//        switch (menuItem.getItemId()) {
-//
-//            case R.id.home_page:
-//                Intent intent = new Intent(this,MainActivity.class) ;
-//                startActivity(intent);
-//                return true;
-//
-//
-//            case R.id.graduation_document:
-//                replace_selected_fragment("graduation_document");
-//                return true;
-//
-//            case R.id.register_specialization:
-//                replace_selected_fragment("register_specialization");
-//                return true;
-//
-//            case R.id.register_special_degree:
-//                replace_selected_fragment("register_special_degree");
-//
-//                return true;
-//            case R.id.change_specialization:
-//                replace_selected_fragment("change_specialization");
-//                return true;
-//
-//            case R.id.result_change_specialization:
-//                replace_selected_fragment("result_change_specialization");
-//                return true;
-//
-//            case R.id.change_password:
-//                replace_selected_fragment("change_password");
-//                return true;
-//
-//            case R.id.about_app:
-//                replace_selected_fragment("about_app");
-//                return true;
-//
-//            case R.id.contact_us:
-//                replace_selected_fragment("contact_us");
-//                return true;
-//
-//            default:
-//                Toast.makeText(getApplicationContext(), "Somethings Wrong", Toast.LENGTH_SHORT).show();
-//                return true;
-//
-//        }
-//
-//    }
-//    @Override
-//    public void onBackPressed() {
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
-
-//    private void start_AsyncTask_log_in() {
-//        AsyncTaskLogin asyncTaskLogin = new AsyncTaskLogin() {
-//            @Override
-//            protected void onPostExecute(Document document_review_subject) {
-//                student = extract_student_data_from_document(document_review_subject);
-//                finished_loading_student_data = true ;
-//                set_drawer_data();
-//            }
-//        };
-//        asyncTaskLogin.execute();
-//    }
-
-//    private void set_drawer_data() {
-//        TextView temp;
-//        temp = (TextView) menuActivityBinding.navigationView.findViewById(R.id.person_name);
-//        temp.setText(student.getFull_name());
-//        temp = (TextView) menuActivityBinding.navigationView.findViewById(R.id.student_id_drawer);
-//        temp.setText(student.getId());
-//        temp = (TextView) menuActivityBinding.navigationView.findViewById(R.id.student_departments_drawer);
-//        temp.setText(student.getMajor()+"/"+student.getMinor());
-//    }
-
-//    public void myProfileLayoutPressed(View view) {
-//
-//        replace_selected_fragment("my_profile");
-//        mDrawerLayout.closeDrawers();
-//    }
 
 }
