@@ -51,9 +51,6 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         switch (selected_item) {
-            case "my_profile":
-                getSupportActionBar().setTitle("My Profile");
-                break;
 
             case "graduation_document":
                 getSupportActionBar().setTitle("Graduation Document");
@@ -119,11 +116,6 @@ public class MenuActivity extends AppCompatActivity {
         switch (selected_item) {
 
             //Replacing the main content with ContentFragment Which is our Inbox View;
-            case "my_profile":
-                MyProfileFragment myProfileFragment = new MyProfileFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.menu_activity_fragment_container, myProfileFragment).commit();
-                break;
-
             case "graduation_document":
                 GraduationSheetFragment graduationSheetFragment = new GraduationSheetFragment();
                 getSupportFragmentManager().beginTransaction().replace(R.id.menu_activity_fragment_container, graduationSheetFragment).commit();
