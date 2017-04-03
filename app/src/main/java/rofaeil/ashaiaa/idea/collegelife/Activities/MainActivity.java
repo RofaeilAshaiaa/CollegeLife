@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import rofaeil.ashaiaa.idea.collegelife.Beans.Student.StudentHome;
+import rofaeil.ashaiaa.idea.collegelife.MenuFragments.MyProfile.MyProfileActivity;
 import rofaeil.ashaiaa.idea.collegelife.R;
 import rofaeil.ashaiaa.idea.collegelife.Utils.AsyncTaskLogin;
 import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
@@ -275,8 +276,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void myProfileLayoutPressed(View view) {
 
-        Intent intent = new Intent(this, MenuActivity.class);
-        intent.putExtra("selected_item", "my_profile");
+        Intent intent = new Intent(this, MyProfileActivity.class);
         startActivity(intent);
 
     }
