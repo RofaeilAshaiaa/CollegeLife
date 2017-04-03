@@ -31,7 +31,7 @@ public class StudentDataActivity extends AppCompatActivity implements View.OnCli
 
     public void initializeToolbar() {
         setSupportActionBar(binding.studentDataActivityToolBar);
-        getSupportActionBar().setTitle("My Profile");
+        getSupportActionBar().setTitle("Student Data");
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
