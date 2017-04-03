@@ -38,7 +38,9 @@
         <activity
             android:name=".MenuFragments.MyProfile.StudentData.StudentDataActivity"
             android:parentActivityName=".MenuFragments.MyProfile.MyProfileActivity" />
-        <activity android:name=".MenuFragments.MyProfile.MyProfileActivity"></activity>
+        <activity
+            android:name=".MenuFragments.MyProfile.MyProfileActivity"
+            android:parentActivityName=".Activities.MainActivity"></activity>
     </application>
 
 </manifest>
