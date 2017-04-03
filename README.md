@@ -9,13 +9,13 @@
 * Make details profile light
 * Remove al toast & replace it with snackbar
 * semester grades toolbar title color
-* Details profile back arrow
 * Review Subjects not working need debug
 
 # Finished #
 
 * Nav header design
 * Toolbar in semester grades activity in API higher than 19
+* Details profile back arrow
 
 
 # Features to Add: #
