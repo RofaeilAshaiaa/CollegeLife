@@ -10,7 +10,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".Activities.MainActivity"
             android:windowSoftInputMode="stateHidden">
@@ -20,14 +19,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activities.MenuActivity"
             android:parentActivityName=".Activities.MainActivity"
             android:windowSoftInputMode="stateHidden" />
-
         <activity android:name=".Activities.LogInActivity" />
-
         <activity android:name=".Activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,16 +31,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainFragments.StudentGrades.SemesterSubject.SemesterSubjectActivity"
             android:parentActivityName=".Activities.MainActivity"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name=".MenuFragments.MyProfile.StudentData.StudentDataActivity"
-            android:parentActivityName=".Activities.MenuActivity"></activity>
-
+            android:parentActivityName=".MenuFragments.MyProfile.MyProfileActivity" />
+        <activity android:name=".MenuFragments.MyProfile.MyProfileActivity"></activity>
     </application>
 
 </manifest>
