@@ -231,25 +231,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 return true;
 
-            case R.id.register_specialization:
-                intent.putExtra("selected_item", "register_specialization");
-                startActivity(intent);
-                return true;
-
-            case R.id.register_special_degree:
-                intent.putExtra("selected_item", "register_special_degree");
-                startActivity(intent);
-                return true;
-
-            case R.id.change_specialization:
-                intent.putExtra("selected_item", "change_specialization");
-                startActivity(intent);
-                return true;
-
-            case R.id.result_change_specialization:
-                intent.putExtra("selected_item", "result_change_specialization");
-                startActivity(intent);
-                return true;
+//            case R.id.register_specialization:
+//                intent.putExtra("selected_item", "register_specialization");
+//                startActivity(intent);
+//                return true;
+//
+//            case R.id.register_special_degree:
+//                intent.putExtra("selected_item", "register_special_degree");
+//                startActivity(intent);
+//                return true;
+//
+//            case R.id.change_specialization:
+//                intent.putExtra("selected_item", "change_specialization");
+//                startActivity(intent);
+//                return true;
+//
+//            case R.id.result_change_specialization:
+//                intent.putExtra("selected_item", "result_change_specialization");
+//                startActivity(intent);
+//                return true;
 
             case R.id.change_password:
                 intent.putExtra("selected_item", "change_password");
