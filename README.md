@@ -3,7 +3,6 @@
 * Exam put table loader id in FinalData class
 * Exam table random background color 
 * Add fall exam table in nav
-
 * Add contact us
 * Add about app
 * Make details profile light
