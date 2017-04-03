@@ -1,4 +1,4 @@
-package rofaeil.ashaiaa.idea.collegelife.MenuFragments.MyProfile;
+package rofaeil.ashaiaa.idea.collegelife.MenuFragments.MyProfile.StudentData;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;

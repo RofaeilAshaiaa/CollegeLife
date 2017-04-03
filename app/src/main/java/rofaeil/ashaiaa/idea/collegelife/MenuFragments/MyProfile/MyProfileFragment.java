@@ -15,6 +15,8 @@ import org.parceler.Parcels;
 
 import rofaeil.ashaiaa.idea.collegelife.Beans.Student.StudentData;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Student.StudentHome;
+import rofaeil.ashaiaa.idea.collegelife.MenuFragments.MyProfile.StudentData.AsyncTaskStudentDataGET;
+import rofaeil.ashaiaa.idea.collegelife.MenuFragments.MyProfile.StudentData.StudentDataActivity;
 import rofaeil.ashaiaa.idea.collegelife.R;
 import rofaeil.ashaiaa.idea.collegelife.databinding.MyProfileFragmentBinding;
 

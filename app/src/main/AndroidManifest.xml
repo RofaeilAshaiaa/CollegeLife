@@ -42,7 +42,7 @@
             android:windowSoftInputMode="stateHidden" />
 
         <activity
-            android:name=".MenuFragments.MyProfile.StudentDataActivity"
+            android:name=".MenuFragments.MyProfile.StudentData.StudentDataActivity"
             android:parentActivityName=".Activities.MenuActivity"></activity>
 
     </application>
