@@ -40,5 +40,6 @@ public class FinalData {
     public static final int STUDENT_GRADES_LOADER_ID = 101;
     public static final int GRADUATION_SHEET_LOADER_ID = 102;
     public static final int REVIEW_SUBJECTS_LOADER_ID = 103;
+    public static final int CHANGE_PASSWORD_LOADER_ID = 104;
 
 }
