@@ -1,6 +1,5 @@
 # Work List #
 
-* Exam put table loader id in FinalData class
 * Exam table random background color 
 * Add fall exam table in nav
 * Add contact us
@@ -8,7 +7,7 @@
 * Make details profile light
 * Remove al toast & replace it with snackbar
 * semester grades toolbar title color
-* Review Subjects not working need debug
+
 
 # Finished #
 
@@ -16,6 +15,8 @@
 * Toolbar in semester grades activity in API higher than 19
 * Details profile back arrow
 * Make unused item in nav comment
+* Review Subjects not working need debug
+* Exam table put loader id in FinalData class
 
 
 # Features to Add: #
