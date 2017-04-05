@@ -162,7 +162,7 @@ public class StaticMethods {
 
     }
 
-    public static int calculate_total_hours_of_semester(Semester semester) {
+    public static int calculateTotalHoursOfSemester(Semester semester) {
 
         int total_hours = 0;
 
