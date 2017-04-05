@@ -2,7 +2,6 @@ package rofaeil.ashaiaa.idea.collegelife.MainFragments.ReviewRegisteredSubjects;
 
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
-import android.util.Log;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -46,17 +45,17 @@ public class MyAsyncTaskLoaderReviewRegisteredSubjects extends AsyncTaskLoader<D
 
             mStudentData = getStudentData(mStudentDataDocument);
 
-            Connection.Response StudentDataPOST = Jsoup.connect(StudentDataURL)
+            Connection.Response responseStudentData = Jsoup.connect(StudentDataURL)
                     .userAgent("Mozilla/5.0")
                     .timeout(mContext.getResources().getInteger(R.integer.time_out) * 1000)
                     .method(Connection.Method.POST)
                     .cookies(mapLoginPageCookies)
                     .data("__EVENTTARGET", "")
                     .data("__EVENTARGUMENT", "")
-                    .data("__VIEWSTATE", "DReX57nCVu7K53zTf8LwUjcUWJXAZJDbKurIYGHfQIdrc8+f3qgQLhCl8TtvAtXCPbmhABrsMjSHOfxsCoIVmb1Knc0wsBWS7GJ7O5Rpd/t5R3+yJna/GQrZ/IS7/pGTcwnRDmqKOl7Q5z7I54DbjS4OwrX/TskvINdiR3TOOLiU+f3uceqQKHEp1Vc9yjux7BlpR38SyWRLEtL5Mv9sDbRu1WQqSIg2leAdOt62PA9Jt4Z97YZh4LF7mzOjkaiWUIw5Xi6PFRcfzzjZK2Tr33e2PJtF9W0zJiEkh/WFhnxXGT7W4TmAVHuu7vavTPTXw7sqV2zWb1G13LzJqJNDKnwyKPigWtGvsyalskprWs9barpTK6QFwPy7ly5Hce+kBDcWvKZzEe0CRYNIf6gNYHBP+plCeKmPL/kl2eKM0UtvhZd1ZyAfmvMUxOu+FtCk3O9h0DlrOT+5Tn0/nXktT48VyHRZJZXVoBZir65TbV0jrYepTPhX4RRQ5MRhv+y+3jMnjyrxvYdAYHmNYOhgGvsBTNuicZCSiFi/4mQIFgIMjVWspSzdi+bzJL/U2Gdg5yjceR6AwNy0N6loBxd2Xqjhi50ZTh+z5s/PpSinadq3szlBjI5T1C0gd0EhbtPgzzl5nRzroYaIRhWM5aYweFYFS8EPlTJtORxdbBJZnRMIC7V9GODEUpek0mBERn2LqBKc2xO9dkUuJsBwi526Fw==")
-                    .data("__VIEWSTATEGENERATOR", "F7FE45A7")
+                    .data("__VIEWSTATE", mContext.getString(R.string.__VIEWSTATE))
+                    .data("__VIEWSTATEGENERATOR", mContext.getString(R.string.__VIEWSTATEGENERATOR))
                     .data("__VIEWSTATEENCRYPTED", "")
-                    .data("__EVENTVALIDATION", "peJ3GyEOhDRyY3hHbyBGr6wx0mKPS/6dXK8/te1l3EaopSRodlPjZ4P5Txh9xYnkYo3bJryYJNf2LSBQKgRTZrVL1UrAzz7M+6oM9tmxXlRZAfraXqjngzjP+jd1xccZk0tzCbidkzhMvYeRtKiRSqXWyyOgBMrBjVa4CnlGlak3qIooAMpFgOakEspYz7cjZ4chKwH8othXXW6wHT8OpPBnRS8l1fdEIESNy6oZpqjadawlhZY8EzSqhzqrybFDWTrtJSwHL15bLuhGpmDPdOUI4WHnyPvO4DpIAfVALGOwNZe4yrHibZB/mxU7Ix6ePsIbp84bAODKRayFJZwzCh5tCF6kB6Wimk5nLgBHbMSD4k+xkBj2OPWdbPDsAznWaKuyJDQyddc8mIYMr+cGK04cAepApgVQzqZVKW6aVG+oNaA7H48CXweWLk/hS+jpjDdF2UnyLbCLcz8pMOQzzXZsS1F6eberu00t5OMqVe1HM+MF7aD9cX1ofdHOBqLV2fctveEQzjGImyGMZuYgkDpjuaJ6FjbLsh1bOTihYAL3QgCZOu80fZHJEnflOcIacMs0i1fTG/3kMuzrJGmPKA==")
+                    .data("__EVENTVALIDATION", mContext.getString(R.string.__EVENTVALIDATION))
                     .data("ctl00$ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder1$ContentPlaceHolder1$RegistArFNameTextBox", mStudentData.getFirstNameAR())
                     .data("ctl00$ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder1$ContentPlaceHolder1$RegistArMName1TextBox", mStudentData.getSecondNameAR())
                     .data("ctl00$ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder1$ContentPlaceHolder1$RegistArMName2TextBox", mStudentData.getThirdNameAR())
@@ -76,35 +75,27 @@ public class MyAsyncTaskLoaderReviewRegisteredSubjects extends AsyncTaskLoader<D
                     .followRedirects(true)
                     .execute();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//            Document document1 = responseStudentData.parse() ;
+//            Log.d("mymy", document1.toString());
 
-
-        try {
             Connection.Response response_of_getting_data =
                     Jsoup.connect(ReviewRegistrationSubjectsURL)
                             .userAgent("Mozilla/5.0")
                             .timeout(mContext.getResources().getInteger(R.integer.time_out) * 1000)
+                            .method(Connection.Method.GET)
                             .cookies(mapLoginPageCookies)
                             .execute();
 
             Document document = response_of_getting_data.parse();
-
+//            Log.d("mymy", document.toString());
             return document;
 
         } catch (IOException e) {
-            Log.v("crash", "crash from first request 2");
+            e.printStackTrace();
+//            Log.v("crash", "crash from first request 2");
         }
 
         return null;
     }
-
-    @Override
-    protected void onStartLoading() {
-        super.onStartLoading();
-
-    }
-
 
 }

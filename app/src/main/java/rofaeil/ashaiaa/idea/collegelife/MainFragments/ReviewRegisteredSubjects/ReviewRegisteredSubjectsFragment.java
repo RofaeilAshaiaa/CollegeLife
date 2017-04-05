@@ -5,6 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -25,6 +26,7 @@ import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.StudentGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
+import rofaeil.ashaiaa.idea.collegelife.Utils.FinalData;
 import rofaeil.ashaiaa.idea.collegelife.databinding.ReviewRegisteredSubjectsFragmentBinding;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.calculate_total_hours_of_semester;
@@ -32,11 +34,12 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.extractLastSe
 
 public class ReviewRegisteredSubjectsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
 
-    private ReviewRegisteredSubjectsFragmentBinding binding;
+    private ReviewRegisteredSubjectsFragmentBinding mBinding;
     private ArrayList<StudentGradesSubject> semester_subjects;
     private ProgressBar progressBar;
     private Context mContext;
     private Handler mHandler;
+    private FragmentActivity mActivity;
     private ReviewRegisteredSubjectsFragment mFragment;
 
     public ReviewRegisteredSubjectsFragment() {
@@ -47,25 +50,29 @@ public class ReviewRegisteredSubjectsFragment extends Fragment implements Loader
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        binding = DataBindingUtil.inflate
+        mBinding = DataBindingUtil.inflate
                 (inflater, R.layout.review_registered_subjects_fragment, container, false);
-        progressBar = binding.progressBarReviewSubjects;
+        progressBar = mBinding.progressBarReviewSubjects;
         mContext = getContext();
+        mActivity = getActivity();
         mHandler = new Handler();
         mFragment = this;
 
-        binding.reviewSubjectsTextView.setText("Please Wait While Data is Loading");
-        binding.reviewSubjectsTextView.setVisibility(View.VISIBLE);
+//        mBinding.reviewSubjectsTextView.setText("Please Wait While Data is Loading");
+//        mBinding.reviewSubjectsTextView.setVisibility(View.VISIBLE);
+
         progressBar.setVisibility(View.VISIBLE);
 
-//        getActivity().getSupportLoaderManager().initLoader(1, null,this ).forceLoad();
+//        mActivity.getSupportLoaderManager().initLoader(1, null,this ).forceLoad();
 
         Runnable runnable = new TimerTask() {
             @Override
             public void run() {
                 if (MainActivity.mapLoginPageCookies != null) {
 
-                    getActivity().getSupportLoaderManager().initLoader(1, null, mFragment).forceLoad();
+                    mActivity.getSupportLoaderManager()
+                            .initLoader(FinalData.REVIEW_SUBJECTS_LOADER_ID, null, mFragment)
+                            .forceLoad();
 
                 } else {
                     mHandler.postDelayed(this, 100);
@@ -76,7 +83,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment implements Loader
         mHandler.post(runnable);
         start_request_and_get_data();
 
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     @Override
@@ -96,26 +103,26 @@ public class ReviewRegisteredSubjectsFragment extends Fragment implements Loader
         semester.setSubjects(semester_subjects);
         int total_hours_of_semester = calculate_total_hours_of_semester(semester);
 
-        RecyclerView recyclerView = binding.recyclerview;
-        ReviewRegisteredSubjectsAdapter adapter = new ReviewRegisteredSubjectsAdapter(getActivity(), semester_subjects);
+        RecyclerView recyclerView = mBinding.recyclerview;
+        ReviewRegisteredSubjectsAdapter adapter = new ReviewRegisteredSubjectsAdapter(mActivity, semester_subjects);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        recyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
+        mBinding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getActivity(), "user refreshed", Toast.LENGTH_SHORT).show();
-                binding.swipeContainer.setRefreshing(false);
+                Toast.makeText(mActivity, "user refreshed", Toast.LENGTH_SHORT).show();
+                mBinding.swipeContainer.setRefreshing(false);
             }
         });
-        binding.swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+        mBinding.swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-//        ExamTableAdapter registeredSubjectsAdapter = new ExamTableAdapter(semester_subjects, getActivity());
-//        binding.reviewSubjectsList.setAdapter(registeredSubjectsAdapter);
+//        ExamTableAdapter registeredSubjectsAdapter = new ExamTableAdapter(semester_subjects, mActivity);
+//        mBinding.reviewSubjectsList.setAdapter(registeredSubjectsAdapter);
 //
-//        binding.totalHoursReviewSubjects.setText("total_hours_of_semester : " + total_hours_of_semester);
+//        mBinding.totalHoursReviewSubjects.setText("total_hours_of_semester : " + total_hours_of_semester);
 
     }
 
@@ -123,7 +130,6 @@ public class ReviewRegisteredSubjectsFragment extends Fragment implements Loader
     public Loader<Document> onCreateLoader(int id, Bundle args) {
         return new MyAsyncTaskLoaderReviewRegisteredSubjects(mContext);
     }
-
 
     @Override
     public void onLoadFinished(Loader<Document> loader, Document document) {
@@ -135,15 +141,15 @@ public class ReviewRegisteredSubjectsFragment extends Fragment implements Loader
             if (semester_subjects != null) {
 
                 set_content_of_views(semester_subjects);
-                binding.reviewSubjectsTextView.setVisibility(View.INVISIBLE);
+//                mBinding.reviewSubjectsTextView.setVisibility(View.INVISIBLE);
             } else {
 
-                binding.reviewSubjectsTextView.setText("There is no Subjects to View");
+//                mBinding.reviewSubjectsTextView.setText("There is no Subjects to View");
 
             }
 
         } else {
-            Toast.makeText(getActivity(), "Something Went Wrong", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mActivity, "Something Went Wrong", Toast.LENGTH_SHORT).show();
         }
 
         progressBar.setVisibility(View.INVISIBLE);
