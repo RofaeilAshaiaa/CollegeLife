@@ -24,4 +24,8 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="popupTheme">@style/Theme.AppCompat.Light</item>
     </style>
+
+    <style name="recycler_views_style">
+        <item name="android:scrollbars">horizontal|vertical</item>
+    </style>
 </resources>
