@@ -21,3 +21,4 @@
 # Features to Add: #
 
 * Add JobService to check the exam table if changed or not and notify the student if exam(s) date(s) changed!
+* Support tablet by making number of culmns in LayoutManager to 2 or more
