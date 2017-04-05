@@ -27,12 +27,14 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.StudentGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 import rofaeil.ashaiaa.idea.collegelife.Utils.FinalData;
+import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 import rofaeil.ashaiaa.idea.collegelife.databinding.ReviewRegisteredSubjectsFragmentBinding;
 
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.calculate_total_hours_of_semester;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.calculateTotalHoursOfSemester;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.extractLastSemesterReviewSubjects;
 
-public class ReviewRegisteredSubjectsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
+public class ReviewRegisteredSubjectsFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<Document> {
 
     private ReviewRegisteredSubjectsFragmentBinding mBinding;
     private ArrayList<StudentGradesSubject> semester_subjects;
@@ -58,17 +60,12 @@ public class ReviewRegisteredSubjectsFragment extends Fragment implements Loader
         mHandler = new Handler();
         mFragment = this;
 
-//        mBinding.reviewSubjectsTextView.setText("Please Wait While Data is Loading");
-//        mBinding.reviewSubjectsTextView.setVisibility(View.VISIBLE);
-
         progressBar.setVisibility(View.VISIBLE);
-
-//        mActivity.getSupportLoaderManager().initLoader(1, null,this ).forceLoad();
 
         Runnable runnable = new TimerTask() {
             @Override
             public void run() {
-                if (MainActivity.mapLoginPageCookies != null) {
+                if (MainActivity.mapLoginPageCookies != null && StaticMethods.isNetworkAvailable(mActivity)) {
 
                     mActivity.getSupportLoaderManager()
                             .initLoader(FinalData.REVIEW_SUBJECTS_LOADER_ID, null, mFragment)
@@ -101,7 +98,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment implements Loader
 
         Semester semester = new Semester();
         semester.setSubjects(semester_subjects);
-        int total_hours_of_semester = calculate_total_hours_of_semester(semester);
+        int total_hours_of_semester = calculateTotalHoursOfSemester(semester);
 
         RecyclerView recyclerView = mBinding.recyclerview;
         ReviewRegisteredSubjectsAdapter adapter = new ReviewRegisteredSubjectsAdapter(mActivity, semester_subjects);
@@ -118,12 +115,6 @@ public class ReviewRegisteredSubjectsFragment extends Fragment implements Loader
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-
-//        ExamTableAdapter registeredSubjectsAdapter = new ExamTableAdapter(semester_subjects, mActivity);
-//        mBinding.reviewSubjectsList.setAdapter(registeredSubjectsAdapter);
-//
-//        mBinding.totalHoursReviewSubjects.setText("total_hours_of_semester : " + total_hours_of_semester);
-
     }
 
     @Override
