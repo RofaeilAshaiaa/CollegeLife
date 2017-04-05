@@ -37,4 +37,16 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">24sp</item>
     </style>
+
+    <style name="tv_numbers_in_review_registered_subjects">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="icons_in_review_registered_subjects">
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">25dp</item>
+        <item name="android:background">@drawable/ic_logo_background</item>
+    </style>
 </resources>
