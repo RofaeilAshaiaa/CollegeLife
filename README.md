@@ -7,6 +7,8 @@
 * Make details profile light
 * Remove al toast & replace it with snackbar
 * semester grades toolbar title color
+* update change password UI 
+* update change password functionality by loader manger & more checks 
 
 
 # Finished #
@@ -22,4 +24,6 @@
 # Features to Add: #
 
 * Add JobService to check the exam table if changed or not and notify the student if exam(s) date(s) changed!
-* Support tablet by making number of culmns in LayoutManager to 2 or more
+* Support tablet by making number of colums in LayoutManager to 2 or more
+* add view pager inside semester profile to move from semester to other by swipe no need to go back for main to go to                    other semester
+* make line between semester and GPA
