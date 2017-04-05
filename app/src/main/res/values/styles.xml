@@ -30,4 +30,11 @@
         <item name="android:scrollbarThumbVertical">@drawable/ic_logo_pink_background</item>
         <item name="android:scrollbarSize">4dp</item>
     </style>
+
+    <style name="text_view_offline_message">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">24sp</item>
+    </style>
 </resources>
