@@ -27,5 +27,7 @@
 
     <style name="recycler_views_style">
         <item name="android:scrollbars">horizontal|vertical</item>
+        <item name="android:scrollbarThumbVertical">@drawable/ic_logo_pink_background</item>
+        <item name="android:scrollbarSize">4dp</item>
     </style>
 </resources>
