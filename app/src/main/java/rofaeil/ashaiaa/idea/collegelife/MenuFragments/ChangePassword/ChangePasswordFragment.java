@@ -2,11 +2,15 @@ package rofaeil.ashaiaa.idea.collegelife.MenuFragments.ChangePassword;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,37 +31,51 @@ import static android.content.Context.MODE_PRIVATE;
 import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.mapLoginPageCookies;
 
 
-public class ChangePasswordFragment extends Fragment {
+public class ChangePasswordFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
 
-    SharedPreferences mSharedPreferences;
-    String savedId;
-    String savedPassword;
-    private ChangePasswordFragmentBinding binding;
+    private SharedPreferences mSharedPreferences;
+    private String mSavedId;
+    private String mSavedPassword;
+    private ChangePasswordFragmentBinding mBinding;
     private ProgressDialog mProgressDialog;
-
-    public ChangePasswordFragment() {
-        // Required empty public constructor
-    }
-
+    private FragmentActivity mContext;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = (FragmentActivity) context;
+    }
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.change_password_fragment, container, false);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.change_password_fragment, container, false);
 
         setOnClickListenerButton();
-        mSharedPreferences = getActivity().getSharedPreferences("log_in", MODE_PRIVATE);
-        savedId = mSharedPreferences.getString("ID", null);
-        savedPassword = mSharedPreferences.getString("PASSWORD", null);
-        binding.loggedPerson.setText(savedId);
+        getStudentData();
+        mBinding.loggedPerson.setText(mSavedId);
 
-        return binding.getRoot();
+        return mBinding.getRoot();
+    }
+
+    public void getStudentData(){
+        mSharedPreferences = getActivity().getSharedPreferences("log_in", MODE_PRIVATE);
+        mSavedId = mSharedPreferences.getString("ID", null);
+        mSavedPassword = mSharedPreferences.getString("PASSWORD", null);
+    }
+
+    public void initializeLoader(){
+        LoaderManager loaderManager = mContext.getSupportLoaderManager();
+        Loader<Document> loader = loaderManager.getLoader(103);
+        if (loader == null){
+            loaderManager.initLoader(103,null,this).forceLoad();
+        }else {
+            loaderManager.restartLoader(103,null,this).forceLoad();
+        }
     }
 
     private void setOnClickListenerButton() {
-        binding.changePasswordButton.setOnClickListener(new View.OnClickListener() {
+        mBinding.changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -75,9 +93,9 @@ public class ChangePasswordFragment extends Fragment {
                 String saved_password = mSharedPreferences.getString("PASSWORD", null);
 
                 if (saved_id != null && saved_password != null) {
-                    final String currentPassword = binding.currentPassword.getText().toString();
-                    final String newPassword = binding.newPassword.getText().toString();
-                    final String confirmNewPassword = binding.confirmNewPassword.getText().toString();
+                    final String currentPassword = mBinding.currentPassword.getText().toString();
+                    final String newPassword = mBinding.newPassword.getText().toString();
+                    final String confirmNewPassword = mBinding.confirmNewPassword.getText().toString();
 
                     if (currentPassword.matches(saved_password) == true) {
 
@@ -168,4 +186,18 @@ public class ChangePasswordFragment extends Fragment {
         });
     }
 
+    @Override
+    public Loader<Document> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Document> loader, Document data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Document> loader) {
+
+    }
 }
