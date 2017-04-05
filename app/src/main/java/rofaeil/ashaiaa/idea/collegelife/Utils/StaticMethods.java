@@ -2,6 +2,9 @@ package rofaeil.ashaiaa.idea.collegelife.Utils;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
 import org.jsoup.Connection;
@@ -524,6 +527,14 @@ public class StaticMethods {
                 break;
         }
         return backgroundResource;
+    }
+
+    //check if network available and connected to one
+    public static boolean isNetworkAvailable(FragmentActivity activity) {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) activity.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 }
