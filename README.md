@@ -8,12 +8,9 @@
 * Make details profile light
 * Remove al toast & replace it with snackbar
 * Semester grades toolbar title color
-* Update change password UI 
-* Update change password functionality by loader manger & more checks & solve request problem & crashes
 * Update semester card view for better UI
 * Change semester order 
 * Network check for all app
-* Toolbar for my profile in API higher than 19
 * Semester profile random background color 
 
 
@@ -25,6 +22,10 @@
 * Make unused item in nav comment
 * Review Subjects not working need debug
 * Exam table put loader id in FinalData class
+* Toolbar for my profile in API higher than 19
+* Update change password UI 
+* Update change password functionality by loader manger & more checks & solve request problem & crashes
+* Add progress dialog to my profile and graduation sheet
 
 
 # Features to Add: #
