@@ -14,11 +14,12 @@
 * Semester profile random background color 
 * Fix Action bar in myprofile
 * Fix submit button in edit data of myprofile
-* Fix header have no data
+* Fix header have no data after log in
 * Add FAB in Polling Subjects
 * add progress bar while polling is loading
 * add Option To View Saved Password of Currnet Logged user
 * Decrease loading time of Grades page by moving the method that extracts the subjects of smemester to details actcivity of the selected semester
+* change all ProgressDialog to Progressbars
 
 
 # Finished #
