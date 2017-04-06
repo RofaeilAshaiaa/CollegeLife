@@ -4,7 +4,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="no_internet_connection">No Inernet Connection</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="subjects_label_review_registered_subjects">المواد</string>
+    <string name="cgpa_label_review_registered_subjects">CGPA</string>
+    <string name="total_hours_label_review_registered_subjects">الساعات الكلية:</string>
+    <string name="hours_of_semester_label_review_registered_subjects">الساعات المسجلة:</string>
+    <string name="semester_title_label_review_registered_subjects">فصل....</string>
 
     <string-array name="student_gender_array">
         <item>ذكر</item>
