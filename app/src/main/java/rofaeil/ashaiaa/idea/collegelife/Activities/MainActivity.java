@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 mEditor.commit();
                 Intent mIntent = new Intent(this, LogInActivity.class);
                 startActivity(mIntent);
+                finish();
                 return true;
 
 
