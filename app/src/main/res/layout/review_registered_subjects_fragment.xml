@@ -35,6 +35,7 @@
 
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
+                style="@style/recycler_views_style"
                 android:layout_height="match_parent">
 
                 <LinearLayout
