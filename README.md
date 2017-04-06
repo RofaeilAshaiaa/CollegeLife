@@ -5,7 +5,7 @@
 * Add fall exam table in nav
 * Add contact us
 * Add about app
-* Make details profile light
+* Make edit profile and student data page light background
 * Remove al toast & replace it with snackbar
 * Semester grades toolbar title color
 * Update semester card view for better UI
@@ -15,6 +15,10 @@
 * Fix Action bar in myprofile
 * Fix submit button in edit data of myprofile
 * Fix header have no data
+* Add FAB in Polling Subjects
+* add progress bar while polling is loading
+* add Option To View Saved Password of Currnet Logged user
+* 
 
 
 # Finished #
