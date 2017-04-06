@@ -1,6 +1,7 @@
 package rofaeil.ashaiaa.idea.collegelife.MenuFragments.MyProfile;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
@@ -29,21 +30,16 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getStudentLev
 public class MyProfileFragment extends Fragment {
 
 
-    public StudentData mStudentData;
+    private ProgressDialog mProgressDialog;
+    private StudentData mStudentData;
     private MyProfileFragmentBinding myProfileFragmentBinding;
-
-
-    public MyProfileFragment() {
-
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         myProfileFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.my_profile_fragment, container, false);
 
-
+        initializeProgressDialog();
         StudentHome mStudentHome = new StudentHome();
         mStudentHome = getStudentHome(studentHomeDocument);
         insertStudentHomeInMyProfile(mStudentHome);
@@ -60,7 +56,7 @@ public class MyProfileFragment extends Fragment {
                 mEditor.putString("SecondNameEN", mStudentData.getSecondNameEN());
                 insertStudentDataInMyProfile(mStudentData);
                 initializeFAB();
-
+                mProgressDialog.dismiss();
             }
         };
         asyncTaskStudentDataGET.execute();
@@ -68,6 +64,15 @@ public class MyProfileFragment extends Fragment {
         return myProfileFragmentBinding.getRoot();
     }
 
+    public void initializeProgressDialog(){
+        mProgressDialog  = new ProgressDialog(getActivity());
+        mProgressDialog.setMessage("Loading data");
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.show();
+    }
     public void initializeFAB() {
         myProfileFragmentBinding.studentMyProfileFab.setOnClickListener(new View.OnClickListener() {
             @Override
