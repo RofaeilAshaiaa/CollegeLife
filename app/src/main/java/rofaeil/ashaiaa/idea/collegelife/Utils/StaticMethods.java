@@ -532,7 +532,44 @@ public class StaticMethods {
         return backgroundResource;
     }
 
-
+    public static int getSemesterLogoBackgroundResource(int backgroundId) {
+        int backgroundResource = 0;
+        switch (backgroundId) {
+            case 0:
+                backgroundResource = R.drawable.semester_logo_blue_background;
+                break;
+            case 1:
+                backgroundResource = R.drawable.semester_logo_blue_grey_background;
+                break;
+            case 2:
+                backgroundResource = R.drawable.semester_logo_brown_background;
+                break;
+            case 3:
+                backgroundResource = R.drawable.semester_logo_deep_purple_background;
+                break;
+            case 4:
+                backgroundResource = R.drawable.semester_logo_green_background;
+                break;
+            case 5:
+                backgroundResource = R.drawable.semester_logo_indigo_background;
+                break;
+            case 6:
+                backgroundResource = R.drawable.semester_logo_pink_background;
+                break;
+            case 7:
+                backgroundResource = R.drawable.semester_logo_purple_background;
+                break;
+            case 8:
+                backgroundResource = R.drawable.semester_logo_red_background;
+                break;
+            case 9:
+                backgroundResource = R.drawable.semester_logo_teal_background;
+                break;
+            default:
+                break;
+        }
+        return backgroundResource;
+    }
 
     //check if network available and connected to one
     public static boolean isNetworkAvailable(FragmentActivity activity) {
