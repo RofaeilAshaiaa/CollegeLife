@@ -12,6 +12,9 @@
 * Change semester order 
 * Network check for all app
 * Semester profile random background color 
+* Fix Action bar in myprofile
+* Fix submit button in edit data of myprofile
+* Fix header have no data
 
 
 # Finished #
