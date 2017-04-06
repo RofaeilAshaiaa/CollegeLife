@@ -32,6 +32,7 @@ import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSemesterLogoBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextLeftCornerBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
@@ -146,7 +147,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             mSemester.setEarnedHours(mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_FormView1_" + i + "_SemesterCHLabel").text());
             mSemester.setCGPA(mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_FormView1_" + i + "_CGPALabel").text());
             mSemester.setBackgroundId(BackgroundId);
-            mSemester.setOldIdBackgroundResource(getSubjectOldIdBackgroundResource(BackgroundId));
+            mSemester.setLogoBackgroundResource(getSemesterLogoBackgroundResource(BackgroundId));
             mSemester.setTextBackgroundResource(getTextBackgroundResource(BackgroundId));
             mSemester.setIconRightCornerBackgroundResource(getIconRightCornerBackgroundResource(BackgroundId));
             mSemester.setTextLeftCornerBackgroundResource(getTextLeftCornerBackgroundResource(BackgroundId));
