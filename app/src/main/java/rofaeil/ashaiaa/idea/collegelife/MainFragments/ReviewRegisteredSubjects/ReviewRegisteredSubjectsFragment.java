@@ -103,6 +103,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         RecyclerView recyclerView = mBinding.recyclerview;
         ReviewRegisteredSubjectsAdapter adapter = new ReviewRegisteredSubjectsAdapter(mActivity, semester_subjects);
         recyclerView.setAdapter(adapter);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
         mBinding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
