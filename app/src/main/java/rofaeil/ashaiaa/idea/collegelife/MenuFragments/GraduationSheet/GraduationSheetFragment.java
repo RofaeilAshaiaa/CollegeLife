@@ -92,26 +92,26 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
         ProgressBar mMajorForcedProgressBar = (ProgressBar) view.findViewById(R.id.graduation_sheet_requirements_major_forced_progress_bar);
         ProgressBar mMinorChoiceProgressBar = (ProgressBar) view.findViewById(R.id.graduation_sheet_requirements_minor_choice_progress_bar);
 
-        // mFreeChoiceEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(0).getEarnedHours());
-        mUniversityRequirementEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(0).getEarnedHours());
-        mFacultyRequirementEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(1).getEarnedHours());
-        mMajorForcedEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(2).getEarnedHours());
-        mMajorChoiceEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(3).getEarnedHours());
-        mMinorChoiceEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(4).getEarnedHours());
+        mFreeChoiceEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(0).getEarnedHours());
+        mUniversityRequirementEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(1).getEarnedHours());
+        mFacultyRequirementEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(2).getEarnedHours());
+        mMajorForcedEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(3).getEarnedHours());
+        mMajorChoiceEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(4).getEarnedHours());
+        mMinorChoiceEarnedHours.setText(GraduationSheetData.getGraduationRequirements().get(5).getEarnedHours());
 
-        //      mFreeChoiceProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(0).getRequiredHours()));
-        mUniversityRequirementProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(0).getRequiredHours()));
-        mFacultyRequirementProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(1).getRequiredHours()));
-        mMajorForcedProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(2).getRequiredHours()));
-        mMajorChoiceProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(3).getRequiredHours()));
-        mMinorChoiceProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(4).getRequiredHours()));
+        mFreeChoiceProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(0).getRequiredHours()));
+        mUniversityRequirementProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(1).getRequiredHours()));
+        mFacultyRequirementProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(2).getRequiredHours()));
+        mMajorForcedProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(3).getRequiredHours()));
+        mMajorChoiceProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(4).getRequiredHours()));
+        mMinorChoiceProgressBar.setMax(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(5).getRequiredHours()));
 
-        //       mFreeChoiceProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(0).getEarnedHours()));
-        mUniversityRequirementProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(0).getEarnedHours()));
-        mFacultyRequirementProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(1).getEarnedHours()));
-        mMajorForcedProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(2).getEarnedHours()));
-        mMajorChoiceProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(3).getEarnedHours()));
-        mMinorChoiceProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(4).getEarnedHours()));
+        mFreeChoiceProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(0).getEarnedHours()));
+        mUniversityRequirementProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(1).getEarnedHours()));
+        mFacultyRequirementProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(2).getEarnedHours()));
+        mMajorForcedProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(3).getEarnedHours()));
+        mMajorChoiceProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(4).getEarnedHours()));
+        mMinorChoiceProgressBar.setProgress(Integer.parseInt(GraduationSheetData.getGraduationRequirements().get(5).getEarnedHours()));
 
 
     }
