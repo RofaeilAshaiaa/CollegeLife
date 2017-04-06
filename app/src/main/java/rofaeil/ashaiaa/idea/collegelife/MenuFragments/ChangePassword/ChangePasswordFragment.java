@@ -71,18 +71,34 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
         }
     }
 
+    public void initializeProgressDialog() {
+        mProgressDialog = new ProgressDialog(getActivity());
+        mProgressDialog.setMessage("Changing Password Please Wait");
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
+    }
+
     public boolean isChangePasswordFormEmpty() {
         if (mBinding.currentPassword.getText().toString().isEmpty()) {
             mBinding.currentPasswordTextInputLayout.setError("ادخل كلمة المرور الحالية");
-            return false;
-        }else if (mBinding.newPassword.getText().toString().isEmpty()){
+            return true;
+        } else if (mBinding.newPassword.getText().toString().isEmpty()) {
             mBinding.newPasswordTextInputLayout.setError("ادخل كلمة المرور الجديدة");
-            return false;
-        }else if (mBinding.confirmNewPassword.getText().toString().isEmpty()) {
+            return true;
+        } else if (mBinding.confirmNewPassword.getText().toString().isEmpty()) {
             mBinding.confirmNewPasswordTextInputLayout.setError("ادخل كلمة المرور الجديدة مرة أخرى");
-            return false;
+            return true;
         }
-        return true;
+        return false;
+    }
+
+    public void getChangePasswordFormData() {
+        mCurrentPassword = mBinding.currentPassword.getText().toString();
+        mNewPassword = mBinding.newPassword.getText().toString();
+        mConfirmNewPassword = mBinding.confirmNewPassword.getText().toString();
     }
 
     private void setOnClickListenerButton() {
@@ -90,59 +106,48 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
         mBinding.changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isChangePasswordFormEmpty();
-                mProgressDialog = new ProgressDialog(getActivity());
-                mProgressDialog.setMessage("Changing Password Please Wait");
-                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                mProgressDialog.setIndeterminate(true);
-                mProgressDialog.setCanceledOnTouchOutside(false);
-                mProgressDialog.setCancelable(false);
-                mProgressDialog.show();
+                if (!isChangePasswordFormEmpty()) {
+                    initializeProgressDialog();
 
+                    if (mSavedId != null && mSavedPassword != null) {
+                        getChangePasswordFormData();
+                        if (mCurrentPassword.equals(mSavedPassword)) {
 
-                if (mSavedId != null && mSavedPassword != null) {
-                    mCurrentPassword = mBinding.currentPassword.getText().toString();
-                    mNewPassword = mBinding.newPassword.getText().toString();
-                    mConfirmNewPassword = mBinding.confirmNewPassword.getText().toString();
+                            if (mNewPassword.equals(mConfirmNewPassword)) {
 
-                    if (mCurrentPassword.matches(mSavedPassword) == true) {
+                                initializeLoader();
 
-                        if (mNewPassword.matches(mConfirmNewPassword) == true) {
+                            } else {
+                                Toast.makeText(getActivity(), "New Password doesn't Match", Toast.LENGTH_SHORT).show();
+                                mProgressDialog.dismiss();
 
-                            initializeLoader();
-
+                            }
                         } else {
-                            Toast.makeText(getActivity(), "New Password doesn't Match", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Current Password incorrect", Toast.LENGTH_SHORT).show();
                             mProgressDialog.dismiss();
 
                         }
+
                     } else {
-                        Toast.makeText(getActivity(), "Current Password incorrect", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Some thing went wrong, try again !", Toast.LENGTH_SHORT).show();
                         mProgressDialog.dismiss();
 
                     }
-
-                } else {
-                    Toast.makeText(getActivity(), "Some thing went wrong, try again !", Toast.LENGTH_SHORT).show();
-                    mProgressDialog.dismiss();
-
                 }
-
-
             }
         });
     }
 
     @Override
     public Loader<Document> onCreateLoader(int id, Bundle args) {
-        return new AsyncTaskLoaderChangePassword(mContext,mCurrentPassword,mNewPassword,mConfirmNewPassword);
+        return new AsyncTaskLoaderChangePassword(mContext, mCurrentPassword, mNewPassword, mConfirmNewPassword);
     }
 
     @Override
     public void onLoadFinished(Loader<Document> loader, Document data) {
         if (data != null) {
 
-            Document document =  data;
+            Document document = data;
             Element target_table = document.body().getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_MSGLabel");
             String confirmMessage = target_table.text();
             if (confirmMessage.matches("تم تغيير كلمة المرور بنجاح") == true) {
