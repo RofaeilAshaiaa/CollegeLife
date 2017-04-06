@@ -32,14 +32,11 @@
 
         <TextView
             android:id="@+id/review_registered_subject_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/review_registered_subject_old_id_logo"
             android:layout_toStartOf="@+id/review_registered_subject_old_id_logo"
             tools:text="وسائط متعددة "
-            android:textColor="@android:color/tertiary_text_dark"
-            android:textSize="24sp"
+            style="@style/text_view_offline_message"
             android:textStyle="bold"
             card:layout_constraintRight_toLeftOf="@+id/review_registered_subject_old_id_logo"
             android:layout_marginRight="16dp"
@@ -79,13 +76,11 @@
 
         <TextView
             android:id="@+id/review_registered_subject_hours_num"
-            android:layout_width="11dp"
-            android:layout_height="wrap_content"
             android:layout_below="@+id/review_registered_subject_name"
             android:layout_toLeftOf="@+id/review_registered_subject_hours_logo"
             android:layout_toStartOf="@+id/review_registered_subject_hours_logo"
             tools:text="3"
-            android:textSize="20sp"
+            style="@style/tv_numbers_in_review_registered_subjects"
             android:textStyle="normal"
             card:layout_constraintRight_toLeftOf="@+id/review_registered_subject_hours_logo"
             android:layout_marginRight="24dp"
@@ -94,8 +89,7 @@
 
         <TextView
             android:id="@+id/subject_type_review_regsitered_subjects"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/tv_numbers_in_review_registered_subjects"
             tools:text="Name"
             card:layout_constraintRight_toLeftOf="@+id/imageView3"
             android:layout_marginRight="24dp"
