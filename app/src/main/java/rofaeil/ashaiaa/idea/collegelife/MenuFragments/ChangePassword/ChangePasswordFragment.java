@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
@@ -110,24 +111,19 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
     @Override
     public void onLoadFinished(Loader<Document> loader, Document data) {
         if (data != null) {
-
             Document document = data;
             Element target_table = document.body().getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_MSGLabel");
             String confirmMessage = target_table.text();
             if (confirmMessage.equals("تم تغيير كلمة المرور بنجاح")) {
-
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
                 mEditor.putString("PASSWORD", mNewPassword);
                 mEditor.commit();
-                Toast.makeText(getActivity(), "Password Changed Successfully", Toast.LENGTH_LONG).show();
+                Snackbar.make(mBinding.getRoot(),"Password Changed Successfully",Snackbar.LENGTH_LONG).show();
             }
-
-
             mProgressDialog.dismiss();
         } else {
-            Toast.makeText(getActivity(), "Some thing went wrong, try again !", Toast.LENGTH_SHORT).show();
+            Snackbar.make(mBinding.getRoot(),"Some thing went wrong, try again !",Snackbar.LENGTH_LONG).show();
             mProgressDialog.dismiss();
-
         }
     }
 
@@ -140,32 +136,23 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
     public void onClick(View v) {
         if (!isChangePasswordFormEmpty()) {
             initializeProgressDialog();
-
             if (mSavedId != null && mSavedPassword != null) {
                 getChangePasswordFormData();
                 if (mCurrentPassword.equals(mSavedPassword)) {
-
                     if (mNewPassword.equals(mConfirmNewPassword)) {
-
                         initializeLoader();
-
                     } else {
-                        Toast.makeText(getActivity(), "New Password doesn't Match", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(mBinding.getRoot(),"New Password doesn't Match",Snackbar.LENGTH_LONG).show();
                         mProgressDialog.dismiss();
-
                     }
                 } else {
-                    Toast.makeText(getActivity(), "Current Password incorrect", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(mBinding.getRoot(),"Current Password incorrect",Snackbar.LENGTH_LONG).show();
                     mProgressDialog.dismiss();
-
                 }
-
             } else {
-                Toast.makeText(getActivity(), "Some thing went wrong, try again !", Toast.LENGTH_SHORT).show();
+                Snackbar.make(mBinding.getRoot(),"Some thing went wrong, try again !",Snackbar.LENGTH_LONG).show();
                 mProgressDialog.dismiss();
-
             }
         }
     }
-
 }
