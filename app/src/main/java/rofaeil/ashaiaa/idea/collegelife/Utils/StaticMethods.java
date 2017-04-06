@@ -51,7 +51,7 @@ public class StaticMethods {
             mSubject.setTotal(mSubjects_raws.get(i).getAllElements().get(13).text());
             mSubject.setBackgroundId(BackgroundId);
             mSubject.setOldIdBackgroundResource(getSubjectOldIdBackgroundResource(BackgroundId));
-            mSubject.setTextBackgroundResource(geTextBackgroundResource(BackgroundId));
+            mSubject.setTextBackgroundResource(getTextBackgroundResource(BackgroundId));
             mSubjects.add(mSubject);
         }
         return mSubjects;
@@ -376,7 +376,7 @@ public class StaticMethods {
         return backgroundResource;
     }
 
-    public static int geTextBackgroundResource(int backgroundId) {
+    public static int getTextBackgroundResource(int backgroundId) {
         int backgroundResource = 0;
         switch (backgroundId) {
             case 0:
@@ -415,7 +415,7 @@ public class StaticMethods {
         return backgroundResource;
     }
 
-    public static int geTextLeftCornerBackgroundResource(int backgroundId) {
+    public static int getTextLeftCornerBackgroundResource(int backgroundId) {
         int backgroundResource = 0;
         switch (backgroundId) {
             case 0:
@@ -454,7 +454,7 @@ public class StaticMethods {
         return backgroundResource;
     }
 
-    public static int geIconBackgroundResource(int backgroundId) {
+    public static int getIconBackgroundResource(int backgroundId) {
         int backgroundResource = 0;
         switch (backgroundId) {
             case 0:
@@ -493,7 +493,7 @@ public class StaticMethods {
         return backgroundResource;
     }
 
-    public static int geIconRightCornerBackgroundResource(int backgroundId) {
+    public static int getIconRightCornerBackgroundResource(int backgroundId) {
         int backgroundResource = 0;
         switch (backgroundId) {
             case 0:
@@ -531,6 +531,8 @@ public class StaticMethods {
         }
         return backgroundResource;
     }
+
+
 
     //check if network available and connected to one
     public static boolean isNetworkAvailable(FragmentActivity activity) {
