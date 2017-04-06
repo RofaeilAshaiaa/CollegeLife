@@ -25,7 +25,7 @@ import static android.content.Context.MODE_PRIVATE;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CHANGE_PASSWORD_LOADER_ID;
 
 
-public class ChangePasswordFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
+public class ChangePasswordFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document>, View.OnClickListener {
 
     private SharedPreferences mSharedPreferences;
     private String mSavedId;
@@ -48,9 +48,10 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.change_password_fragment, container, false);
 
-        setOnClickListenerButton();
         getStudentData();
+
         mBinding.loggedPerson.setText(mSavedId);
+        mBinding.changePasswordButton.setOnClickListener(this);
 
         return mBinding.getRoot();
     }
@@ -101,43 +102,6 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
         mConfirmNewPassword = mBinding.confirmNewPassword.getText().toString();
     }
 
-    private void setOnClickListenerButton() {
-
-        mBinding.changePasswordButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!isChangePasswordFormEmpty()) {
-                    initializeProgressDialog();
-
-                    if (mSavedId != null && mSavedPassword != null) {
-                        getChangePasswordFormData();
-                        if (mCurrentPassword.equals(mSavedPassword)) {
-
-                            if (mNewPassword.equals(mConfirmNewPassword)) {
-
-                                initializeLoader();
-
-                            } else {
-                                Toast.makeText(getActivity(), "New Password doesn't Match", Toast.LENGTH_SHORT).show();
-                                mProgressDialog.dismiss();
-
-                            }
-                        } else {
-                            Toast.makeText(getActivity(), "Current Password incorrect", Toast.LENGTH_SHORT).show();
-                            mProgressDialog.dismiss();
-
-                        }
-
-                    } else {
-                        Toast.makeText(getActivity(), "Some thing went wrong, try again !", Toast.LENGTH_SHORT).show();
-                        mProgressDialog.dismiss();
-
-                    }
-                }
-            }
-        });
-    }
-
     @Override
     public Loader<Document> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoaderChangePassword(mContext, mCurrentPassword, mNewPassword, mConfirmNewPassword);
@@ -150,7 +114,7 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
             Document document = data;
             Element target_table = document.body().getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_MSGLabel");
             String confirmMessage = target_table.text();
-            if (confirmMessage.matches("تم تغيير كلمة المرور بنجاح") == true) {
+            if (confirmMessage.equals("تم تغيير كلمة المرور بنجاح")) {
 
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
                 mEditor.putString("PASSWORD", mNewPassword);
@@ -171,4 +135,37 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
     public void onLoaderReset(Loader<Document> loader) {
 
     }
+
+    @Override
+    public void onClick(View v) {
+        if (!isChangePasswordFormEmpty()) {
+            initializeProgressDialog();
+
+            if (mSavedId != null && mSavedPassword != null) {
+                getChangePasswordFormData();
+                if (mCurrentPassword.equals(mSavedPassword)) {
+
+                    if (mNewPassword.equals(mConfirmNewPassword)) {
+
+                        initializeLoader();
+
+                    } else {
+                        Toast.makeText(getActivity(), "New Password doesn't Match", Toast.LENGTH_SHORT).show();
+                        mProgressDialog.dismiss();
+
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Current Password incorrect", Toast.LENGTH_SHORT).show();
+                    mProgressDialog.dismiss();
+
+                }
+
+            } else {
+                Toast.makeText(getActivity(), "Some thing went wrong, try again !", Toast.LENGTH_SHORT).show();
+                mProgressDialog.dismiss();
+
+            }
+        }
+    }
+
 }
