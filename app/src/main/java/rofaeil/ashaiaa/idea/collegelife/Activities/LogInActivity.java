@@ -64,6 +64,7 @@ public class LogInActivity extends AppCompatActivity {
                             mProgressBar.dismiss();
                             Intent mIntent = new Intent(LogInActivity.this, MainActivity.class);
                             startActivity(mIntent);
+                            finish();
                         } else {
                             Toast.makeText(LogInActivity.this, "wrong password", Toast.LENGTH_LONG).show();
                             mProgressBar.dismiss();
