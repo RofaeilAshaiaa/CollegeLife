@@ -12,10 +12,10 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationSheetDat
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.GraduationSheetSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geIconBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geIconRightCornerBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextLeftCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextLeftCornerBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
 
 /**
@@ -41,8 +41,8 @@ public class GraduationSheetRecyclerViewAdepter extends RecyclerView.Adapter<Gra
 
         GraduationSheetSubject subject = mGraduationSheetData.getSubject().get(position);
         int backgroundId = subject.getBackgroundId();
-        int subjectTextBackgroundResource = geTextBackgroundResource(backgroundId);
-        int subjectTextLeftCornerBackgroundResource = geTextLeftCornerBackgroundResource(backgroundId);
+        int subjectTextBackgroundResource = getTextBackgroundResource(backgroundId);
+        int subjectTextLeftCornerBackgroundResource = getTextLeftCornerBackgroundResource(backgroundId);
 
         holder.subject_old_id.setText(subject.getOldID());
         holder.subject_old_id.setBackgroundResource(getSubjectOldIdBackgroundResource(backgroundId));
@@ -60,8 +60,8 @@ public class GraduationSheetRecyclerViewAdepter extends RecyclerView.Adapter<Gra
         holder.subject_actual_grade_logo.setBackgroundResource(subjectTextBackgroundResource);
         holder.subject_nodes_logo.setBackgroundResource(subjectTextBackgroundResource);
         holder.subject_point_text_logo.setBackgroundResource(subjectTextLeftCornerBackgroundResource);
-        holder.subject_hours_logo.setBackgroundResource(geIconBackgroundResource(backgroundId));
-        holder.subject_point_icon_logo.setBackgroundResource(geIconRightCornerBackgroundResource(backgroundId));
+        holder.subject_hours_logo.setBackgroundResource(getIconBackgroundResource(backgroundId));
+        holder.subject_point_icon_logo.setBackgroundResource(getIconRightCornerBackgroundResource(backgroundId));
 
     }
 

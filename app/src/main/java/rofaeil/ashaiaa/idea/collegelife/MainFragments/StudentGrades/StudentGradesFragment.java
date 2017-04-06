@@ -31,9 +31,9 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.StudentGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geIconRightCornerBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.geTextLeftCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextLeftCornerBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
 
 
@@ -147,9 +147,9 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             mSemester.setCGPA(mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_FormView1_" + i + "_CGPALabel").text());
             mSemester.setBackgroundId(BackgroundId);
             mSemester.setOldIdBackgroundResource(getSubjectOldIdBackgroundResource(BackgroundId));
-            mSemester.setTextBackgroundResource(geTextBackgroundResource(BackgroundId));
-            mSemester.setIconRightCornerBackgroundResource(geIconRightCornerBackgroundResource(BackgroundId));
-            mSemester.setTextLeftCornerBackgroundResource(geTextLeftCornerBackgroundResource(BackgroundId));
+            mSemester.setTextBackgroundResource(getTextBackgroundResource(BackgroundId));
+            mSemester.setIconRightCornerBackgroundResource(getIconRightCornerBackgroundResource(BackgroundId));
+            mSemester.setTextLeftCornerBackgroundResource(getTextLeftCornerBackgroundResource(BackgroundId));
 
             Element mSemester_Subjects_table = mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_GridView1_" + i + "");
             Elements mSemester_Subjects = mSemester_Subjects_table.getElementsByTag("tr");
