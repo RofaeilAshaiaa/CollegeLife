@@ -16,17 +16,17 @@ public class Semester {
     private String SemesterLoad;
     private ArrayList<StudentGradesSubject> Subjects;
     private int BackgroundId;
-    private int OldIdBackgroundResource;
+    private int LogoBackgroundResource;
     private int TextBackgroundResource;
     private int TextLeftCornerBackgroundResource;
     private int IconRightCornerBackgroundResource;
 
-    public int getOldIdBackgroundResource() {
-        return OldIdBackgroundResource;
+    public int getLogoBackgroundResource() {
+        return LogoBackgroundResource;
     }
 
-    public void setOldIdBackgroundResource(int oldIdBackgroundResource) {
-        OldIdBackgroundResource = oldIdBackgroundResource;
+    public void setLogoBackgroundResource(int logoBackgroundResource) {
+        LogoBackgroundResource = logoBackgroundResource;
     }
 
     public int getTextBackgroundResource() {
