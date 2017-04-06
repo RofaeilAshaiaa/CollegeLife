@@ -53,22 +53,20 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             tools:text="فصل الخريف"
-                            android:textSize="24sp"
-                            android:textColor="@android:color/black"
+                            tools:textSize="24sp"
+                            tools:textColor="@android:color/black"
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_marginTop="16dp"
-                            android:layout_marginLeft="8dp"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            android:layout_marginRight="8dp"
+                            android:layout_marginRight="16dp"
                             app:layout_constraintRight_toRightOf="parent" />
 
                         <ImageView
                             android:id="@+id/imageView2"
                             style="@style/icons_in_review_registered_subjects"
                             app:srcCompat="@drawable/ic_hours_white_36dp"
-                            android:layout_marginRight="8dp"
-                            app:layout_constraintRight_toRightOf="parent"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginRight="0dp"
+                            app:layout_constraintRight_toRightOf="@+id/semester_title"
+                            android:layout_marginTop="23dp"
                             app:layout_constraintTop_toBottomOf="@+id/semester_title" />
 
                         <TextView
@@ -78,11 +76,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="22dp"
                             android:layout_marginBottom="0dp"
-                            android:layout_marginRight="30dp"
+                            android:layout_marginRight="35dp"
                             android:layout_marginTop="0dp"
                             android:background="@drawable/text_logo_background_left_corner"
-                            android:text="الساعات المسجلة:"
-                            android:textColor="@android:color/white"
+                            tools:text="الساعات المسجلة:"
+                            tools:textColor="@android:color/white"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
                             app:layout_constraintTop_toTopOf="@+id/imageView2"
                             app:layout_constraintVertical_bias="0.666"
@@ -116,10 +114,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="22dp"
                             android:layout_marginBottom="0dp"
-                            android:layout_marginRight="30dp"
+                            android:layout_marginRight="39dp"
                             android:background="@drawable/text_logo_background_left_corner"
-                            android:text="الساعات الكلية:"
-                            android:textColor="@android:color/white"
+                            tools:text="الساعات الكلية:"
+                            tools:textColor="@android:color/white"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                             app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/imageView4"
@@ -140,7 +138,7 @@
 
                         <ImageView
                             android:id="@+id/imageView5"
-                            android:layout_marginRight="32dp"
+                            android:layout_marginRight="56dp"
                             style="@style/icons_in_review_registered_subjects"
                             app:layout_constraintRight_toLeftOf="@+id/total_number_of_hours"
                             app:srcCompat="@drawable/subjects_logo"
@@ -163,12 +161,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="22dp"
                             android:layout_marginBottom="0dp"
-                            android:layout_marginRight="53dp"
+                            android:layout_marginRight="77dp"
                             android:layout_marginTop="0dp"
                             android:background="@drawable/text_logo_background_left_corner"
                             android:paddingRight="8dp"
-                            android:text="المواد"
-                            android:textColor="@android:color/white"
+                            tools:text="المواد"
+                            tools:textColor="@android:color/white"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView5"
                             app:layout_constraintRight_toLeftOf="@+id/total_number_of_hours"
                             app:layout_constraintTop_toTopOf="@+id/imageView5"
@@ -181,7 +179,7 @@
                             android:layout_marginRight="0dp"
                             android:layout_marginTop="0dp"
                             tools:text="CGPA"
-                            android:textColor="@android:color/white"
+                            tools:textColor="@android:color/white"
                             style="@style/icons_in_review_registered_subjects"
                             app:layout_constraintRight_toRightOf="@+id/imageView5"
                             app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -201,10 +199,9 @@
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerview"
-                        style="@style/recycler_views_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp" />
+                        android:layout_marginBottom="8dp" />
 
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
@@ -221,7 +218,7 @@
         <!--android:layout_width="wrap_content"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_margin="8dp"-->
-        <!--android:textSize="20sp" />-->
+        <!--tools:textSize="20sp" />-->
 
         <!--<ListView-->
         <!--android:id="@+id/review_subjects_list"-->
