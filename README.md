@@ -1,14 +1,20 @@
 # Work List #
 
 * Exam table random background color 
+* Review Subjects random background color 
 * Add fall exam table in nav
 * Add contact us
 * Add about app
 * Make details profile light
 * Remove al toast & replace it with snackbar
-* semester grades toolbar title color
-* update change password UI 
-* update change password functionality by loader manger & more checks 
+* Semester grades toolbar title color
+* Update change password UI 
+* Update change password functionality by loader manger & more checks & solve request problem & crashes
+* Update semester card view for better UI
+* Change semester order 
+* Network check for all app
+* Toolbar for my profile in API higher than 19
+* Semester profile random background color 
 
 
 # Finished #
@@ -27,3 +33,7 @@
 * Support tablet by making number of colums in LayoutManager to 2 or more
 * add view pager inside semester profile to move from semester to other by swipe no need to go back for main to go to                    other semester
 * make line between semester and GPA
+* make all views in app with Constraint Layout to decrease nested views 
+* Offline mode
+* Dashboard
+* widget for dashboard
