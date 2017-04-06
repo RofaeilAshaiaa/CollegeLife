@@ -1,6 +1,7 @@
 package rofaeil.ashaiaa.idea.collegelife.MenuFragments.GraduationSheet;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,8 +33,9 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.GRADUATION_SHEET_
 
 public class GraduationSheetFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
 
-    public View mRoot_view;
-    public FragmentActivity mContext;
+    private View mRoot_view;
+    private FragmentActivity mContext;
+    private  ProgressDialog mProgressDialog;
 
     @Override
     public void onAttach(Context context) {
@@ -45,10 +47,20 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
-
+        initializeProgressDialog();
         initializeLoaderManager();
 
         return mRoot_view;
+    }
+
+    public void initializeProgressDialog(){
+        mProgressDialog  = new ProgressDialog(getActivity());
+        mProgressDialog.setMessage("Loading data");
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.show();
     }
 
     public void initializeLoaderManager() {
@@ -170,6 +182,7 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     @Override
     public void onLoadFinished(Loader<Document> loader, Document data) {
         initializeRecycleView(data);
+        mProgressDialog.dismiss();
     }
 
     @Override
