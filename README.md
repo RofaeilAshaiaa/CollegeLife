@@ -18,7 +18,7 @@
 * Add FAB in Polling Subjects
 * add progress bar while polling is loading
 * add Option To View Saved Password of Currnet Logged user
-* 
+* Decrease loading time of Grades page by moving the method that extracts the subjects of smemester to details actcivity of the selected semester
 
 
 # Finished #
@@ -40,7 +40,7 @@
 * Add JobService to check the exam table if changed or not and notify the student if exam(s) date(s) changed!
 * Support tablet by making number of colums in LayoutManager to 2 or more
 * add view pager inside semester profile to move from semester to other by swipe no need to go back for main to go to                    other semester
-* make line between semester and GPA
+* Draw a graph line between semester and GPA
 * make all views in app with Constraint Layout to decrease nested views 
 * Offline mode
 * Dashboard
