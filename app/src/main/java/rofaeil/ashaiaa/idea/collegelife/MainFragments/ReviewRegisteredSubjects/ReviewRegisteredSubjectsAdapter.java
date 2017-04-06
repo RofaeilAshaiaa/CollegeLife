@@ -43,6 +43,7 @@ public class ReviewRegisteredSubjectsAdapter extends RecyclerView.Adapter<Review
         holder.subject_name.setText(subjectArrayList.get(position).getName());
         holder.short_code.setText(subjectArrayList.get(position).getOldID());
         holder.number_of_hours.setText(subjectArrayList.get(position).getHours());
+        holder.subjectType.setText(subjectArrayList.get(position).getType());
 
     }
 
@@ -56,6 +57,7 @@ public class ReviewRegisteredSubjectsAdapter extends RecyclerView.Adapter<Review
         public TextView subject_name;
         public TextView short_code;
         public TextView number_of_hours;
+        public TextView subjectType ;
 
         public myViewHolder(View itemView) {
             super(itemView);
@@ -63,6 +65,7 @@ public class ReviewRegisteredSubjectsAdapter extends RecyclerView.Adapter<Review
             subject_name = (TextView) itemView.findViewById(R.id.review_registered_subject_name);
             short_code = (TextView) itemView.findViewById(R.id.review_registered_subject_old_id_logo);
             number_of_hours = (TextView) itemView.findViewById(R.id.review_registered_subject_hours_num);
+            subjectType = (TextView) itemView.findViewById(R.id.subject_type_review_regsitered_subjects);
 
 
             itemView.setOnClickListener(this);
