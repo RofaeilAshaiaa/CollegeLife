@@ -23,6 +23,7 @@ import rofaeil.ashaiaa.idea.collegelife.R;
 import rofaeil.ashaiaa.idea.collegelife.databinding.ChangePasswordFragmentBinding;
 
 import static android.content.Context.MODE_PRIVATE;
+import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.student_pass;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CHANGE_PASSWORD_LOADER_ID;
 
 
@@ -119,6 +120,7 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
                 mEditor.putString("PASSWORD", mNewPassword);
                 mEditor.commit();
                 mSavedPassword = mNewPassword;
+                student_pass = mNewPassword;
                 Snackbar.make(mBinding.getRoot(),"Password Changed Successfully",Snackbar.LENGTH_LONG).show();
             }
             mProgressDialog.dismiss();
