@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.util.Map;
 
+import rofaeil.ashaiaa.idea.collegelife.MenuFragments.AboutUs.AboutUsFragment;
 import rofaeil.ashaiaa.idea.collegelife.MenuFragments.ChangePassword.ChangePasswordFragment;
 import rofaeil.ashaiaa.idea.collegelife.MenuFragments.ChangeSpecialization.ChangeSpecializationFragment;
 import rofaeil.ashaiaa.idea.collegelife.MenuFragments.GraduationSheet.GraduationSheetFragment;
@@ -147,8 +148,9 @@ public class MenuActivity extends AppCompatActivity {
                 break;
 
             case "about_app":
-//                MyProfileFragment fragment = new MyProfileFragment();
-//                getSupportFragmentManager().beginTransaction().replace(R.id.menu_activity_fragment_container, fragment).commit();
+                AboutUsFragment fragment = new AboutUsFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.menu_activity_fragment_container, fragment).commit();
                 break;
 
             case "contact_us":
