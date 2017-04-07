@@ -165,8 +165,10 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
             if (semester_subjects != null) {
 
                 setContentOfViews(semester_subjects);
-                if(CalledFromSwipeRefresh)
+                if(CalledFromSwipeRefresh){
+                    CalledFromSwipeRefresh=false ;
                     mBinding.swipeContainer.setRefreshing(false);
+                }
                 mBinding.swipeContainer.setVisibility(View.VISIBLE);
             } else {
                 showSnackbarWithReloadAction();
@@ -177,8 +179,6 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         }
 
         progressBar.setVisibility(View.INVISIBLE);
-        showSnackbarWithReloadAction();
-
 
     }
 
