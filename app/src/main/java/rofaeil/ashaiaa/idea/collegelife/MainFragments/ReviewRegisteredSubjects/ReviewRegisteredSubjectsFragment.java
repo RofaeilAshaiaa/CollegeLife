@@ -172,6 +172,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
                 mBinding.swipeContainer.setVisibility(View.VISIBLE);
             } else {
                 showSnackbarWithReloadAction();
+
             }
 
         } else {
@@ -183,9 +184,12 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
     }
 
     private void showSnackbarWithReloadAction() {
-        Snackbar.make(mBinding.examTableMainContainer, R.string.some_thing_went_wrong_message, Snackbar.LENGTH_LONG)
-                .setAction(R.string.snackbar_reload_action, getSnackbarClickListener())
-                .show();
+        StaticMethods.showSnackbarWithAction(
+                mBinding.examTableMainContainer ,
+                getString(R.string.some_thing_went_wrong_message),
+                Snackbar.LENGTH_LONG,
+                getString(R.string.snackbar_reload_action ),
+                getSnackbarClickListener());
     }
 
     private View.OnClickListener getSnackbarClickListener() {

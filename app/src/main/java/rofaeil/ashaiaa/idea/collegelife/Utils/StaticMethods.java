@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -584,5 +585,14 @@ public class StaticMethods {
         View view = inflater.inflate(R.layout.offline_layout,frameLayout,false);
         frameLayout.addView(view);
     }
+
+    public static void showSnackbarWithAction(View view , String message, int duration,
+                                              String actionString , View.OnClickListener listener) {
+
+        Snackbar.make(view , message, duration)
+                .setAction(actionString, listener )
+                .show();
+    }
+
 
 }
