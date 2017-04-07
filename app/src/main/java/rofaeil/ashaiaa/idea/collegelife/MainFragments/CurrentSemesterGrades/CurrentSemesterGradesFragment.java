@@ -102,9 +102,7 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     }
 
     public void makeProgressBarInvisible() {
-        TextView mWaitingMassage = (TextView) mRoot_View.findViewById(R.id.current_semester_waiting_text);
         ProgressBar mProgressBar = (ProgressBar) mRoot_View.findViewById(R.id.current_semester_progress_bar);
-        mWaitingMassage.setVisibility(View.INVISIBLE);
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
