@@ -48,6 +48,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
     private Handler mHandler;
     private FragmentActivity mActivity;
     private ReviewRegisteredSubjectsFragment mFragment;
+    private boolean CalledFromSwipeRefresh=false;
 
     public ReviewRegisteredSubjectsFragment() {
         // Required empty public constructor
@@ -116,8 +117,24 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         mBinding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(mActivity, "user refreshed", Toast.LENGTH_SHORT).show();
-                mBinding.swipeContainer.setRefreshing(false);
+
+                Runnable runnable = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (MainActivity.mapLoginPageCookies != null && StaticMethods.isNetworkAvailable(mActivity)) {
+
+                            mActivity.getSupportLoaderManager()
+                                    .restartLoader(FinalData.REVIEW_SUBJECTS_LOADER_ID, null, mFragment)
+                                    .forceLoad();
+                            CalledFromSwipeRefresh = true ;
+
+                        } else {
+                            mHandler.postDelayed(this, 100);
+                        }
+                    }
+                };
+
+                mHandler.post(runnable);
             }
         });
         mBinding.swipeContainer.setColorSchemeResources(
@@ -143,6 +160,8 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
             if (semester_subjects != null) {
 
                 setContentOfViews(semester_subjects);
+                if(CalledFromSwipeRefresh)
+                    mBinding.swipeContainer.setRefreshing(false);
                 mBinding.swipeContainer.setVisibility(View.VISIBLE);
             } else {
                 Toast.makeText(mActivity, "Something Went Wrong", Toast.LENGTH_SHORT).show();
