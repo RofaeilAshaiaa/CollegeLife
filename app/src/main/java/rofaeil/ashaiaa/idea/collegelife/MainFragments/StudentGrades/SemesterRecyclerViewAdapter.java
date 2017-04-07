@@ -45,7 +45,7 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
         int semesterIconRightCornerBackgroundResource = semester.getIconRightCornerBackgroundResource();
 
         holder.semester_name.setText(semester.getName());
-        holder.subject_num.setText("" + semester.getSubjects().size() + "");
+//        holder.subject_num.setText("" + semester.getSubjects().size() + "");
         holder.semester_cgpa.setText(semester.getCGPA());
         holder.semester_gpa.setText(semester.getGPA());
         holder.semester_loaded_hours.setText(semester.getSemesterLoad());
@@ -116,7 +116,6 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
                     } else {
                         mIntent.putExtra("PreviousSemesterCGPA", mSemesters.get(getLayoutPosition()).getCGPA());
                     }
-                    int g = getLayoutPosition();
                     if (mSemesters.size() - 1 == getLayoutPosition()) {
                         mIntent.putExtra("LastSemester", true);
                     } else {
@@ -127,7 +126,7 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
                     mIntent.putExtra("GPA", mSemesters.get(getLayoutPosition()).getGPA());
                     mIntent.putExtra("SemesterLoad", mSemesters.get(getLayoutPosition()).getSemesterLoad());
                     mIntent.putExtra("EarnedHours", mSemesters.get(getLayoutPosition()).getEarnedHours());
-                    mIntent.putParcelableArrayListExtra("Subjects", mSemesters.get(getLayoutPosition()).getSubjects());
+                    mIntent.putExtra("SubjectsDocument", mSemesters.get(getLayoutPosition()).getSubjectsDocument());
                     mContext.startActivity(mIntent);
                 }
             });
