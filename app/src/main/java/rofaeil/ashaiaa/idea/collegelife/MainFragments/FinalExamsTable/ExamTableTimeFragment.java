@@ -4,9 +4,14 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,6 +32,8 @@ import java.util.TimerTask;
 import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.ExamTableTimeSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
+import rofaeil.ashaiaa.idea.collegelife.Utils.FinalData;
+import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 import rofaeil.ashaiaa.idea.collegelife.databinding.ExamTableTimeFragmentBinding;
 
 import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.mapLoginPageCookies;
@@ -34,16 +41,21 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CurrentSemesterGr
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.ExamTableTimeURL;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getCurrentSemesterSubjectsFinalTable;
 
-public class ExamTableTimeFragment extends Fragment {
+public class ExamTableTimeFragment extends Fragment
+        implements LoaderManager.LoaderCallbacks<Document>{
 
-    private ExamTableTimeFragmentBinding binding;
+    private ExamTableTimeFragmentBinding mBinding;
     private ArrayList<ExamTableTimeSubject> semester_subjects;
     private ArrayList<ExamTableTimeSubject> mExamTableTimeSubjects;
     private RecyclerView recyclerView;
     private ExamTableAdapter examTableAdapter;
     private ProgressBar progressBar;
+    private ExamTableTimeFragment mFragment;
     private Context mContext;
     private Handler mHandler;
+    private FragmentActivity mActivity;
+    private boolean CalledFromSwipeRefresh=false;
+    private boolean wasOffline ;
 
     public ExamTableTimeFragment() {
         // Required empty public constructor
@@ -52,97 +64,31 @@ public class ExamTableTimeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.exam_table_time_fragment, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.exam_table_time_fragment, container, false);
         mContext = getContext();
         mHandler = new Handler();
-        recyclerView = binding.recyclerview;
-        progressBar = binding.progressBarReviewSubjects;
-        recyclerView = binding.recyclerview;
-        binding.reviewSubjectsTextView.setText("Please Wait While Data is Loading");
-        binding.reviewSubjectsTextView.setVisibility(View.VISIBLE);
+        mActivity = getActivity() ;
+        mFragment = this ;
+        recyclerView = mBinding.recyclerview;
+        progressBar = mBinding.progressBarReviewSubjects;
+        recyclerView = mBinding.recyclerview;
         progressBar.setVisibility(View.VISIBLE);
+        mBinding.recyclerview.setVisibility(View.INVISIBLE);
 
-
-        final AsyncTaskLoader<Document> taskLoader = new AsyncTaskLoader<Document>(mContext) {
-            @Override
-            public Document loadInBackground() {
-                try {
-                    Connection.Response response_of_getting_data =
-                            Jsoup.connect(CurrentSemesterGradesURL)
-                                    .userAgent("Mozilla/5.0")
-                                    .timeout(getResources().getInteger(R.integer.time_out) * 1000)
-                                    .cookies(mapLoginPageCookies)
-                                    .execute();
-
-                    return response_of_getting_data.parse();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                return null;
-            }
-
-            @Override
-            public void deliverResult(Document document) {
-
-                semester_subjects = getCurrentSemesterSubjectsFinalTable(document);
-
-                AsyncTaskLoader<Document> asyncTaskLoader = new AsyncTaskLoader<Document>(getActivity()) {
-                    @Override
-                    public Document loadInBackground() {
-                        try {
-                            Connection.Response response =
-                                    Jsoup.connect(ExamTableTimeURL)
-                                            .userAgent("Mozilla/5.0")
-                                            .timeout(getResources().getInteger(R.integer.time_out) * 1000)
-                                            .execute();
-
-                            return response.parse();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        return null;
-                    }
-
-                    @Override
-                    public void deliverResult(Document document1) {
-
-                        int returned = extractSemesterSubject(document1);
-                        if (returned == 0) {
-                            binding.reviewSubjectsTextView.setVisibility(View.INVISIBLE);
-                            set_content_of_final_table();
-                        } else {
-                            binding.reviewSubjectsTextView.setText("There is no Exams Table");
-                        }
-
-                        progressBar.setVisibility(View.INVISIBLE);
-
-                        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                            @Override
-                            public void onRefresh() {
-                                refreshData();
-                            }
-                        });
-                        binding.swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                                android.R.color.holo_green_light,
-                                android.R.color.holo_orange_light,
-                                android.R.color.holo_red_light);
-                    }
-                };
-
-                asyncTaskLoader.forceLoad();
-
-            }
-        };
 
         Runnable runnable = new TimerTask() {
             @Override
             public void run() {
                 if (MainActivity.mapLoginPageCookies != null) {
-                    taskLoader.forceLoad();
+
+                    if( StaticMethods.isNetworkAvailable(mActivity) )
+                        mActivity.getSupportLoaderManager()
+                                .initLoader(FinalData.Semester_Exam_Table_LOADER_ID, null,mFragment )
+                                .forceLoad();
+                    else {
+                        wasOffline= true ;
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
                 } else {
                     mHandler.postDelayed(this, 100);
                 }
@@ -151,7 +97,7 @@ public class ExamTableTimeFragment extends Fragment {
 
         mHandler.post(runnable);
 
-        return binding.getRoot();
+        return mBinding.getRoot();
     }
 
     private int extractSemesterSubject(Document document) {
@@ -211,24 +157,17 @@ public class ExamTableTimeFragment extends Fragment {
     }
 
     private void set_content_of_final_table() {
-
-
+        GridLayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
         examTableAdapter = new ExamTableAdapter(mContext, semester_subjects);
         recyclerView.setAdapter(examTableAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
 
-
-//        binding.examTable.setVisibility(View.GONE);
-//
-//        ExamTableAdapter examTableAdapter = new ExamTableAdapter(semester_subjects,getActivity());
-//
-//        listView.setAdapter(examTableAdapter);
-
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(mLayoutManager);
     }
 
-    private void refreshData() {
-
-        final AsyncTaskLoader<Document> taskLoader = new AsyncTaskLoader<Document>(mContext) {
+    @Override
+    public Loader<Document> onCreateLoader(int id, Bundle args) {
+        return new AsyncTaskLoader<Document>(mContext) {
             @Override
             public Document loadInBackground() {
                 try {
@@ -239,7 +178,17 @@ public class ExamTableTimeFragment extends Fragment {
                                     .cookies(mapLoginPageCookies)
                                     .execute();
 
-                    return response_of_getting_data.parse();
+                    Document document =  response_of_getting_data.parse();
+                    semester_subjects = getCurrentSemesterSubjectsFinalTable(document);
+
+                    Connection.Response response =
+                            Jsoup.connect(ExamTableTimeURL)
+                                    .userAgent("Mozilla/5.0")
+                                    .timeout(getResources().getInteger(R.integer.time_out) * 1000)
+                                    .execute();
+
+                    return response.parse();
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -247,67 +196,67 @@ public class ExamTableTimeFragment extends Fragment {
 
                 return null;
             }
-
-            @Override
-            public void deliverResult(Document document) {
-
-                semester_subjects = getCurrentSemesterSubjectsFinalTable(document);
-
-                AsyncTaskLoader<Document> asyncTaskLoader = new AsyncTaskLoader<Document>(getActivity()) {
-                    @Override
-                    public Document loadInBackground() {
-                        try {
-                            Connection.Response response_of_getting_data_2 =
-                                    Jsoup.connect(ExamTableTimeURL)
-                                            .userAgent("Mozilla/5.0")
-                                            .timeout(getResources().getInteger(R.integer.time_out) * 1000)
-                                            .execute();
-
-                            return response_of_getting_data_2.parse();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        return null;
-                    }
-
-                    @Override
-                    public void deliverResult(Document document1) {
-
-                        int returned = extractSemesterSubject(document1);
-                        if (returned == 0) {
-                            binding.reviewSubjectsTextView.setVisibility(View.INVISIBLE);
-                            set_content_of_final_table();
-                        } else {
-                            binding.reviewSubjectsTextView.setText("There is no Exams Table");
-                        }
-
-                        progressBar.setVisibility(View.INVISIBLE);
-                        binding.swipeContainer.setRefreshing(false);
-
-
-                    }
-                };
-
-                asyncTaskLoader.forceLoad();
-
-            }
         };
+    }
 
-        Runnable runnable = new TimerTask() {
+    @Override
+    public void onLoadFinished(Loader<Document> loader, Document document) {
+
+        int returned = extractSemesterSubject(document);
+        if (returned == 0) {
+            set_content_of_final_table();
+
+            if(CalledFromSwipeRefresh){
+                CalledFromSwipeRefresh=false ;
+                mBinding.swipeContainer.setRefreshing(false);
+            }
+            mBinding.recyclerview.setVisibility(View.VISIBLE);
+
+        } else {
+            StaticMethods.showSnackbarNoAction(
+                    mBinding.examTableMainContainer ,
+                    getString(R.string.no_exam_table_message),
+                    Snackbar.LENGTH_LONG);
+        }
+
+        progressBar.setVisibility(View.INVISIBLE);
+        setUpSwipeRefreshLayout();
+
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Document> loader) {
+
+    }
+
+    private void setUpSwipeRefreshLayout() {
+        mBinding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void run() {
+            public void onRefresh() {
                 if (MainActivity.mapLoginPageCookies != null) {
-                    taskLoader.forceLoad();
-                } else {
-                    mHandler.postDelayed(this, 100);
+                    if( StaticMethods.isNetworkAvailable(mActivity) ) {
+                        if(wasOffline) {
+                            StaticMethods.deleteOfflineLayout(mBinding.errorLayoutContainer);
+                            wasOffline = false;
+                        }
+                        mActivity.getSupportLoaderManager()
+                                .restartLoader(FinalData.Semester_Exam_Table_LOADER_ID, null, mFragment)
+                                .forceLoad();
+                        CalledFromSwipeRefresh = true;
+                    }else {
+                        mBinding.swipeContainer.setRefreshing(false);
+                        if(!wasOffline)StaticMethods.inflateOfflineLayout(mContext,mBinding.errorLayoutContainer);
+                        wasOffline=true;
+                        mBinding.recyclerview.setVisibility(View.INVISIBLE);
+                    }
                 }
-            }
-        };
-
-        mHandler.post(runnable);
-
+            }});
+        mBinding.swipeContainer.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
 }
