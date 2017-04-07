@@ -14,7 +14,6 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
