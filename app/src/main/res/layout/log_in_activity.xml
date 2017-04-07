@@ -1,110 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/faculty_of_science_logo"
-        android:layout_width="130dp"
-        android:layout_height="70dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="-20dp"
-        android:layout_marginTop="10dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/faculty_of_science_logo1" />
-
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/graduation2" />
-
-    <LinearLayout
-        android:id="@+id/id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true">
+    <RelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="22dp"
-            android:src="@drawable/ic_person_white_36dp" />
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/id_text_input_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
-
-            <EditText
-                android:id="@+id/id_edit_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="id"
-                android:inputType="number"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
-
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/id"
-        android:layout_alignRight="@+id/id"
-        android:layout_below="@+id/id"
-        android:layout_centerHorizontal="true">
+            android:id="@+id/faculty_of_science_logo"
+            android:layout_width="130dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="-20dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/faculty_of_science_logo1" />
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="22dp"
-            android:src="@drawable/ic_password_white_36dp" />
+            android:id="@+id/app_logo"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/graduation2" />
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/password_text_input_layout"
+        <LinearLayout
+            android:id="@+id/id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true">
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true">
 
-            <EditText
-                android:id="@+id/password_edit_text"
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="22dp"
+                android:src="@drawable/ic_person_white_36dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/id_text_input_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:ems="10"
-                android:hint="password"
-                android:inputType="textPassword"
-                android:textColor="@android:color/white"
-                android:textColorHint="@android:color/white" />
-        </android.support.design.widget.TextInputLayout>
+                app:passwordToggleEnabled="true">
 
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/id_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="id"
+                    android:inputType="number"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white" />
+
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/id"
+            android:layout_alignRight="@+id/id"
+            android:layout_below="@+id/id"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="22dp"
+                android:src="@drawable/ic_password_white_36dp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/password_text_input_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:id="@+id/password_edit_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:ems="10"
+                    android:hint="password"
+                    android:inputType="textPassword"
+                    android:textColor="@android:color/white"
+                    android:textColorHint="@android:color/white" />
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
 
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="210dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp"
-        android:background="@android:drawable/gallery_thumb"
-        android:onClick="login"
-        android:text="log in"
-        android:textColor="@android:color/white"
-        android:textSize="24sp" />
+        <Button
+            android:id="@+id/login"
+            android:layout_width="210dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="42dp"
+            android:background="@android:drawable/gallery_thumb"
+            android:text="log in"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>
