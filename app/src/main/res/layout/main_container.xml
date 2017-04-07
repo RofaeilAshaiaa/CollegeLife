@@ -34,9 +34,9 @@
                 android:layout_height="wrap_content"
                 app:tabGravity="center"
                 app:tabMode="scrollable"
-                app:tabIndicatorColor="@color/Pink_700"
-                app:tabSelectedTextColor="@android:color/white"
-                app:tabTextColor="@android:color/darker_gray" />
+                app:tabIndicatorColor="@color/Green_500"
+                app:tabSelectedTextColor="@color/Green_900"
+                app:tabTextColor="@android:color/black" />
 
 
         </android.support.design.widget.AppBarLayout>
