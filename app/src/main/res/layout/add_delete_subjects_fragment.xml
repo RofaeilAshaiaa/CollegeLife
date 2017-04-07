@@ -6,6 +6,6 @@
     android:background="@android:color/white"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <include layout="@layout/not_availible_layout"/>
+    <include layout="@layout/not_available_layout"/>
 
 </android.support.design.widget.CoordinatorLayout>
