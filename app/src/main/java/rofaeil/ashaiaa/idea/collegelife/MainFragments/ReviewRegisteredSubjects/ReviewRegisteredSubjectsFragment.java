@@ -66,13 +66,13 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         mFragment = this;
 
         progressBar.setVisibility(View.VISIBLE);
+        mBinding.swipeContainer.setVisibility(View.INVISIBLE);
 
         Runnable runnable = new TimerTask() {
             @Override
             public void run() {
                 if (MainActivity.mapLoginPageCookies != null && StaticMethods.isNetworkAvailable(mActivity)) {
 
-                    mBinding.swipeContainer.setVisibility(View.INVISIBLE);
                     mActivity.getSupportLoaderManager()
                             .initLoader(FinalData.REVIEW_SUBJECTS_LOADER_ID, null, mFragment)
                             .forceLoad();
