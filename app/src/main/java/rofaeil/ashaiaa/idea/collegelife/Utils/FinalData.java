@@ -41,7 +41,10 @@ public class FinalData {
     public static final int GRADUATION_SHEET_LOADER_ID = 102;
     public static final int REVIEW_SUBJECTS_LOADER_ID = 103;
     public static final int CHANGE_PASSWORD_LOADER_ID = 104;
-    public static final int Semester_Exam_Table_LOADER_ID = 104;
-    public static final int FULL_Exam_Table_LOADER_ID = 104;
+    public static final int Semester_Exam_Table_LOADER_ID = 105;
+    public static final int FULL_Exam_Table_LOADER_ID = 106;
+    public static final int LOGIN_LOADER_ID = 107;
+
+    public static RequestHeaderData REQUEST_HEADER_DATA = new RequestHeaderData();
 
 }
