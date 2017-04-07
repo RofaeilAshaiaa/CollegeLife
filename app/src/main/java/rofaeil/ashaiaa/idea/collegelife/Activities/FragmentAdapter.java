@@ -15,19 +15,19 @@ import rofaeil.ashaiaa.idea.collegelife.MainFragments.SubjectsRegistration.Subje
 public class FragmentAdapter extends FragmentPagerAdapter {
 
     private Fragment[] mFragments = {
-            new StudentGradesFragment(),
-            new CurrentSemesterGradesFragment(),
             new ReviewRegisteredSubjectsFragment(),
+            new CurrentSemesterGradesFragment(),
             new ExamTableTimeFragment(),
+            new StudentGradesFragment(),
             new SubjectsRegistrationFragment(),
             new AddRemoveSubjectsFragment()
     };
 
     private String[] mTitle = {
-            "Grades",
-            "Semester Grades",
             "Review Subjects",
+            "Semester Grades",
             "Exams Table",
+            "Grades",
             "Add Subjects",
             "Edit Subjects"
     };
