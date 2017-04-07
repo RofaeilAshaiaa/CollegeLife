@@ -22,6 +22,7 @@
 * change all ProgressDialog to Progressbars
 * solve request data (parameters) problem that give response for unknown page
 * fix Crash in exam table on phone rotaion
+* Enable Firebase Analytics and Crash Reporting
 
 
 # Finished #
