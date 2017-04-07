@@ -593,6 +593,10 @@ public class StaticMethods {
                 .setAction(actionString, listener )
                 .show();
     }
+    public static void showSnackbarNoAction(View view , String message, int duration) {
+
+        Snackbar.make(view , message, duration).show();
+    }
 
 
     public static void deleteOfflineLayout(FrameLayout frameLayout) {
