@@ -14,9 +14,11 @@ import android.widget.TextView;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.StudentGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
@@ -28,12 +30,16 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
 
 
     public ArrayList<StudentGradesSubject> mSubjectsHasPolling;
+    private ArrayList<StudentGradesSubject> mSemesterSubjects = new ArrayList<>();
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_grades_semester_subjects_activity);
+
+        mSemesterSubjects = getStudentGradesSemesterSubject();
 
         initializeToolbar();
         initializeSemesterData();
@@ -60,7 +66,7 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
         mGPA.setText(getIntent().getExtras().getString("GPA", null));
         mLoadedHours.setText(getIntent().getExtras().getString("SemesterLoad", null));
         mEarnedHours.setText(getIntent().getExtras().getString("EarnedHours", null));
-        mSubjectNum.setText("" + getIntent().getExtras().getParcelableArrayList("Subjects").size() + "");
+        mSubjectNum.setText("" + mSemesterSubjects.size() + "");
 
         ProgressBar mEarnedHoursNumProgressBar = (ProgressBar) findViewById(R.id.student_grades_semester_subjects_activity_earned_hours_num_progress_bar);
         ProgressBar mGPANumProgressBar = (ProgressBar) findViewById(R.id.student_grades_semester_subjects_activity_gpa_num_progress_bar);
@@ -72,7 +78,7 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
         mGPANumProgressBar.setMax(4);
         mGPANumProgressBar.setProgress((int) Double.parseDouble(getIntent().getExtras().getString("GPA", null)));
 
-        mSubjectsNumProgressBar.setMax(getIntent().getExtras().getParcelableArrayList("Subjects").size());
+        mSubjectsNumProgressBar.setMax(mSemesterSubjects.size());
         mSubjectsNumProgressBar.setProgress(getSuccessSubjectsNum());
 
 
@@ -88,20 +94,48 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
     }
 
     public int getSuccessSubjectsNum() {
-        int mFaildSubjectsNum = 0;
-        ArrayList<StudentGradesSubject> mSubjects = getIntent().getExtras().getParcelableArrayList("Subjects");
-        for (int i = 0; i < mSubjects.size(); i++) {
-            if (mSubjects.get(i).getGrade().equals("F")) {
-                mFaildSubjectsNum = mFaildSubjectsNum + 1;
+        int mFailSubjectsNam = 0;
+        for (int i = 0; i < mSemesterSubjects.size(); i++) {
+            if (mSemesterSubjects.get(i).getGrade().equals("F")) {
+                mFailSubjectsNam = mFailSubjectsNam + 1;
             }
-            if (mSubjects.get(i).getGrade().equals("إستبيان")) {
-                mFaildSubjectsNum = mFaildSubjectsNum + 1;
+            if (mSemesterSubjects.get(i).getGrade().equals("إستبيان")) {
+                mFailSubjectsNam = mFailSubjectsNam + 1;
             }
-            if (mSubjects.get(i).getGrade().equals("P")) {
-                mFaildSubjectsNum = mFaildSubjectsNum + 1;
+            if (mSemesterSubjects.get(i).getGrade().equals("P")) {
+                mFailSubjectsNam = mFailSubjectsNam + 1;
             }
         }
-        return mSubjects.size() - mFaildSubjectsNum;
+        return mSemesterSubjects.size() - mFailSubjectsNam;
+    }
+
+    public ArrayList<StudentGradesSubject> getStudentGradesSemesterSubject() {
+
+        ArrayList<StudentGradesSubject> mSubjects = new ArrayList<>();
+        String SubjectDocument = getIntent().getExtras().getString("SubjectsDocument");
+        Document document = Jsoup.parse(SubjectDocument);
+        Elements mSemester_Subjects = document.getElementsByTag("tr");
+
+        for (int n = 1; n < mSemester_Subjects.size(); n++) {
+
+            StudentGradesSubject mSubject = new StudentGradesSubject();
+
+            Elements mSubject_data = mSemester_Subjects.get(n).getElementsByTag("td");
+
+            mSubject.setID(mSubject_data.get(0).text());
+            mSubject.setOldID(mSubject_data.get(1).text());
+            mSubject.setName(mSubject_data.get(2).text());
+            mSubject.setPollingUrl(mSubject_data.get(2).child(0).absUrl("href"));
+            mSubject.setGrade(mSubject_data.get(3).text());
+            mSubject.setPoints(mSubject_data.get(4).text());
+            mSubject.setHours(mSubject_data.get(5).text());
+            mSubject.setPoints_X_Hours(mSubject_data.get(6).text());
+            mSubject.setBackgroundId(new Random().nextInt(10));
+
+            mSubjects.add(mSubject);
+        }
+
+        return mSubjects;
     }
 
     @Override
@@ -131,7 +165,7 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
 
     @Override
     public ArrayList<StudentGradesSubject> getSemesterSubjects() {
-        return getIntent().getExtras().getParcelableArrayList("Subjects");
+        return getStudentGradesSemesterSubject();
     }
 
     public void initializePolling() {
@@ -139,8 +173,7 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
         if (getIntent().getExtras().getBoolean("LastSemester", false) == true) {
             mPolling.setVisibility(View.VISIBLE);
             mSubjectsHasPolling = new ArrayList<>();
-            ArrayList<StudentGradesSubject> mSubjects = getIntent().getExtras().getParcelableArrayList("Subjects");
-            mSubjectsHasPolling = getSubjectsHasPolling(mSubjects);
+            mSubjectsHasPolling = getSubjectsHasPolling(mSemesterSubjects);
             mPolling.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
