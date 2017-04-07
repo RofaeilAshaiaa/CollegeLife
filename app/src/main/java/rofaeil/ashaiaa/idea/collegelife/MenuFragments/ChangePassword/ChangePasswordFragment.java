@@ -118,6 +118,7 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
                 SharedPreferences.Editor mEditor = mSharedPreferences.edit();
                 mEditor.putString("PASSWORD", mNewPassword);
                 mEditor.commit();
+                mSavedPassword = mNewPassword;
                 Snackbar.make(mBinding.getRoot(),"Password Changed Successfully",Snackbar.LENGTH_LONG).show();
             }
             mProgressDialog.dismiss();
