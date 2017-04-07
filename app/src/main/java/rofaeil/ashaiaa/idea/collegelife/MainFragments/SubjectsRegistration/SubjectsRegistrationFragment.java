@@ -5,32 +5,16 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.AsyncTaskLoader;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckedTextView;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.TimerTask;
 
-import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.Subject;
 import rofaeil.ashaiaa.idea.collegelife.R;
-import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 import rofaeil.ashaiaa.idea.collegelife.databinding.SubjectsRegistrationFragmentBinding;
-
-import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.mapLoginPageCookies;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.SubjectsRegistrationURL;
 
 
 public class SubjectsRegistrationFragment extends Fragment {
