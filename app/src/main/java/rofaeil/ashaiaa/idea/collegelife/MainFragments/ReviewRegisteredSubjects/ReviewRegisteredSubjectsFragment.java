@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
@@ -114,6 +115,10 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
+        setUpSwipeRefreshLayout();
+    }
+
+    private void setUpSwipeRefreshLayout() {
         mBinding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -164,15 +169,48 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
                     mBinding.swipeContainer.setRefreshing(false);
                 mBinding.swipeContainer.setVisibility(View.VISIBLE);
             } else {
-                Toast.makeText(mActivity, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                showSnackbarWithReloadAction();
             }
 
         } else {
-            Toast.makeText(mActivity, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+            showSnackbarWithReloadAction();
         }
 
         progressBar.setVisibility(View.INVISIBLE);
+        showSnackbarWithReloadAction();
 
+
+    }
+
+    private void showSnackbarWithReloadAction() {
+        Snackbar.make(mBinding.examTableMainContainer, R.string.some_thing_went_wrong_message, Snackbar.LENGTH_LONG)
+                .setAction(R.string.snackbar_reload_action, getSnackbarClickListener())
+                .show();
+    }
+
+    private View.OnClickListener getSnackbarClickListener() {
+
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Runnable runnable = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (MainActivity.mapLoginPageCookies != null && StaticMethods.isNetworkAvailable(mActivity)) {
+
+                            mActivity.getSupportLoaderManager()
+                                    .restartLoader(FinalData.REVIEW_SUBJECTS_LOADER_ID, null, mFragment)
+                                    .forceLoad();
+                        } else {
+                            mHandler.postDelayed(this, 100);
+                        }
+                    }
+                };
+
+                mHandler.post(runnable);
+            }
+        };
+        return listener;
     }
 
     private void extractOtherSemesterData(Document document) {
