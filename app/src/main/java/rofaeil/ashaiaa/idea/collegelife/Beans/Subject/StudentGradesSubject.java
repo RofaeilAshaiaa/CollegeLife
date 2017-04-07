@@ -14,6 +14,42 @@ public class StudentGradesSubject extends Subject {
     private String Grade;
     private String Points_X_Hours;
     private String PollingUrl;
+    private int OldIdBackgroundResource;
+    private int LeftCornerBackgroundResource;
+    private int IconRightCornerBackgroundResource;
+    private int IconBackgroundResource;
+
+    public int getOldIdBackgroundResource() {
+        return OldIdBackgroundResource;
+    }
+
+    public void setOldIdBackgroundResource(int oldIdBackgroundResource) {
+        OldIdBackgroundResource = oldIdBackgroundResource;
+    }
+
+    public int getLeftCornerBackgroundResource() {
+        return LeftCornerBackgroundResource;
+    }
+
+    public void setLeftCornerBackgroundResource(int leftCornerBackgroundResource) {
+        LeftCornerBackgroundResource = leftCornerBackgroundResource;
+    }
+
+    public int getIconRightCornerBackgroundResource() {
+        return IconRightCornerBackgroundResource;
+    }
+
+    public void setIconRightCornerBackgroundResource(int iconRightCornerBackgroundResource) {
+        IconRightCornerBackgroundResource = iconRightCornerBackgroundResource;
+    }
+
+    public int getIconBackgroundResource() {
+        return IconBackgroundResource;
+    }
+
+    public void setIconBackgroundResource(int iconBackgroundResource) {
+        IconBackgroundResource = iconBackgroundResource;
+    }
 
     public StudentGradesSubject() {
         super();
