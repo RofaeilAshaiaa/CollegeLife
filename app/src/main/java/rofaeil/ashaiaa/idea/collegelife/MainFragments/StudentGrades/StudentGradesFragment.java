@@ -135,7 +135,6 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
         for (int i = 0; i < mSemesters_tables.size(); i++) {
 
             Semester mSemester = new Semester();
-            ArrayList<StudentGradesSubject> mSubjects = new ArrayList<>();
             int BackgroundId = new Random().nextInt(10);
 
             Element mSemester_table = mSemesters_tables.get(i);
@@ -152,29 +151,8 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             mSemester.setTextLeftCornerBackgroundResource(getTextLeftCornerBackgroundResource(BackgroundId));
 
             Element mSemester_Subjects_table = mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_GridView1_" + i + "");
-            Elements mSemester_Subjects = mSemester_Subjects_table.getElementsByTag("tr");
 
-            for (int n = 1; n < mSemester_Subjects.size(); n++) {
-
-                StudentGradesSubject mSubject = new StudentGradesSubject();
-
-                Elements mSubject_data = mSemester_Subjects.get(n).getElementsByTag("td");
-
-
-                mSubject.setID(mSubject_data.get(0).text());
-                mSubject.setOldID(mSubject_data.get(1).text());
-                mSubject.setName(mSubject_data.get(2).text());
-                mSubject.setPollingUrl(mSubject_data.get(2).child(0).absUrl("href"));
-                mSubject.setGrade(mSubject_data.get(3).text());
-                mSubject.setPoints(mSubject_data.get(4).text());
-                mSubject.setHours(mSubject_data.get(5).text());
-                mSubject.setPoints_X_Hours(mSubject_data.get(6).text());
-                mSubject.setBackgroundId(new Random().nextInt(10));
-
-                mSubjects.add(mSubject);
-
-            }
-            mSemester.setSubjects(mSubjects);
+            mSemester.setSubjectsDocument(mSemester_Subjects_table.toString());
             mSemesters.add(mSemester);
         }
 
