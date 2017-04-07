@@ -20,6 +20,7 @@
 * add Option To View Saved Password of Currnet Logged user
 * Decrease loading time of Grades page by moving the method that extracts the subjects of smemester to details actcivity of the selected semester
 * change all ProgressDialog to Progressbars
+* solve request data (parameters) problem that give response for unknown page
 
 
 # Finished #
@@ -34,6 +35,7 @@
 * Update change password UI 
 * Update change password functionality by loader manger & more checks & solve request problem & crashes
 * Add progress dialog to my profile and graduation sheet
+* Review Subejcts All Done!
 
 
 # Features to Add: #
