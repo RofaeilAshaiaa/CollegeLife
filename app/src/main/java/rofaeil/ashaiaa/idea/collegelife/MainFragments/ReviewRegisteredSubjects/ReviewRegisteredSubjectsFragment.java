@@ -50,6 +50,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
     private FragmentActivity mActivity;
     private ReviewRegisteredSubjectsFragment mFragment;
     private boolean CalledFromSwipeRefresh=false;
+    private boolean wasOffline ;
 
     public ReviewRegisteredSubjectsFragment() {
         // Required empty public constructor
@@ -68,16 +69,21 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         mFragment = this;
 
         progressBar.setVisibility(View.VISIBLE);
-        mBinding.swipeContainer.setVisibility(View.INVISIBLE);
+        mBinding.nestedScroll.setVisibility(View.INVISIBLE);
 
         Runnable runnable = new TimerTask() {
             @Override
             public void run() {
-                if (MainActivity.mapLoginPageCookies != null && StaticMethods.isNetworkAvailable(mActivity)) {
+                if (MainActivity.mapLoginPageCookies != null) {
 
-                    mActivity.getSupportLoaderManager()
+                    if( StaticMethods.isNetworkAvailable(mActivity) )
+                        mActivity.getSupportLoaderManager()
                             .initLoader(FinalData.REVIEW_SUBJECTS_LOADER_ID, null, mFragment)
                             .forceLoad();
+                    else {
+                        wasOffline= true ;
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
 
                 } else {
                     mHandler.postDelayed(this, 100);
@@ -86,7 +92,6 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         };
 
         mHandler.post(runnable);
-        start_request_and_get_data();
 
         return mBinding.getRoot();
     }
@@ -94,11 +99,6 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
     @Override
     public void onStart() {
         super.onStart();
-    }
-
-    private void start_request_and_get_data() {
-
-
     }
 
     private void setContentOfViews(ArrayList<StudentGradesSubject> semester_subjects) {
@@ -122,26 +122,24 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         mBinding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-                Runnable runnable = new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (MainActivity.mapLoginPageCookies != null && StaticMethods.isNetworkAvailable(mActivity)) {
-
-                            mActivity.getSupportLoaderManager()
-                                    .restartLoader(FinalData.REVIEW_SUBJECTS_LOADER_ID, null, mFragment)
-                                    .forceLoad();
-                            CalledFromSwipeRefresh = true ;
-
-                        } else {
-                            mHandler.postDelayed(this, 100);
+                if (MainActivity.mapLoginPageCookies != null) {
+                    if( StaticMethods.isNetworkAvailable(mActivity) ) {
+                        if(wasOffline) {
+                            StaticMethods.deleteOfflineLayout(mBinding.errorLayoutContainer);
+                            wasOffline = false;
                         }
+                        mActivity.getSupportLoaderManager()
+                                .restartLoader(FinalData.REVIEW_SUBJECTS_LOADER_ID, null, mFragment)
+                                .forceLoad();
+                        CalledFromSwipeRefresh = true;
+                    }else {
+                        mBinding.swipeContainer.setRefreshing(false);
+                        if(!wasOffline)StaticMethods.inflateOfflineLayout(mContext,mBinding.errorLayoutContainer);
+                        wasOffline=true;
+                        mBinding.nestedScroll.setVisibility(View.INVISIBLE);
                     }
-                };
-
-                mHandler.post(runnable);
             }
-        });
+        }});
         mBinding.swipeContainer.setColorSchemeResources(
                 android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
@@ -158,7 +156,6 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
     public void onLoadFinished(Loader<Document> loader, Document document) {
 
         if (document != null) {
-
             semester_subjects = extractLastSemesterReviewSubjects(document);
             extractOtherSemesterData(document);
 
@@ -169,10 +166,9 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
                     CalledFromSwipeRefresh=false ;
                     mBinding.swipeContainer.setRefreshing(false);
                 }
-                mBinding.swipeContainer.setVisibility(View.VISIBLE);
+                mBinding.nestedScroll.setVisibility(View.VISIBLE);
             } else {
                 showSnackbarWithReloadAction();
-
             }
 
         } else {

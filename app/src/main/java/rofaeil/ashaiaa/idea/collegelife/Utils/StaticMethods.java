@@ -595,4 +595,7 @@ public class StaticMethods {
     }
 
 
+    public static void deleteOfflineLayout(FrameLayout frameLayout) {
+        frameLayout.removeViewAt(1);
+    }
 }
