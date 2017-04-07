@@ -7,19 +7,8 @@ import android.os.Parcelable;
  * Created by emad on 1/4/2017.
  */
 
-public class StudentGradesSubject extends Subject implements Parcelable {
+public class StudentGradesSubject extends Subject {
 
-    public static final Creator<StudentGradesSubject> CREATOR = new Creator<StudentGradesSubject>() {
-        @Override
-        public StudentGradesSubject createFromParcel(Parcel in) {
-            return new StudentGradesSubject(in);
-        }
-
-        @Override
-        public StudentGradesSubject[] newArray(int size) {
-            return new StudentGradesSubject[size];
-        }
-    };
     private String Hours;
     private String Points;
     private String Grade;
@@ -28,17 +17,6 @@ public class StudentGradesSubject extends Subject implements Parcelable {
 
     public StudentGradesSubject() {
         super();
-    }
-
-    protected StudentGradesSubject(Parcel in) {
-        Hours = in.readString();
-        Points = in.readString();
-        Grade = in.readString();
-        Points_X_Hours = in.readString();
-        PollingUrl = in.readString();
-        super.setID(in.readString());
-        super.setOldID(in.readString());
-        super.setName(in.readString());
     }
 
     public String getHours() {
@@ -81,20 +59,4 @@ public class StudentGradesSubject extends Subject implements Parcelable {
         this.PollingUrl = pollingUrl;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(Hours);
-        dest.writeString(Points);
-        dest.writeString(Grade);
-        dest.writeString(Points_X_Hours);
-        dest.writeString(PollingUrl);
-        dest.writeString(super.getID());
-        dest.writeString(super.getOldID());
-        dest.writeString(super.getName());
-    }
 }
