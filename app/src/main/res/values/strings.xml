@@ -12,6 +12,7 @@
     <string name="semester_title_label_review_registered_subjects">فصل....</string>
     <string name="some_thing_went_wrong_message">Something Went Wrong!</string>
     <string name="snackbar_reload_action">Reload</string>
+    <string name="no_exam_table_message">There is no Exam Table!</string>
 
     <string-array name="student_gender_array">
         <item>ذكر</item>
