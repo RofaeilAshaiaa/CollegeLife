@@ -121,9 +121,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     }
 
     public void makeProgressBarInvisible() {
-        TextView mWaitingMassage = (TextView) mRoot_View.findViewById(R.id.student_grades_semesters_fragment_waiting_text);
         ProgressBar mProgressBar = (ProgressBar) mRoot_View.findViewById(R.id.student_grades_semesters_fragment_progress_bar);
-        mWaitingMassage.setVisibility(View.INVISIBLE);
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
