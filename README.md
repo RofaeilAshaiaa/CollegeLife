@@ -4,7 +4,6 @@
 * Review Subjects random background color 
 * Add fall exam table in nav
 * Add contact us
-* Add about app
 * Make edit profile and student data page light background
 * Remove al toast & replace it with snackbar
 * Semester grades toolbar title color
@@ -38,6 +37,7 @@
 * Update change password functionality by loader manger & more checks & solve request problem & crashes
 * Add progress dialog to my profile and graduation sheet
 * Review Subejcts All Done!
+* Add about app
 
 
 # Features to Add: #
