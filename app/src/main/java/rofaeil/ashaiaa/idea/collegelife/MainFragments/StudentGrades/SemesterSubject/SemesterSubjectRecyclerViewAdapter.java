@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -32,16 +33,22 @@ public class SemesterSubjectRecyclerViewAdapter extends RecyclerView.Adapter<Sem
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        holder.subject_name.setText(mSubjects.get(position).getName());
-        holder.subject_old_id.setText(mSubjects.get(position).getOldID());
-        holder.subject_ponit.setText(mSubjects.get(position).getPoints());
-        holder.subject_hours.setText(mSubjects.get(position).getHours());
+        StudentGradesSubject subject = mSubjects.get(position);
+        holder.subject_name.setText(subject.getName());
+        holder.subject_old_id.setText(subject.getOldID());
+        holder.subject_point.setText(subject.getPoints());
+        holder.subject_hours.setText(subject.getHours());
         if (mSubjects.get(position).getGrade().equals("إستبيان")) {
             holder.subject_grade.setText("P");
         } else {
             holder.subject_grade.setText(mSubjects.get(position).getGrade());
         }
 
+        holder.subject_old_id.setBackgroundResource(subject.getOldIdBackgroundResource());
+        holder.subject_hours_logo.setBackgroundResource(subject.getIconBackgroundResource());
+        holder.subject_point_text_logo.setBackgroundResource(subject.getLeftCornerBackgroundResource());
+        holder.subject_point_icon_logo.setBackgroundResource(subject.getIconRightCornerBackgroundResource());
+        holder.subject_grade_logo.setBackgroundResource(subject.getTextBackgroundResource());
     }
 
     @Override
@@ -55,17 +62,28 @@ public class SemesterSubjectRecyclerViewAdapter extends RecyclerView.Adapter<Sem
         TextView subject_old_id;
         TextView subject_hours;
         TextView subject_name;
-        TextView subject_ponit;
+        TextView subject_point;
         TextView subject_grade;
+
+        ImageView subject_hours_logo;
+        TextView subject_point_text_logo;
+        ImageView subject_point_icon_logo;
+        TextView subject_grade_logo;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             CardView mCardView = (CardView) itemView.findViewById(R.id.student_grades_subject_card_view);
             subject_name = (TextView) mCardView.findViewById(R.id.student_grades_subject_name);
             subject_old_id = (TextView) mCardView.findViewById(R.id.student_grades_subject_old_id_logo);
-            subject_ponit = (TextView) mCardView.findViewById(R.id.student_grades_subject_point_num);
+            subject_point = (TextView) mCardView.findViewById(R.id.student_grades_subject_point_num);
             subject_grade = (TextView) mCardView.findViewById(R.id.student_grades_subject_grade);
             subject_hours = (TextView) mCardView.findViewById(R.id.student_grades_subject_hours_num);
+
+            subject_hours_logo = (ImageView) mCardView.findViewById(R.id.student_grades_subject_hours_logo);
+            subject_point_text_logo = (TextView) mCardView.findViewById(R.id.student_grades_subject_point_text_logo);
+            subject_point_icon_logo = (ImageView) mCardView.findViewById(R.id.student_grades_subject_point_logo);
+            subject_grade_logo = (TextView) mCardView.findViewById(R.id.student_grades_subject_grade);
+
         }
     }
 }
