@@ -34,11 +34,13 @@
             android:layout_height="match_parent">
 
             <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nested_scroll"
                 android:layout_width="match_parent"
                 style="@style/recycler_views_style"
                 android:layout_height="match_parent">
 
                 <LinearLayout
+                    android:descendantFocusability="blocksDescendants"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
