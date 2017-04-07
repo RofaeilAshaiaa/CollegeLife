@@ -115,7 +115,6 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.VERTICAL, false));
-        setUpSwipeRefreshLayout();
     }
 
     private void setUpSwipeRefreshLayout() {
@@ -176,6 +175,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         }
 
         progressBar.setVisibility(View.INVISIBLE);
+        setUpSwipeRefreshLayout();
 
     }
 
