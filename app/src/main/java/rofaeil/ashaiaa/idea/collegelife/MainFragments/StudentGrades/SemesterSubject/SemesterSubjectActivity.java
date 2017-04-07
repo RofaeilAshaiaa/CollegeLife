@@ -24,6 +24,11 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.StudentGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.mapLoginPageCookies;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextLeftCornerBackgroundResource;
 
 public class SemesterSubjectActivity extends AppCompatActivity implements
         SemesterSubjectFragment.StudentGradesSemesterDataSet {
@@ -31,7 +36,6 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
 
     public ArrayList<StudentGradesSubject> mSubjectsHasPolling;
     private ArrayList<StudentGradesSubject> mSemesterSubjects = new ArrayList<>();
-
 
 
     @Override
@@ -119,7 +123,7 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
         for (int n = 1; n < mSemester_Subjects.size(); n++) {
 
             StudentGradesSubject mSubject = new StudentGradesSubject();
-
+            int BackgroundID = new Random().nextInt(10);
             Elements mSubject_data = mSemester_Subjects.get(n).getElementsByTag("td");
 
             mSubject.setID(mSubject_data.get(0).text());
@@ -130,8 +134,12 @@ public class SemesterSubjectActivity extends AppCompatActivity implements
             mSubject.setPoints(mSubject_data.get(4).text());
             mSubject.setHours(mSubject_data.get(5).text());
             mSubject.setPoints_X_Hours(mSubject_data.get(6).text());
-            mSubject.setBackgroundId(new Random().nextInt(10));
-
+            mSubject.setBackgroundId(BackgroundID);
+            mSubject.setOldIdBackgroundResource(getSubjectOldIdBackgroundResource(BackgroundID));
+            mSubject.setIconBackgroundResource(getIconBackgroundResource(BackgroundID));
+            mSubject.setIconRightCornerBackgroundResource(getIconRightCornerBackgroundResource(BackgroundID));
+            mSubject.setLeftCornerBackgroundResource(getTextLeftCornerBackgroundResource(BackgroundID));
+            mSubject.setTextBackgroundResource(getTextBackgroundResource(BackgroundID));
             mSubjects.add(mSubject);
         }
 
