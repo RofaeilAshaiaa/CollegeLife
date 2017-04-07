@@ -15,6 +15,16 @@ public class Semester {
     private String EarnedHours;
     private String SemesterLoad;
     private ArrayList<StudentGradesSubject> Subjects;
+    private String SubjectsDocument;
+
+    public String getSubjectsDocument() {
+        return SubjectsDocument;
+    }
+
+    public void setSubjectsDocument(String subjectsDocument) {
+        SubjectsDocument = subjectsDocument;
+    }
+
     private int BackgroundId;
     private int LogoBackgroundResource;
     private int TextBackgroundResource;
