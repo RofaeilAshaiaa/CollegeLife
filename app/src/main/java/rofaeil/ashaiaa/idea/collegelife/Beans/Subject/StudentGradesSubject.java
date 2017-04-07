@@ -17,7 +17,16 @@ public class StudentGradesSubject extends Subject {
     private int OldIdBackgroundResource;
     private int LeftCornerBackgroundResource;
     private int IconRightCornerBackgroundResource;
+    private int TextBackgroundResource;
     private int IconBackgroundResource;
+
+    public int getTextBackgroundResource() {
+        return TextBackgroundResource;
+    }
+
+    public void setTextBackgroundResource(int textBackgroundResource) {
+        TextBackgroundResource = textBackgroundResource;
+    }
 
     public int getOldIdBackgroundResource() {
         return OldIdBackgroundResource;
