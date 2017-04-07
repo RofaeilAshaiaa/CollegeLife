@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import org.jsoup.Connection;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import java.io.IOException;
 import java.util.Map;
@@ -32,6 +33,7 @@ import rofaeil.ashaiaa.idea.collegelife.R;
 import rofaeil.ashaiaa.idea.collegelife.Utils.AsyncTaskLogin;
 import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 
+import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.REQUEST_HEADER_DATA;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getStudentLevel;
 
 
@@ -45,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public ViewPager mViewPager;
     public Toolbar mToolbar;
     public SharedPreferences mSharedPreferencesLogIn;
+    private  SharedPreferences.Editor mEditor;
 
 
     @Override
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         getStudentPasswordAndID();
-
+        setRequestHeaderDate();
         if (mapLoginPageCookies == null) {
             startAsyncTaskLogIn();
         } else {
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void getStudentPasswordAndID() {
         mSharedPreferencesLogIn = getSharedPreferences("log_in", MODE_PRIVATE);
+        mEditor = mSharedPreferencesLogIn.edit();
         student_id = mSharedPreferencesLogIn.getString("ID", null);
         student_pass = mSharedPreferencesLogIn.getString("PASSWORD", null);
     }
@@ -148,6 +152,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mSlidingPaneLayout.setParallaxDistance(100);
     }
 
+    public void setRequestHeaderDate() {
+        REQUEST_HEADER_DATA.setVIEWSTATE(mSharedPreferencesLogIn.getString("VIEWSTATE","0Lyyj9NPpdnddB6pakBAUYzptMJIMQbGYxPeA/ofZp6ZRiMMa7ZXUs3dz8ajVg6FEPGtqiTQe1hNxUcYxIL3/Li8FJVsm4jOKaOaqBNsf4l0D9snUwUKx/0A/H2L5zmenH7qD/I9ArVUk7bDsmHpPMBATFzydB2f2o6Zc6lj9/OOkf2zOVtxlnSrg/W+E4TPk/BVrC0R3CUl0BpGkLbLIVrxiBe1aXoAm9eYh12lspe+UHHlwSFSuGvxFNQ3tLHtnZDYFi0dzvNSsf9WV98z4Q=="));
+        REQUEST_HEADER_DATA.setVIEWSTATEGENERATOR(mSharedPreferencesLogIn.getString("VIEWSTATEGENERATOR","F7FE45A7"));
+        REQUEST_HEADER_DATA.setEVENTVALIDATION(mSharedPreferencesLogIn.getString("EVENTVALIDATION","nwol/vBRfDWTLde1S4/NC/4tBd9SEGC7zvP3WfnQ77DFLvolKZwlPTlw0HlhUf5QM0joff9DV0832m4YrbEQjdWymAOxW4RjfV9kAjLNweWKaYeGhhF16zav9o52H7gB93gHxRdzYQSGVdwL5tMSCcGGOc7X/9xd7s7aZcPTgbUC5NKk9iMjkPw9BHtosdmg"));
+    }
+
+    public void getRequestHeaderDate(Document document) {
+        Element VIEWSTATE = document.getElementById("__VIEWSTATE");
+        Element VIEWSTATEGENERATOR = document.getElementById("__VIEWSTATEGENERATOR");
+        Element EVENTVALIDATION = document.getElementById("__EVENTVALIDATION");
+
+        String ViewState = VIEWSTATE.val();
+        String ViewStateGenerator = VIEWSTATEGENERATOR.val();
+        String EventValidation = EVENTVALIDATION.val();
+
+        mEditor.putString("VIEWSTATE", ViewState);
+        mEditor.putString("VIEWSTATEGENERATOR", ViewStateGenerator);
+        mEditor.putString("EVENTVALIDATION", EventValidation);
+        mEditor.commit();
+
+        REQUEST_HEADER_DATA.setVIEWSTATE(ViewState);
+        REQUEST_HEADER_DATA.setVIEWSTATEGENERATOR(ViewStateGenerator);
+        REQUEST_HEADER_DATA.setEVENTVALIDATION(EventValidation);
+    }
+
     private void startAsyncTaskLogIn() {
 
         AsyncTaskLogin asyncTaskLogin = new AsyncTaskLogin(student_id, student_pass, getBaseContext()) {
@@ -160,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         setNavigationDrawerHeaderData();
                         mapLoginPageCookies = response.cookies();
                         studentHomeDocument = mDocument;
+                        getRequestHeaderDate(mDocument);
                     } else {
                         StaticMethods.showToast(getBaseContext(), "Website not Responding");
                     }
@@ -215,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.sign_out:
 
-                SharedPreferences.Editor mEditor = mSharedPreferencesLogIn.edit();
                 mEditor.putString("ID", null);
                 mEditor.putString("PASSWORD", null);
                 mEditor.putString("FirstNameEN", null);
