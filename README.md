@@ -21,6 +21,7 @@
 * Decrease loading time of Grades page by moving the method that extracts the subjects of smemester to details actcivity of the selected semester
 * change all ProgressDialog to Progressbars
 * solve request data (parameters) problem that give response for unknown page
+* fix Crash in exam table on phone rotaion
 
 
 # Finished #
