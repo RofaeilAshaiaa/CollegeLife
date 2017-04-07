@@ -35,7 +35,6 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightC
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSemesterLogoBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextLeftCornerBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
 
 
 public class StudentGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
