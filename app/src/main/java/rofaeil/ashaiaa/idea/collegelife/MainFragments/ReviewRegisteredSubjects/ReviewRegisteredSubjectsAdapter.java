@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +45,13 @@ public class ReviewRegisteredSubjectsAdapter extends RecyclerView.Adapter<Review
         holder.number_of_hours.setText(subjectArrayList.get(position).getHours());
         holder.subjectType.setText(subjectArrayList.get(position).getType());
 
+        holder.descriptionImage.setBackgroundResource(
+                subjectArrayList.get(position).getTextBackgroundResource());
+        holder.hoursLogoImage.setBackgroundResource(
+                subjectArrayList.get(position).getTextBackgroundResource());
+        holder.short_code.setBackgroundResource(
+                subjectArrayList.get(position).getOldIdBackgroundResource());
+
     }
 
     @Override
@@ -52,12 +59,16 @@ public class ReviewRegisteredSubjectsAdapter extends RecyclerView.Adapter<Review
         return mItemsNumber;
     }
 
-    class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class myViewHolder extends RecyclerView.ViewHolder
+//            implements View.OnClickListener
+       {
 
         public TextView subject_name;
         public TextView short_code;
         public TextView number_of_hours;
         public TextView subjectType ;
+        public ImageView hoursLogoImage ;
+        public ImageView  descriptionImage ;
 
         public myViewHolder(View itemView) {
             super(itemView);
@@ -66,16 +77,17 @@ public class ReviewRegisteredSubjectsAdapter extends RecyclerView.Adapter<Review
             short_code = (TextView) itemView.findViewById(R.id.review_registered_subject_old_id_logo);
             number_of_hours = (TextView) itemView.findViewById(R.id.review_registered_subject_hours_num);
             subjectType = (TextView) itemView.findViewById(R.id.subject_type_review_regsitered_subjects);
+            hoursLogoImage = (ImageView) itemView.findViewById(R.id.review_registered_subject_hours_logo)  ;
+            descriptionImage = (ImageView) itemView.findViewById(R.id.imageView3)  ;
 
-
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
 
         }
 
-        @Override
-        public void onClick(View v) {
-            int position = getAdapterPosition(); // gets item position
-            Toast.makeText(mContext, "position" + position, Toast.LENGTH_SHORT).show();
-        }
+//        @Override
+//        public void onClick(View v) {
+//            int position = getAdapterPosition(); // gets item position
+//            Toast.makeText(mContext, "position" + position, Toast.LENGTH_SHORT).show();
+//        }
     }
 }

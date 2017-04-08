@@ -50,7 +50,7 @@ public class StaticMethods {
             mSubject.setLab(mSubjects_raws.get(i).getAllElements().get(11).text());
             mSubject.setFinal(mSubjects_raws.get(i).getAllElements().get(12).text());
             mSubject.setTotal(mSubjects_raws.get(i).getAllElements().get(13).text());
-            mSubject.setBackgroundId(BackgroundId);
+//            mSubject.setBackgroundId(BackgroundId);
             mSubject.setOldIdBackgroundResource(getSubjectOldIdBackgroundResource(BackgroundId));
             mSubject.setTextBackgroundResource(getTextBackgroundResource(BackgroundId));
             mSubjects.add(mSubject);
@@ -105,18 +105,22 @@ public class StaticMethods {
             //gets rows of the table
             Elements rows_of_target_table = target_table.getElementsByTag("tr");
 
-
             ArrayList<StudentGradesSubject> semester_subjects_codes = new ArrayList<>();
 
             for (int i = 1; i < rows_of_target_table.size(); i++) {
+                int BackgroundId = new Random().nextInt(9);
                 StudentGradesSubject subject = new StudentGradesSubject();
-
                 subject.setType(rows_of_target_table.get(i).getElementsByTag("td").get(0).text());
                 subject.setID(rows_of_target_table.get(i).getElementsByTag("td").get(1).text());
                 subject.setOldID(rows_of_target_table.get(i).getElementsByTag("td").get(2).text());
                 subject.setName(rows_of_target_table.get(i).getElementsByTag("td").get(3).text());
                 subject.setHours(rows_of_target_table.get(i).getElementsByTag("td").get(7).text());
 
+                subject.setBackgroundId(BackgroundId);
+                subject.setOldIdBackgroundResource(
+                        getSubjectOldIdBackgroundResource(BackgroundId));
+                subject.setTextBackgroundResource(
+                        getTextBackgroundResource(BackgroundId));
 
                 semester_subjects_codes.add(subject);
 
