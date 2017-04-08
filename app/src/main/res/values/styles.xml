@@ -48,5 +48,13 @@
         <item name="android:layout_height">25dp</item>
         <item name="android:layout_width">25dp</item>
         <item name="android:background">@drawable/ic_logo_background</item>
+
+    </style>
+
+    <style name="text_view_review_subjects_header">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">20sp</item>
     </style>
 </resources>
