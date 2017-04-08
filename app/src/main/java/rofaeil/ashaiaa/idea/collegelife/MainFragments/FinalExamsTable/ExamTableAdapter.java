@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,13 @@ public class ExamTableAdapter extends RecyclerView.Adapter<ExamTableAdapter.myVi
         holder.number_of_hours.setText(subjectArrayList.get(position).getHours());
         holder.date_of_exam.setText(subjectArrayList.get(position).getExamDate());
 
+        holder.hoursImage.setBackgroundResource(
+                subjectArrayList.get(position).getBackgroundResourceIdDateAndHours());
+        holder.dateImage.setBackgroundResource(
+                subjectArrayList.get(position).getBackgroundResourceIdDateAndHours());
+        holder.short_code.setBackgroundResource(
+                subjectArrayList.get(position).getBackgroundResourceIdOldCode());
+
 
     }
 
@@ -57,12 +65,18 @@ public class ExamTableAdapter extends RecyclerView.Adapter<ExamTableAdapter.myVi
         return mItemsNumber;
     }
 
-    class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class myViewHolder extends RecyclerView.ViewHolder
+//            implements View.OnClickListener
+ {
 
         private TextView subject_name;
         private TextView short_code;
         private TextView number_of_hours;
         private TextView date_of_exam;
+        public ImageView hoursImage;
+        public ImageView dateImage;
+
+
 
         public myViewHolder(View itemView) {
             super(itemView);
@@ -71,15 +85,17 @@ public class ExamTableAdapter extends RecyclerView.Adapter<ExamTableAdapter.myVi
             short_code = (TextView) itemView.findViewById(R.id.exam_table_subject_old_id_logo);
             number_of_hours = (TextView) itemView.findViewById(R.id.exam_table_subject_hours_num);
             date_of_exam = (TextView) itemView.findViewById(R.id.exam_table_subject_date_val);
+            hoursImage = (ImageView) itemView.findViewById(R.id.exam_table_subject_hours_logo)  ;
+            dateImage = (ImageView) itemView.findViewById(R.id.exam_table_subject_date_logo)  ;
 
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
 
         }
 
-        @Override
-        public void onClick(View v) {
-            int position = getAdapterPosition(); // gets item position
-            Toast.makeText(mContext, "position" + position, Toast.LENGTH_SHORT).show();
-        }
+//        @Override
+//        public void onClick(View v) {
+//            int position = getAdapterPosition(); // gets item position
+//            Toast.makeText(mContext, "position" + position, Toast.LENGTH_SHORT).show();
+//        }
     }
 }

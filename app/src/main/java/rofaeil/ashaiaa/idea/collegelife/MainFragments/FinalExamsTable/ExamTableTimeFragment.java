@@ -13,6 +13,7 @@ import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.TimerTask;
 
 import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
@@ -39,6 +41,8 @@ import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.mapLoginP
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CurrentSemesterGradesURL;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.ExamTableTimeURL;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getCurrentSemesterSubjectsFinalTable;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
 
 public class ExamTableTimeFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Document>{
@@ -109,36 +113,44 @@ public class ExamTableTimeFragment extends Fragment
             mExamTableTimeSubjects = new ArrayList<>();
 
             for (int i = 1; i < rows_of_target_table.size(); i++) {
-
                 Elements subject_attributes = rows_of_target_table.get(i).getElementsByTag("td");
 
                 ExamTableTimeSubject subject = new ExamTableTimeSubject();
+
                 subject.setHours(subject_attributes.get(3).text());
-                String subject_hours = subject_attributes.get(4).text();
-                if (subject_hours.matches(" ") || subject_hours == null || subject_hours.matches("")) {
+                String subject_date = subject_attributes.get(4).text();
+                if (subject_date.matches(" ") || subject_date == null || subject_date.matches("")) {
                     subject.setExamDate("لا يوجد تاريخ");
                 } else {
-                    subject.setExamDate(subject_hours);
+                    subject.setExamDate(subject_date);
                 }
                 subject.setName(subject_attributes.get(2).text());
                 subject.setOldID(subject_attributes.get(1).text());
                 subject.setID(subject_attributes.get(0).text());
+
                 mExamTableTimeSubjects.add(subject);
 
                 String current_subject_row_code = subject_attributes.get(0).text();
 
                 for (int j = 0; j < semester_subjects.size(); j++) {
+                    int BackgroundId = new Random().nextInt(9);
 
                     String subject_code = semester_subjects.get(j).getID();
 
                     if (subject_code.matches(current_subject_row_code)) {
 
-                        if (subject_hours.matches(" ") || subject_hours == null || subject_hours.matches("")) {
-                            semester_subjects.get(j).setExamDate("لا يوجد تاريخ");
+
+                        if (subject_date.matches("\\s") ) {
+                            semester_subjects.get(j).setExamDate(getString(R.string.exam_date_not_determined_yet));
                         } else {
-                            semester_subjects.get(j).setExamDate(subject_hours);
+                            semester_subjects.get(j).setExamDate(subject_date);
                         }
                         semester_subjects.get(j).setHours(subject_attributes.get(3).text());
+
+                        semester_subjects.get(j).setBackgroundResourceIdOldCode(
+                                getSubjectOldIdBackgroundResource(BackgroundId));
+                        semester_subjects.get(j).setBackgroundResourceIdDateAndHours(
+                                getTextBackgroundResource(BackgroundId));
 
                     }
 
