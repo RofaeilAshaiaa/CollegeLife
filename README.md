@@ -1,7 +1,5 @@
 # Work List #
 
-* Exam table random background color 
-* Review Subjects random background color 
 * Add fall exam table in nav
 * Add contact us
 * Make edit profile and student data page light background
@@ -11,7 +9,6 @@
 * Change semester order 
 * Network check for all app
 * Semester profile random background color 
-* Fix Action bar in myprofile
 * Fix submit button in edit data of myprofile
 * Fix header have no data after log in
 * Add FAB in Polling Subjects
@@ -38,6 +35,9 @@
 * Add progress dialog to my profile and graduation sheet
 * Review Subejcts All Done!
 * Add about app
+* Exam table random background color 
+* Review Subjects random background color 
+* Fix Action bar in myprofile
 
 
 # Features to Add: #
@@ -50,3 +50,4 @@
 * Offline mode
 * Dashboard
 * widget for dashboard
+* change Exam table List according to exams date
