@@ -1,214 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/student_grades_semester_card_view"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp"
-    card:cardCornerRadius="10dp">
+    app:cardCornerRadius="5dp"
+    android:layout_height="wrap_content">
 
-
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <ImageView
             android:id="@+id/student_grades_semester_logo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginBottom="6dp"
-            android:layout_marginRight="3dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/semester_logo_background"
-            android:gravity="center"
-            android:src="@drawable/ic_semester_white_36dp" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_semester_white_36dp"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/student_grades_semester_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginRight="5dp"
-            android:layout_toLeftOf="@+id/student_grades_semester_logo"
-            android:layout_toStartOf="@+id/student_grades_semester_logo"
-            android:text="خريف 2016"
-            android:textColor="@android:color/tertiary_text_dark"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/student_grades_semester_subjects_icon_logo"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_below="@+id/student_grades_semester_name"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@+id/student_grades_semester_logo"
-            android:layout_toStartOf="@+id/student_grades_semester_logo"
-            android:background="@drawable/ic_logo_background_right_corner"
-            android:src="@drawable/subjects_logo"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/student_grades_semester_subjects_num_text_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/student_grades_semester_name"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@+id/student_grades_semester_subjects_icon_logo"
-            android:layout_toStartOf="@+id/student_grades_semester_subjects_icon_logo"
-            android:background="@drawable/text_logo_background_left_corner"
-            android:text="المواد"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:id="@+id/student_grades_semester_subjects_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/student_grades_semester_name"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="2dp"
-            android:layout_toLeftOf="@+id/student_grades_semester_subjects_num_text_logo"
-            android:layout_toStartOf="@+id/student_grades_semester_subjects_num_text_logo"
-            android:text="10"
-            android:textSize="20sp"
-            android:textStyle="normal" />
-
-        <TextView
-            android:id="@+id/student_grades_semester_cgpa_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/student_grades_semester_subjects_icon_logo"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@id/student_grades_semester_logo"
-            android:layout_toStartOf="@id/student_grades_semester_logo"
-            android:background="@drawable/text_logo_background"
-            android:text="CGPA"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/student_grades_semester_cgpa_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/student_grades_semester_subjects_icon_logo"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="2dp"
-            android:layout_toLeftOf="@id/student_grades_semester_cgpa_logo"
-            android:layout_toStartOf="@id/student_grades_semester_cgpa_logo"
-            android:text="13"
-            android:textSize="20sp" />
-
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="18dp"
+            android:text="طرق احصائيه"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintRight_toLeftOf="@+id/student_grades_semester_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="طرق احصائيه" />
 
         <TextView
             android:id="@+id/student_grades_semester_gpa_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/student_grades_semester_cgpa_logo"
-            android:layout_below="@id/student_grades_semester_subjects_icon_logo"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@id/student_grades_semester_cgpa_num"
-            android:layout_toStartOf="@id/student_grades_semester_cgpa_num"
+            android:layout_marginBottom="7dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
             android:background="@drawable/text_logo_background"
             android:text="GPA"
             android:textColor="@android:color/white"
             android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/student_grades_semester_gpa_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/student_grades_semester_subjects_icon_logo"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="2dp"
-            android:layout_toLeftOf="@id/student_grades_semester_gpa_logo"
-            android:layout_toStartOf="@id/student_grades_semester_gpa_logo"
-            android:text="10"
-            android:textSize="20sp" />
-
-
-        <TextView
-            android:id="@+id/student_grades_semester_loaded_hours_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/student_grades_semester_cgpa_logo"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@id/student_grades_semester_logo"
-            android:layout_toStartOf="@id/student_grades_semester_logo"
-            android:background="@drawable/text_logo_background"
-            android:text="العبءالدراسي"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/student_grades_semester_loaded_hours_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/student_grades_semester_cgpa_logo"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="2dp"
-            android:layout_toLeftOf="@id/student_grades_semester_loaded_hours_logo"
-            android:layout_toStartOf="@id/student_grades_semester_loaded_hours_logo"
-            android:text="40"
-            android:textSize="20sp" />
-
-
-        <ImageView
-            android:id="@+id/student_grades_semester_earned_hours_icon_logo"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_below="@+id/student_grades_semester_gpa_logo"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@+id/student_grades_semester_loaded_hours_num"
-            android:layout_toStartOf="@+id/student_grades_semester_loaded_hours_num"
-            android:background="@drawable/ic_logo_background_right_corner"
-            android:src="@drawable/ic_hours_white_36dp" />
-
-        <TextView
-            android:id="@+id/student_grades_semester_earned_hours_text_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/student_grades_semester_cgpa_logo"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_toLeftOf="@id/student_grades_semester_earned_hours_icon_logo"
-            android:layout_toStartOf="@id/student_grades_semester_earned_hours_icon_logo"
-            android:background="@drawable/text_logo_background_left_corner"
-            android:text="المكتسبه"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar"
+            app:layout_constraintLeft_toLeftOf="@+id/student_grades_semester_gpa_num"
+            app:layout_constraintRight_toRightOf="@+id/student_grades_semester_gpa_num" />
 
         <TextView
             android:id="@+id/student_grades_semester_earned_hours_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/student_grades_semester_cgpa_logo"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="2dp"
-            android:layout_toLeftOf="@id/student_grades_semester_earned_hours_text_logo"
-            android:layout_toStartOf="@id/student_grades_semester_earned_hours_text_logo"
-            android:text="63"
-            android:textSize="20sp" />
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
+            app:layout_constraintLeft_toLeftOf="@+id/progressBar2"
+            app:layout_constraintRight_toRightOf="@+id/progressBar2"
+            app:layout_constraintTop_toTopOf="@+id/progressBar2" />
 
-    </RelativeLayout>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/progress_bar_circle_shape_background"
+            android:indeterminate="false"
+            android:max="25"
+            android:progress="21"
+            android:progressDrawable="@drawable/progress_bar_circular_color"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/progressBar2"
+            app:layout_constraintTop_toTopOf="@+id/progressBar2"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/progress_bar_circle_shape_background"
+            android:indeterminate="false"
+            android:max="25"
+            android:progress="21"
+            android:progressDrawable="@drawable/progress_bar_circular_color"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/student_grades_semester_logo" />
+
+        <TextView
+            android:id="@+id/student_grades_semester_subjects_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar3"
+            app:layout_constraintLeft_toLeftOf="@+id/progressBar3"
+            app:layout_constraintRight_toRightOf="@+id/progressBar3"
+            app:layout_constraintTop_toTopOf="@+id/progressBar3" />
+
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/progress_bar_circle_shape_background"
+            android:indeterminate="false"
+            android:max="25"
+            android:progress="21"
+            android:progressDrawable="@drawable/progress_bar_circular_color"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toRightOf="@+id/progressBar2"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/progressBar2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/student_grades_semester_subjects_icon_logo"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/ic_logo_background_right_corner"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar3"
+            app:layout_constraintRight_toRightOf="@+id/progressBar3"
+            app:srcCompat="@drawable/subjects_logo" />
+
+        <TextView
+            android:id="@+id/student_grades_semester_subjects_num_text_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/text_logo_background_left_corner"
+            android:text="المواد"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/student_grades_semester_subjects_icon_logo"
+            app:layout_constraintRight_toLeftOf="@+id/student_grades_semester_subjects_icon_logo"
+            app:layout_constraintTop_toTopOf="@+id/student_grades_semester_subjects_icon_logo" />
+
+        <TextView
+            android:id="@+id/student_grades_semester_earned_hours_text_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/text_logo_background_left_corner"
+            android:text="المكتسبه"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/student_grades_semester_earned_hours_icon_logo"
+            app:layout_constraintRight_toLeftOf="@+id/student_grades_semester_earned_hours_icon_logo"
+            app:layout_constraintTop_toTopOf="@+id/student_grades_semester_earned_hours_icon_logo" />
+
+        <ImageView
+            android:id="@+id/student_grades_semester_earned_hours_icon_logo"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/ic_logo_background_right_corner"
+            app:layout_constraintBottom_toTopOf="@+id/progressBar2"
+            app:layout_constraintRight_toRightOf="@+id/progressBar2"
+            app:srcCompat="@drawable/ic_hours_white_36dp" />
+
+        <TextView
+            android:id="@+id/student_grades_semester_gpa_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/progressBar"
+            app:layout_constraintLeft_toLeftOf="@+id/progressBar"
+            app:layout_constraintRight_toRightOf="@+id/progressBar"
+            app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+        <TextView
+            android:id="@+id/student_grades_semester_loaded_hours_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/text_logo_background"
+            android:text="العبء الدراسي"
+            android:textColor="@android:color/white"
+            app:layout_constraintRight_toLeftOf="@+id/student_grades_semester_logo"
+            app:layout_constraintTop_toBottomOf="@+id/student_grades_semester_name" />
+
+        <TextView
+            android:id="@+id/student_grades_semester_loaded_hours_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/student_grades_semester_loaded_hours_logo"
+            app:layout_constraintRight_toLeftOf="@+id/student_grades_semester_loaded_hours_logo" />
+
+        <TextView
+            android:id="@+id/student_grades_semester_cgpa_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/text_logo_background"
+            android:text="CGPA"
+            android:textColor="@android:color/white"
+            app:layout_constraintRight_toRightOf="@+id/student_grades_semester_loaded_hours_logo"
+            app:layout_constraintTop_toBottomOf="@+id/student_grades_semester_loaded_hours_logo" />
+
+        <TextView
+            android:id="@+id/student_grades_semester_cgpa_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:text="TextView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/student_grades_semester_cgpa_logo"
+            app:layout_constraintRight_toLeftOf="@+id/student_grades_semester_cgpa_logo" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
 </android.support.v7.widget.CardView>
