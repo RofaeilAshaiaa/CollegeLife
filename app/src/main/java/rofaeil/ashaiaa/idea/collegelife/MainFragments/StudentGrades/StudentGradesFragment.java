@@ -151,6 +151,8 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             Element mSemester_Subjects_table = mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_GridView1_" + i + "");
 
             mSemester.setSubjectsDocument(mSemester_Subjects_table.toString());
+            mSemester.setSubjectNum(mSemester_Subjects_table.child(0).children().size()-1);
+
             mSemesters.add(mSemester);
         }
 
