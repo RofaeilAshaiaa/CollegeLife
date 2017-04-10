@@ -45,7 +45,7 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
         int semesterIconRightCornerBackgroundResource = semester.getIconRightCornerBackgroundResource();
 
         holder.semester_name.setText(semester.getName());
-//        holder.subject_num.setText("" + semester.getSubjects().size() + "");
+        holder.subject_num.setText("" + semester.getSubjectNum()+ "");
         holder.semester_cgpa.setText(semester.getCGPA());
         holder.semester_gpa.setText(semester.getGPA());
         holder.semester_loaded_hours.setText(semester.getSemesterLoad());
