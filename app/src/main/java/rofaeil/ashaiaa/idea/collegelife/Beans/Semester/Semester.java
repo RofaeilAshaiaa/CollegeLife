@@ -16,6 +16,15 @@ public class Semester {
     private String SemesterLoad;
     private ArrayList<StudentGradesSubject> Subjects;
     private String SubjectsDocument;
+    private int SubjectNum;
+
+    public int getSubjectNum() {
+        return SubjectNum;
+    }
+
+    public void setSubjectNum(int subjectNum) {
+        SubjectNum = subjectNum;
+    }
 
     public String getSubjectsDocument() {
         return SubjectsDocument;
