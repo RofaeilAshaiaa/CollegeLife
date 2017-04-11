@@ -108,6 +108,12 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
         mBinding.totalNumberOfHoursOfSemester.setText( Integer.toString(mTotalHoursOfSemester));
         mBinding.tvCgpa.setText(mCGPA);
 
+
+        mBinding.cgpaNumProgressBar.setProgress(Integer.parseInt(mCGPA.charAt(0)+mCGPA.substring(2)));
+        mBinding.earnedHoursNumProgressBar.setProgress(Integer.parseInt(mTotalHours));
+        mBinding.registeredSubjectsNumProgressBar.setProgress(mTotalHoursOfSemester);
+
+
         RecyclerView recyclerView = mBinding.recyclerview;
         ReviewRegisteredSubjectsAdapter adapter =
                 new ReviewRegisteredSubjectsAdapter(mActivity, semester_subjects);
