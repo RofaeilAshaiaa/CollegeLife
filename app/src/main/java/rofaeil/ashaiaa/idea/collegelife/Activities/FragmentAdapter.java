@@ -28,8 +28,8 @@ public class FragmentAdapter extends FragmentPagerAdapter {
             "Semester Grades",
             "Exams Table",
             "Grades",
-            "Add Subjects",
-            "Edit Subjects"
+            "Registration Subjects",
+            "Add & Remove Subjects"
     };
 
     public FragmentAdapter(FragmentManager fm) {
