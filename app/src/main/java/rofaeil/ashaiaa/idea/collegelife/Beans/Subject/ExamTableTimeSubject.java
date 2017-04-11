@@ -8,23 +8,23 @@ public class ExamTableTimeSubject extends Subject {
 
     private String ExamDate;
     private String Hours;
-    private int BackgroundResourceIdOldCode;
-    private int BackgroundResourceIdDateAndHours;
+    private int OldIdBackgroundResource;
+    private int IconBackgroundResource;
 
-    public int getBackgroundResourceIdOldCode() {
-        return BackgroundResourceIdOldCode;
+    public int getOldIdBackgroundResource() {
+        return OldIdBackgroundResource;
     }
 
-    public void setBackgroundResourceIdOldCode(int backgroundResourceIdOldCode) {
-        BackgroundResourceIdOldCode = backgroundResourceIdOldCode;
+    public void setOldIdBackgroundResource(int oldIdBackgroundResource) {
+        OldIdBackgroundResource = oldIdBackgroundResource;
     }
 
-    public int getBackgroundResourceIdDateAndHours() {
-        return BackgroundResourceIdDateAndHours;
+    public int getIconBackgroundResource() {
+        return IconBackgroundResource;
     }
 
-    public void setBackgroundResourceIdDateAndHours(int backgroundResourceIdDateAndHours) {
-        BackgroundResourceIdDateAndHours = backgroundResourceIdDateAndHours;
+    public void setIconBackgroundResource(int iconBackgroundResource) {
+        IconBackgroundResource = iconBackgroundResource;
     }
 
     public String getHours() {
