@@ -40,6 +40,7 @@ import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.mapLoginP
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CurrentSemesterGradesURL;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.ExamTableTimeURL;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getCurrentSemesterSubjectsFinalTable;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
 
@@ -149,7 +150,7 @@ public class ExamTableTimeFragment extends Fragment
                         semester_subjects.get(j).setOldIdBackgroundResource(
                                 getSubjectOldIdBackgroundResource(BackgroundId));
                         semester_subjects.get(j).setIconBackgroundResource(
-                                getTextBackgroundResource(BackgroundId));
+                                getIconBackgroundResource(BackgroundId));
 
                     }
 
