@@ -44,17 +44,16 @@ public class ExamTableAdapter extends RecyclerView.Adapter<ExamTableAdapter.myVi
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
 
-        holder.subject_name.setText(subjectArrayList.get(position).getName());
-        holder.short_code.setText(subjectArrayList.get(position).getOldID());
-        holder.number_of_hours.setText(subjectArrayList.get(position).getHours());
-        holder.date_of_exam.setText(subjectArrayList.get(position).getExamDate());
+        ExamTableTimeSubject Subject = subjectArrayList.get(position);
 
-        holder.hoursImage.setBackgroundResource(
-                subjectArrayList.get(position).getIconBackgroundResource());
-        holder.dateImage.setBackgroundResource(
-                subjectArrayList.get(position).getIconBackgroundResource());
-        holder.short_code.setBackgroundResource(
-                subjectArrayList.get(position).getOldIdBackgroundResource());
+        holder.subject_name.setText(Subject.getName());
+        holder.short_code.setText(Subject.getOldID());
+        holder.number_of_hours.setText(Subject.getHours());
+        holder.date_of_exam.setText(Subject.getExamDate());
+
+        holder.hoursImage.setBackgroundResource(Subject.getIconBackgroundResource());
+        holder.dateImage.setBackgroundResource(Subject.getIconBackgroundResource());
+        holder.short_code.setBackgroundResource(Subject.getOldIdBackgroundResource());
 
 
     }
