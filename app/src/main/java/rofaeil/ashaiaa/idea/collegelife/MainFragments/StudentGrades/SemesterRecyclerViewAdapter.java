@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -43,11 +44,12 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
         int semesterTextBackgroundResource = semester.getTextBackgroundResource();
         int semesterTextLeftCornerBackgroundResource = semester.getTextLeftCornerBackgroundResource();
         int semesterIconRightCornerBackgroundResource = semester.getIconRightCornerBackgroundResource();
+        String GPA = semester.getGPA();
 
         holder.semester_name.setText(semester.getName());
-        holder.subject_num.setText("" + semester.getSubjectNum()+ "");
+        holder.subject_num.setText("" + semester.getSubjectNum() + "");
         holder.semester_cgpa.setText(semester.getCGPA());
-        holder.semester_gpa.setText(semester.getGPA());
+        holder.semester_gpa.setText(GPA);
         holder.semester_loaded_hours.setText(semester.getSemesterLoad());
         holder.semester_earned_hours.setText(semester.getEarnedHours());
 
@@ -60,6 +62,14 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
         holder.semester_earned_hours_icon_logo.setBackgroundResource(semesterIconRightCornerBackgroundResource);
         holder.subject_num_icon_logo.setBackgroundResource(semesterIconRightCornerBackgroundResource);
 
+        holder.mEarnedHoursNumProgressBar.setMax(Integer.parseInt(semester.getSemesterLoad()));
+        holder.mEarnedHoursNumProgressBar.setProgress(Integer.parseInt(semester.getEarnedHours()));
+
+        holder.mGPANumProgressBar.setMax(500);
+        holder.mGPANumProgressBar.setProgress(Integer.parseInt(GPA.charAt(0) + GPA.substring(2)));
+
+        holder.mSubjectsNumProgressBar.setMax(semester.getSubjectNum());
+        holder.mSubjectsNumProgressBar.setProgress(semester.getSuccessSubjectsNum());
     }
 
     @Override
@@ -86,6 +96,9 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
         ImageView semester_earned_hours_icon_logo;
         ImageView semester_logo;
 
+        ProgressBar mEarnedHoursNumProgressBar;
+        ProgressBar mGPANumProgressBar;
+        ProgressBar mSubjectsNumProgressBar;
 
         public RecyclerViewHolder(View itemView, final Context mContext, final ArrayList<Semester> mSemesters) {
             super(itemView);
@@ -106,6 +119,9 @@ public class SemesterRecyclerViewAdapter extends RecyclerView.Adapter<SemesterRe
             semester_earned_hours_icon_logo = (ImageView) mCardView.findViewById(R.id.student_grades_semester_earned_hours_icon_logo);
             semester_logo = (ImageView) mCardView.findViewById(R.id.student_grades_semester_logo);
 
+            mEarnedHoursNumProgressBar = (ProgressBar) mCardView.findViewById(R.id.student_grades_semester_list_item_temp_earned_hours_num_progress_bar);
+            mGPANumProgressBar = (ProgressBar) mCardView.findViewById(R.id.student_grades_semester_list_item_temp_gpa_num_progress_bar);
+            mSubjectsNumProgressBar = (ProgressBar) mCardView.findViewById(R.id.student_grades_semester_list_item_temp_subject_num_progress_bar);
 
             mCardView.setOnClickListener(new View.OnClickListener() {
                 @Override
