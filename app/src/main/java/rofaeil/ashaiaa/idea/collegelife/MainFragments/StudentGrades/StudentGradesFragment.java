@@ -151,12 +151,33 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             Element mSemester_Subjects_table = mSemester_table.getElementById("ContentPlaceHolder1_ContentPlaceHolder1_ContentPlaceHolder1_DataList1_GridView1_" + i + "");
 
             mSemester.setSubjectsDocument(mSemester_Subjects_table.toString());
-            mSemester.setSubjectNum(mSemester_Subjects_table.child(0).children().size()-1);
+            Elements Subjects = mSemester_Subjects_table.child(0).children();
+            int SubjectSize = Subjects.size();
+
+            mSemester.setSubjectNum(SubjectSize-1);
+            mSemester.setSuccessSubjectsNum(getSuccessSubjectsNum(SubjectSize,Subjects));
 
             mSemesters.add(mSemester);
         }
 
         return mSemesters;
+    }
+
+    public int getSuccessSubjectsNum(int SubjectSize,Elements Subjects){
+        int mFailSubjectsNam = 0;
+        for (int j = 1; j < SubjectSize; j++) {
+            String SubjectGrade = Subjects.get(j).child(3).text();
+            if (SubjectGrade.equals("F")) {
+                mFailSubjectsNam = mFailSubjectsNam + 1;
+            }
+            if (SubjectGrade.equals("إستبيان")) {
+                mFailSubjectsNam = mFailSubjectsNam + 1;
+            }
+            if (SubjectGrade.equals("P")) {
+                mFailSubjectsNam = mFailSubjectsNam + 1;
+            }
+        }
+        return SubjectSize - mFailSubjectsNam - 1;
     }
 
     @Override
