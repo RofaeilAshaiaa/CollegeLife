@@ -4,6 +4,7 @@ package rofaeil.ashaiaa.idea.collegelife.MenuFragments.GraduationSheet;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
@@ -22,13 +23,17 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.TimerTask;
 
+import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
 import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationRequirements;
 import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationSheetData;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.GraduationSheetSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
+import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.GRADUATION_SHEET_LOADER_ID;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
 public class GraduationSheetFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
@@ -36,20 +41,36 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     private View mRoot_view;
     private FragmentActivity mContext;
     private  ProgressDialog mProgressDialog;
+    private GraduationSheetFragment mFragment;
+    private Handler mHandler;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = (FragmentActivity) context;
+        mHandler = new Handler();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
-        initializeProgressDialog();
-        initializeLoaderManager();
-
+        mFragment = this;
+        if (isNetworkAvailable(mContext)){
+            mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
+            initializeProgressDialog();
+            Runnable runnable = new TimerTask() {
+                @Override
+                public void run() {
+                    if (MainActivity.mapLoginPageCookies != null) {
+                        initializeLoaderManager();
+                    } else {
+                        mHandler.postDelayed(this, 100);
+                    }
+                }
+            };
+            mHandler.post(runnable);
+        }else {
+            mRoot_view = inflater.inflate(R.layout.offline_layout, container, false);
+        }
         return mRoot_view;
     }
 
