@@ -119,8 +119,8 @@ public class StaticMethods {
                 subject.setBackgroundId(BackgroundId);
                 subject.setOldIdBackgroundResource(
                         getSubjectOldIdBackgroundResource(BackgroundId));
-                subject.setTextBackgroundResource(
-                        getTextBackgroundResource(BackgroundId));
+                subject.setIconBackgroundResource(
+                        getIconBackgroundResource(BackgroundId));
 
                 semester_subjects_codes.add(subject);
 
