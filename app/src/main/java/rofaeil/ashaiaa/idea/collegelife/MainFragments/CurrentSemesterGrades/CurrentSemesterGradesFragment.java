@@ -3,6 +3,7 @@ package rofaeil.ashaiaa.idea.collegelife.MainFragments.CurrentSemesterGrades;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
@@ -26,7 +27,9 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.CurrentSemesterGradesSubje
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CURRENT_SEMESTER_GRADES_LOADER_ID;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getCurrentSemesterSubjects;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
 public class CurrentSemesterGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
@@ -34,6 +37,8 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     public View mRoot_View;
     public FragmentActivity mContext;
     private Handler mHandler;
+    private CurrentSemesterGradesFragment mFragment;
+    private LoaderManager loaderManager;
 
     @Override
     public void onAttach(Context context) {
@@ -46,26 +51,34 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRoot_View = inflater.inflate(R.layout.current_semester_gardes_fragment, container, false);
 
-        Runnable runnable = new TimerTask() {
-            @Override
-            public void run() {
-                if (MainActivity.mapLoginPageCookies != null) {
-                    initializeLoaderManager();
-                } else {
-                    mHandler.postDelayed(this, 100);
+        mFragment = this;
+
+        if (isNetworkAvailable(mContext)){
+
+            mRoot_View = inflater.inflate(R.layout.current_semester_gardes_fragment, container, false);
+
+            Runnable runnable = new TimerTask() {
+                @Override
+                public void run() {
+                    if (MainActivity.mapLoginPageCookies != null) {
+                        initializeLoaderManager();
+                    } else {
+                        mHandler.postDelayed(this, 100);
+                    }
                 }
-            }
-        };
+            };
+            mHandler.post(runnable);
 
-        mHandler.post(runnable);
+        }else {
+            mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
+        }
 
         return mRoot_View;
     }
 
     public void initializeLoaderManager() {
-        LoaderManager loaderManager = mContext.getSupportLoaderManager();
+        loaderManager = mContext.getSupportLoaderManager();
         Loader<Document> loader = loaderManager.getLoader(CURRENT_SEMESTER_GRADES_LOADER_ID);
         if (loader == null) {
             loaderManager.initLoader(CURRENT_SEMESTER_GRADES_LOADER_ID, null, this).forceLoad();
@@ -83,6 +96,11 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                if (isNetworkAvailable(mContext)) {
+                    loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                }else {
+                    Snackbar.make(mRoot_View, "No InterNet Connection", Snackbar.LENGTH_LONG).show();
+                }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
