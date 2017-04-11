@@ -13,7 +13,6 @@ import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -147,9 +146,9 @@ public class ExamTableTimeFragment extends Fragment
                         }
                         semester_subjects.get(j).setHours(subject_attributes.get(3).text());
 
-                        semester_subjects.get(j).setBackgroundResourceIdOldCode(
+                        semester_subjects.get(j).setOldIdBackgroundResource(
                                 getSubjectOldIdBackgroundResource(BackgroundId));
-                        semester_subjects.get(j).setBackgroundResourceIdDateAndHours(
+                        semester_subjects.get(j).setIconBackgroundResource(
                                 getTextBackgroundResource(BackgroundId));
 
                     }
