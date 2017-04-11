@@ -40,18 +40,16 @@ public class ReviewRegisteredSubjectsAdapter extends RecyclerView.Adapter<Review
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
 
+        StudentGradesSubject Subject = subjectArrayList.get(position);
 
-        holder.subject_name.setText(subjectArrayList.get(position).getName());
-        holder.short_code.setText(subjectArrayList.get(position).getOldID());
-        holder.number_of_hours.setText(subjectArrayList.get(position).getHours());
-        holder.subjectType.setText(subjectArrayList.get(position).getType());
+        holder.subject_name.setText(Subject.getName());
+        holder.short_code.setText(Subject.getOldID());
+        holder.number_of_hours.setText(Subject.getHours());
+        holder.subjectType.setText(Subject.getType());
 
-        holder.descriptionImage.setBackgroundResource(
-                subjectArrayList.get(position).getIconBackgroundResource());
-        holder.hoursLogoImage.setBackgroundResource(
-                subjectArrayList.get(position).getIconBackgroundResource());
-        holder.short_code.setBackgroundResource(
-                subjectArrayList.get(position).getOldIdBackgroundResource());
+        holder.descriptionImage.setBackgroundResource(Subject.getIconBackgroundResource());
+        holder.hoursLogoImage.setBackgroundResource(Subject.getIconBackgroundResource());
+        holder.short_code.setBackgroundResource(Subject.getOldIdBackgroundResource());
 
     }
 
