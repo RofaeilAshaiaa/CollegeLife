@@ -17,6 +17,15 @@ public class Semester {
     private ArrayList<StudentGradesSubject> Subjects;
     private String SubjectsDocument;
     private int SubjectNum;
+    private int SuccessSubjectsNum;
+
+    public int getSuccessSubjectsNum() {
+        return SuccessSubjectsNum;
+    }
+
+    public void setSuccessSubjectsNum(int successSubjectsNum) {
+        SuccessSubjectsNum = successSubjectsNum;
+    }
 
     public int getSubjectNum() {
         return SubjectNum;
