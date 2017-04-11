@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +50,11 @@ public class ExamTableAdapter extends RecyclerView.Adapter<ExamTableAdapter.myVi
         holder.date_of_exam.setText(subjectArrayList.get(position).getExamDate());
 
         holder.hoursImage.setBackgroundResource(
-                subjectArrayList.get(position).getBackgroundResourceIdDateAndHours());
+                subjectArrayList.get(position).getIconBackgroundResource());
         holder.dateImage.setBackgroundResource(
-                subjectArrayList.get(position).getBackgroundResourceIdDateAndHours());
+                subjectArrayList.get(position).getIconBackgroundResource());
         holder.short_code.setBackgroundResource(
-                subjectArrayList.get(position).getBackgroundResourceIdOldCode());
+                subjectArrayList.get(position).getOldIdBackgroundResource());
 
 
     }
