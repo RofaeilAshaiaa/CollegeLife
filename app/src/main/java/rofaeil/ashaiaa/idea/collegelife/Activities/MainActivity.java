@@ -309,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void myProfileLayoutPressed(View view) {
+    public void navigationHeaderPressed(View view) {
 
         Intent intent = new Intent(this, MyProfileActivity.class);
         startActivity(intent);
