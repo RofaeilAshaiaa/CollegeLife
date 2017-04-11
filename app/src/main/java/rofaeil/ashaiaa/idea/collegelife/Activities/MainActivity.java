@@ -35,6 +35,7 @@ import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.REQUEST_HEADER_DATA;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getStudentLevel;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public ViewPager mViewPager;
     public Toolbar mToolbar;
     public SharedPreferences mSharedPreferencesLogIn;
-    private  SharedPreferences.Editor mEditor;
+    private SharedPreferences.Editor mEditor;
 
 
     @Override
@@ -55,12 +56,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         getStudentPasswordAndID();
-        setRequestHeaderDate();
+        //  setRequestHeaderDate();
+
         if (mapLoginPageCookies == null) {
-            startAsyncTaskLogIn();
+            if (isNetworkAvailable(this)) {
+                startAsyncTaskLogIn();
+            }
         } else {
             mStudentHome = StaticMethods.getStudentHome(studentHomeDocument);
         }
+
 
         initializeToolbar();
         initializeNavigationDrawer();
@@ -153,9 +158,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void setRequestHeaderDate() {
-        REQUEST_HEADER_DATA.setVIEWSTATE(mSharedPreferencesLogIn.getString("VIEWSTATE","0Lyyj9NPpdnddB6pakBAUYzptMJIMQbGYxPeA/ofZp6ZRiMMa7ZXUs3dz8ajVg6FEPGtqiTQe1hNxUcYxIL3/Li8FJVsm4jOKaOaqBNsf4l0D9snUwUKx/0A/H2L5zmenH7qD/I9ArVUk7bDsmHpPMBATFzydB2f2o6Zc6lj9/OOkf2zOVtxlnSrg/W+E4TPk/BVrC0R3CUl0BpGkLbLIVrxiBe1aXoAm9eYh12lspe+UHHlwSFSuGvxFNQ3tLHtnZDYFi0dzvNSsf9WV98z4Q=="));
-        REQUEST_HEADER_DATA.setVIEWSTATEGENERATOR(mSharedPreferencesLogIn.getString("VIEWSTATEGENERATOR","F7FE45A7"));
-        REQUEST_HEADER_DATA.setEVENTVALIDATION(mSharedPreferencesLogIn.getString("EVENTVALIDATION","nwol/vBRfDWTLde1S4/NC/4tBd9SEGC7zvP3WfnQ77DFLvolKZwlPTlw0HlhUf5QM0joff9DV0832m4YrbEQjdWymAOxW4RjfV9kAjLNweWKaYeGhhF16zav9o52H7gB93gHxRdzYQSGVdwL5tMSCcGGOc7X/9xd7s7aZcPTgbUC5NKk9iMjkPw9BHtosdmg"));
+        REQUEST_HEADER_DATA.setVIEWSTATE(mSharedPreferencesLogIn.getString("VIEWSTATE", "0Lyyj9NPpdnddB6pakBAUYzptMJIMQbGYxPeA/ofZp6ZRiMMa7ZXUs3dz8ajVg6FEPGtqiTQe1hNxUcYxIL3/Li8FJVsm4jOKaOaqBNsf4l0D9snUwUKx/0A/H2L5zmenH7qD/I9ArVUk7bDsmHpPMBATFzydB2f2o6Zc6lj9/OOkf2zOVtxlnSrg/W+E4TPk/BVrC0R3CUl0BpGkLbLIVrxiBe1aXoAm9eYh12lspe+UHHlwSFSuGvxFNQ3tLHtnZDYFi0dzvNSsf9WV98z4Q=="));
+        REQUEST_HEADER_DATA.setVIEWSTATEGENERATOR(mSharedPreferencesLogIn.getString("VIEWSTATEGENERATOR", "F7FE45A7"));
+        REQUEST_HEADER_DATA.setEVENTVALIDATION(mSharedPreferencesLogIn.getString("EVENTVALIDATION", "nwol/vBRfDWTLde1S4/NC/4tBd9SEGC7zvP3WfnQ77DFLvolKZwlPTlw0HlhUf5QM0joff9DV0832m4YrbEQjdWymAOxW4RjfV9kAjLNweWKaYeGhhF16zav9o52H7gB93gHxRdzYQSGVdwL5tMSCcGGOc7X/9xd7s7aZcPTgbUC5NKk9iMjkPw9BHtosdmg"));
     }
 
     public void getRequestHeaderDate(Document document) {
@@ -189,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         setNavigationDrawerHeaderData();
                         mapLoginPageCookies = response.cookies();
                         studentHomeDocument = mDocument;
-                        getRequestHeaderDate(mDocument);
+                        //      getRequestHeaderDate(mDocument);
                     } else {
                         StaticMethods.showToast(getBaseContext(), "Website not Responding");
                     }
