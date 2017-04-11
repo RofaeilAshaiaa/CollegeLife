@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
@@ -15,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -27,7 +27,6 @@ import java.util.TimerTask;
 
 import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester;
-import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.StudentGradesSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
@@ -35,6 +34,7 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightC
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSemesterLogoBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextLeftCornerBackgroundResource;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
 public class StudentGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
@@ -43,7 +43,8 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     public View mRoot_View;
     public FragmentActivity mContext;
     private Handler mHandler;
-
+    private LoaderManager loaderManager;
+    private StudentGradesFragment mFragment;
 
     @Override
     public void onAttach(Context context) {
@@ -56,26 +57,30 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mRoot_View = inflater.inflate(R.layout.student_grades_semesters_fragment, container, false);
-
-        Runnable runnable = new TimerTask() {
-            @Override
-            public void run() {
-                if (MainActivity.mapLoginPageCookies != null) {
-                    initializeLoader();
-                } else {
-                    mHandler.postDelayed(this, 100);
+        mFragment = this;
+        if (isNetworkAvailable(mContext)) {
+            mRoot_View = inflater.inflate(R.layout.student_grades_semesters_fragment, container, false);
+            Runnable runnable = new TimerTask() {
+                @Override
+                public void run() {
+                    if (MainActivity.mapLoginPageCookies != null) {
+                        initializeLoader();
+                    } else {
+                        mHandler.postDelayed(this, 100);
+                    }
                 }
-            }
-        };
+            };
 
-        mHandler.post(runnable);
+            mHandler.post(runnable);
+        } else {
+            mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
+        }
 
         return mRoot_View;
     }
 
     public void initializeLoader() {
-        LoaderManager loaderManager = mContext.getSupportLoaderManager();
+        loaderManager = mContext.getSupportLoaderManager();
         Loader<Document> loader = loaderManager.getLoader(STUDENT_GRADES_LOADER_ID);
         if (loader == null) {
             loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, this).forceLoad();
@@ -106,16 +111,12 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                final AsyncTaskStudentGrades mAsyncTaskStudentGrades = new AsyncTaskStudentGrades() {
-                    @Override
-                    protected void onPostExecute(Document document) {
-
-                        mSwipeRefreshLayout.setRefreshing(false);
-
-                    }
-                };
-                mAsyncTaskStudentGrades.execute();
-
+                if (isNetworkAvailable(mContext)) {
+                    loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                } else {
+                    Snackbar.make(mRoot_View, "No InterNet Connection", Snackbar.LENGTH_LONG).show();
+                }
+                mSwipeRefreshLayout.setRefreshing(false);
             }
         });
     }
@@ -154,8 +155,8 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             Elements Subjects = mSemester_Subjects_table.child(0).children();
             int SubjectSize = Subjects.size();
 
-            mSemester.setSubjectNum(SubjectSize-1);
-            mSemester.setSuccessSubjectsNum(getSuccessSubjectsNum(SubjectSize,Subjects));
+            mSemester.setSubjectNum(SubjectSize - 1);
+            mSemester.setSuccessSubjectsNum(getSuccessSubjectsNum(SubjectSize, Subjects));
 
             mSemesters.add(mSemester);
         }
@@ -163,7 +164,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
         return mSemesters;
     }
 
-    public int getSuccessSubjectsNum(int SubjectSize,Elements Subjects){
+    public int getSuccessSubjectsNum(int SubjectSize, Elements Subjects) {
         int mFailSubjectsNam = 0;
         for (int j = 1; j < SubjectSize; j++) {
             String SubjectGrade = Subjects.get(j).child(3).text();
