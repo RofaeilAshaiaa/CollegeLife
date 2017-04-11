@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/navigation_menu_header_background"
     android:fitsSystemWindows="true"
-    android:onClick="myProfileLayoutPressed">
+    android:onClick="navigationHeaderPressed">
 
     <TextView
         android:id="@+id/student_my_profile_header_name_text"
