@@ -24,22 +24,23 @@
             android:textSize="20sp"
             android:textStyle="bold"
             card:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="9dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
             card:layout_constraintRight_toRightOf="parent" />
 
         <TextView
             android:id="@+id/review_registered_subject_name"
+            style="@style/text_view_offline_message"
             android:layout_alignParentTop="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
             android:layout_toLeftOf="@+id/review_registered_subject_old_id_logo"
             android:layout_toStartOf="@+id/review_registered_subject_old_id_logo"
-            tools:text="وسائط متعددة "
-            style="@style/text_view_offline_message"
+            android:textSize="20sp"
             android:textStyle="bold"
             card:layout_constraintRight_toLeftOf="@+id/review_registered_subject_old_id_logo"
-            android:layout_marginRight="16dp"
             card:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp" />
+            tools:text="وسائط متعددة " />
 
         <ImageView
             android:id="@+id/review_registered_subject_hours_logo"
@@ -53,25 +54,24 @@
             android:background="@drawable/ic_logo_background"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_hours_white_36dp"
-            android:layout_marginRight="0dp"
-            card:layout_constraintRight_toRightOf="@+id/review_registered_subject_name"
-            android:layout_marginTop="16dp"
-            card:layout_constraintTop_toBottomOf="@+id/review_registered_subject_name" />
+            android:layout_marginTop="8dp"
+            card:layout_constraintTop_toBottomOf="@+id/review_registered_subject_name"
+            card:layout_constraintRight_toLeftOf="@+id/review_registered_subject_old_id_logo"
+            android:layout_marginRight="16dp" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="16dp"
-            card:layout_constraintRight_toRightOf="@+id/review_registered_subject_hours_logo"
-            card:layout_constraintTop_toBottomOf="@+id/review_registered_subject_hours_logo"
             android:scaleType="centerCrop"
             android:background="@drawable/ic_logo_background"
             android:src="@drawable/description_white"
+            android:layout_marginTop="8dp"
+            card:layout_constraintTop_toBottomOf="@+id/review_registered_subject_hours_logo"
             card:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="8dp"
-            card:layout_constraintVertical_bias="0.0" />
+            card:layout_constraintRight_toLeftOf="@+id/review_registered_subject_old_id_logo"
+            android:layout_marginRight="16dp" />
 
         <TextView
             android:id="@+id/review_registered_subject_hours_num"
@@ -82,18 +82,22 @@
             style="@style/tv_numbers_in_review_registered_subjects"
             android:textStyle="normal"
             card:layout_constraintRight_toLeftOf="@+id/review_registered_subject_hours_logo"
-            android:layout_marginRight="24dp"
+            android:layout_marginRight="8dp"
             card:layout_constraintTop_toTopOf="@+id/review_registered_subject_hours_logo"
-            android:layout_marginTop="0dp" />
+            android:layout_marginTop="0dp"
+            card:layout_constraintBottom_toBottomOf="@+id/review_registered_subject_hours_logo"
+            android:layout_marginBottom="0dp" />
 
         <TextView
             android:id="@+id/subject_type_review_regsitered_subjects"
             style="@style/tv_numbers_in_review_registered_subjects"
             tools:text="Name"
-            card:layout_constraintRight_toLeftOf="@+id/imageView3"
-            android:layout_marginRight="24dp"
+            card:layout_constraintTop_toTopOf="@+id/imageView3"
             android:layout_marginTop="0dp"
-            card:layout_constraintTop_toTopOf="@+id/imageView3" />
+            card:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            android:layout_marginBottom="0dp"
+            card:layout_constraintRight_toLeftOf="@+id/imageView3"
+            android:layout_marginRight="8dp" />
 
 
     </android.support.constraint.ConstraintLayout>
