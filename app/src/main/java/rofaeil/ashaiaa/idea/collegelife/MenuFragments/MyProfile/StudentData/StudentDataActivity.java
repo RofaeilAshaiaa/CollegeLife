@@ -2,6 +2,7 @@ package rofaeil.ashaiaa.idea.collegelife.MenuFragments.MyProfile.StudentData;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,6 +12,8 @@ import org.parceler.Parcels;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Student.StudentData;
 import rofaeil.ashaiaa.idea.collegelife.R;
 import rofaeil.ashaiaa.idea.collegelife.databinding.StudentDataActivityBinding;
+
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 public class StudentDataActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -200,32 +203,40 @@ public class StudentDataActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    public StudentData getStudentDataForm(){
+        mStudentData = new StudentData();
+        mStudentData.setID(getIntent().getExtras().getString("StudentID"));
+        mStudentData.setFirstNameAR(binding.studentDataArFirstNameEditText.getText().toString());
+        mStudentData.setSecondNameAR(binding.studentDataArSecondNameEditText.getText().toString());
+        mStudentData.setThirdNameAR(binding.studentDataArThirdNameEditText.getText().toString());
+        mStudentData.setFourthNameAR(binding.studentDataArFourthNameEditText.getText().toString());
+        mStudentData.setFirstNameEN(binding.studentDataEnFirstNameEditText.getText().toString());
+        mStudentData.setSecondNameEN(binding.studentDataEnSecondNameEditText.getText().toString());
+        mStudentData.setThirdNameEN(binding.studentDataEnThirdNameEditText.getText().toString());
+        mStudentData.setFourthNameEN(binding.studentDataEnFourthNameEditText.getText().toString());
+        mStudentData.setGender(binding.studentDataGender.getSelectedItem().toString());
+        mStudentData.setNationalNumber(binding.studentDataNationalIdEditText.getText().toString());
+        mStudentData.setTelephoneNumber(binding.studentDataTelephoneNumberEditText.getText().toString());
+        mStudentData.setMobileNumber(binding.studentDataMobileNumberEditText.getText().toString());
+        mStudentData.setFacEmail(binding.studentDataAcademicEmailEditText.getText().toString());
+        mStudentData.setAlterEmail(binding.studentDataOtherEmailEditText.getText().toString());
+        mStudentData.setAddress(binding.studentDataAddressEditText.getText().toString());
+        return mStudentData;
+    }
+
     @Override
     public void onClick(View v) {
         showErrorIfEmpty();
-        boolean b = isStudentDataFrameEmpty();
-        if (!isStudentDataFrameEmpty()) {
-            mStudentData = new StudentData();
-            mStudentData.setID(getIntent().getExtras().getString("StudentID"));
-            mStudentData.setFirstNameAR(binding.studentDataArFirstNameEditText.getText().toString());
-            mStudentData.setSecondNameAR(binding.studentDataArSecondNameEditText.getText().toString());
-            mStudentData.setThirdNameAR(binding.studentDataArThirdNameEditText.getText().toString());
-            mStudentData.setFourthNameAR(binding.studentDataArFourthNameEditText.getText().toString());
-            mStudentData.setFirstNameEN(binding.studentDataEnFirstNameEditText.getText().toString());
-            mStudentData.setSecondNameEN(binding.studentDataEnSecondNameEditText.getText().toString());
-            mStudentData.setThirdNameEN(binding.studentDataEnThirdNameEditText.getText().toString());
-            mStudentData.setFourthNameEN(binding.studentDataEnFourthNameEditText.getText().toString());
-            mStudentData.setGender(binding.studentDataGender.getSelectedItem().toString());
-            mStudentData.setNationalNumber(binding.studentDataNationalIdEditText.getText().toString());
-            mStudentData.setTelephoneNumber(binding.studentDataTelephoneNumberEditText.getText().toString());
-            mStudentData.setMobileNumber(binding.studentDataMobileNumberEditText.getText().toString());
-            mStudentData.setFacEmail(binding.studentDataAcademicEmailEditText.getText().toString());
-            mStudentData.setAlterEmail(binding.studentDataOtherEmailEditText.getText().toString());
-            mStudentData.setAddress(binding.studentDataAddressEditText.getText().toString());
+        if (isNetworkAvailable(this)){
+            if (!isStudentDataFrameEmpty()) {
+                StudentData studentData = getStudentDataForm();
+                AsyncTaskStudentDataPOST asyncTaskStudentDataPOST = new AsyncTaskStudentDataPOST(studentData);
+                asyncTaskStudentDataPOST.execute();
 
-            AsyncTaskStudentDataPOST asyncTaskStudentDataPOST = new AsyncTaskStudentDataPOST(mStudentData);
-            asyncTaskStudentDataPOST.execute();
-
+            }
+        }else {
+            Snackbar.make(binding.getRoot(),"No Internet Connection",Snackbar.LENGTH_LONG).show();
         }
+
     }
 }
