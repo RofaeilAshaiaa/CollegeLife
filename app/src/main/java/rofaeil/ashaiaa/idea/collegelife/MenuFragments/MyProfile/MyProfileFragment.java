@@ -26,6 +26,7 @@ import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.studentHo
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getStudentData;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getStudentHome;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getStudentLevel;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 public class MyProfileFragment extends Fragment {
 
@@ -37,29 +38,35 @@ public class MyProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        myProfileFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.my_profile_fragment, container, false);
+        if (isNetworkAvailable(getActivity())){
+            myProfileFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.my_profile_fragment, container, false);
 
-        initializeProgressDialog();
-        StudentHome mStudentHome = new StudentHome();
-        mStudentHome = getStudentHome(studentHomeDocument);
-        insertStudentHomeInMyProfile(mStudentHome);
+            initializeProgressDialog();
+            StudentHome mStudentHome = new StudentHome();
+            mStudentHome = getStudentHome(studentHomeDocument);
+            insertStudentHomeInMyProfile(mStudentHome);
 
-        AsyncTaskStudentDataGET asyncTaskStudentDataGET = new AsyncTaskStudentDataGET() {
-            @Override
-            protected void onPostExecute(Document document) {
+            AsyncTaskStudentDataGET asyncTaskStudentDataGET = new AsyncTaskStudentDataGET() {
+                @Override
+                protected void onPostExecute(Document document) {
 
-                mStudentData = new StudentData();
-                mStudentData = getStudentData(document);
-                SharedPreferences mSharedPreferencesLogIn = getActivity().getSharedPreferences("log_in", MODE_PRIVATE);
-                SharedPreferences.Editor mEditor = mSharedPreferencesLogIn.edit();
-                mEditor.putString("FirstNameEN", mStudentData.getFirstNameEN());
-                mEditor.putString("SecondNameEN", mStudentData.getSecondNameEN());
-                insertStudentDataInMyProfile(mStudentData);
-                initializeFAB();
-                mProgressDialog.dismiss();
-            }
-        };
-        asyncTaskStudentDataGET.execute();
+                    mStudentData = new StudentData();
+                    mStudentData = getStudentData(document);
+                    SharedPreferences mSharedPreferencesLogIn = getActivity().getSharedPreferences("log_in", MODE_PRIVATE);
+                    SharedPreferences.Editor mEditor = mSharedPreferencesLogIn.edit();
+                    mEditor.putString("FirstNameEN", mStudentData.getFirstNameEN());
+                    mEditor.putString("SecondNameEN", mStudentData.getSecondNameEN());
+                    insertStudentDataInMyProfile(mStudentData);
+                    initializeFAB();
+                    mProgressDialog.dismiss();
+                }
+            };
+            asyncTaskStudentDataGET.execute();
+        }else {
+            View mRoot_View = inflater.inflate(R.layout.offline_layout,container,false);
+            return mRoot_View;
+        }
+
 
         return myProfileFragmentBinding.getRoot();
     }
