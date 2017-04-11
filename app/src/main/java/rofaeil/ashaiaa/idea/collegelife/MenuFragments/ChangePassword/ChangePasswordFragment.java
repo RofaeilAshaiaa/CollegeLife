@@ -24,6 +24,7 @@ import rofaeil.ashaiaa.idea.collegelife.databinding.ChangePasswordFragmentBindin
 import static android.content.Context.MODE_PRIVATE;
 import static rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity.student_pass;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CHANGE_PASSWORD_LOADER_ID;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
 public class ChangePasswordFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document>, View.OnClickListener {
@@ -136,25 +137,30 @@ public class ChangePasswordFragment extends Fragment implements LoaderManager.Lo
 
     @Override
     public void onClick(View v) {
-        if (!isChangePasswordFormEmpty()) {
-            initializeProgressDialog();
-            if (mSavedId != null && mSavedPassword != null) {
-                getChangePasswordFormData();
-                if (mCurrentPassword.equals(mSavedPassword)) {
-                    if (mNewPassword.equals(mConfirmNewPassword)) {
-                        initializeLoader();
+        if (isNetworkAvailable(mContext)){
+            if (!isChangePasswordFormEmpty()) {
+                initializeProgressDialog();
+                if (mSavedId != null && mSavedPassword != null) {
+                    getChangePasswordFormData();
+                    if (mCurrentPassword.equals(mSavedPassword)) {
+                        if (mNewPassword.equals(mConfirmNewPassword)) {
+                            initializeLoader();
+                        } else {
+                            Snackbar.make(mBinding.getRoot(),"New Password doesn't Match",Snackbar.LENGTH_LONG).show();
+                            mProgressDialog.dismiss();
+                        }
                     } else {
-                        Snackbar.make(mBinding.getRoot(),"New Password doesn't Match",Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(mBinding.getRoot(),"Current Password incorrect",Snackbar.LENGTH_LONG).show();
                         mProgressDialog.dismiss();
                     }
                 } else {
-                    Snackbar.make(mBinding.getRoot(),"Current Password incorrect",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(mBinding.getRoot(),"Some thing went wrong, try again !",Snackbar.LENGTH_LONG).show();
                     mProgressDialog.dismiss();
                 }
-            } else {
-                Snackbar.make(mBinding.getRoot(),"Some thing went wrong, try again !",Snackbar.LENGTH_LONG).show();
-                mProgressDialog.dismiss();
             }
+        }else{
+            Snackbar.make(mBinding.getRoot(),"No Internet Connection",Snackbar.LENGTH_LONG).show();
         }
+
     }
 }
