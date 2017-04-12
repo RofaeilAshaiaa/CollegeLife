@@ -28,6 +28,7 @@ import java.util.TimerTask;
 import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester;
 import rofaeil.ashaiaa.idea.collegelife.R;
+import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightCornerBackgroundResource;
@@ -64,7 +65,9 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
                 @Override
                 public void run() {
                     if (MainActivity.mapLoginPageCookies != null) {
-                        initializeLoader();
+                        if( StaticMethods.isNetworkAvailable(mContext) ){
+                            mContext.getSupportLoaderManager().initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                        }
                     } else {
                         mHandler.postDelayed(this, 100);
                     }
@@ -73,8 +76,8 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
 
             mHandler.post(runnable);
         } else {
-            mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
-        }
+           mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
+       }
 
         return mRoot_View;
     }
@@ -112,7 +115,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             @Override
             public void onRefresh() {
                 if (isNetworkAvailable(mContext)) {
-                    loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                    loaderManager.restartLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
                 } else {
                     Snackbar.make(mRoot_View, "No InterNet Connection", Snackbar.LENGTH_LONG).show();
                 }
