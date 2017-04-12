@@ -62,7 +62,9 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
                 @Override
                 public void run() {
                     if (MainActivity.mapLoginPageCookies != null) {
-                        initializeLoaderManager();
+                        if (isNetworkAvailable(mContext)){
+                            mContext.getSupportLoaderManager().initLoader(CURRENT_SEMESTER_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                        }
                     } else {
                         mHandler.postDelayed(this, 100);
                     }
@@ -97,7 +99,7 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
             @Override
             public void onRefresh() {
                 if (isNetworkAvailable(mContext)) {
-                    loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                    loaderManager.restartLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
                 }else {
                     Snackbar.make(mRoot_View, "No InterNet Connection", Snackbar.LENGTH_LONG).show();
                 }
