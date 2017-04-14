@@ -66,7 +66,8 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
                 public void run() {
                     if (MainActivity.mapLoginPageCookies != null) {
                         if( StaticMethods.isNetworkAvailable(mContext) ){
-                            mContext.getSupportLoaderManager().initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                            loaderManager = mContext.getSupportLoaderManager();
+                            loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
                         }
                     } else {
                         mHandler.postDelayed(this, 100);
