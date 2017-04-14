@@ -63,7 +63,8 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
                 public void run() {
                     if (MainActivity.mapLoginPageCookies != null) {
                         if (isNetworkAvailable(mContext)){
-                            mContext.getSupportLoaderManager().initLoader(CURRENT_SEMESTER_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                            loaderManager = mContext.getSupportLoaderManager();
+                            loaderManager.initLoader(CURRENT_SEMESTER_GRADES_LOADER_ID, null, mFragment).forceLoad();
                         }
                     } else {
                         mHandler.postDelayed(this, 100);
