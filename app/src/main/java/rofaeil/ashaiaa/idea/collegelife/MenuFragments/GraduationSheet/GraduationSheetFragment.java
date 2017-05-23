@@ -32,7 +32,6 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
     private View mRoot_view;
     private FragmentActivity mContext;
-    private GraduationSheetFragment mFragment;
     private View mDataView;
     private AVLoadingIndicatorView mProgressBar;
     private Handler mHandler;
@@ -49,14 +48,11 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-
-        mFragment = this;
         if (mGraduationSheetData == null) {
             if (isNetworkAvailable(mContext)) {
                 mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
 
-                mProgressBar = (AVLoadingIndicatorView) mRoot_view.findViewById(R.id.graduation_sheet_progressBar);
-                mDataView = (View) mRoot_view.findViewById(R.id.graduation_sheet_View);
+                initializeProgressBar(mRoot_view);
 
                 getGraduationSheetDataSingleton();
                 Runnable runnable = new TimerTask() {
@@ -77,8 +73,7 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
         } else {
             mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
 
-            mProgressBar = (AVLoadingIndicatorView) mRoot_view.findViewById(R.id.graduation_sheet_progressBar);
-            mDataView = (View) mRoot_view.findViewById(R.id.graduation_sheet_View);
+            initializeProgressBar(mRoot_view);
 
             initializeRecycleView();
             mProgressBar.hide();
@@ -88,6 +83,10 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
         return mRoot_view;
     }
 
+    public void initializeProgressBar(View RootView){
+        mProgressBar = (AVLoadingIndicatorView) RootView.findViewById(R.id.graduation_sheet_progressBar);
+        mDataView = (View) RootView.findViewById(R.id.graduation_sheet_View);
+    }
 
     public GraduationSheetData getGraduationSheetDataSingleton() {
         if (mGraduationSheetData == null) {
