@@ -19,5 +19,7 @@
         <item>ذكر</item>
         <item>أنثي</item>
     </string-array>
+    
+    <string name="AVLoadingIndicatorViewIndicatorName">BallPulseIndicator</string>
 
 </resources>
