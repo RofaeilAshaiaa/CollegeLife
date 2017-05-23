@@ -1,7 +1,6 @@
 package rofaeil.ashaiaa.idea.collegelife.MenuFragments.GraduationSheet;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,18 +16,12 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+import com.wang.avi.AVLoadingIndicatorView;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.TimerTask;
 
 import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
-import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationRequirements;
 import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationSheetData;
-import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.GraduationSheetSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.GRADUATION_SHEET_LOADER_ID;
@@ -39,8 +32,9 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
     private View mRoot_view;
     private FragmentActivity mContext;
-    private ProgressDialog mProgressDialog;
     private GraduationSheetFragment mFragment;
+    private View mDataView;
+    private AVLoadingIndicatorView mProgressBar;
     private Handler mHandler;
     private static GraduationSheetData mGraduationSheetData = null;
 
@@ -53,11 +47,17 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
+
         mFragment = this;
-        if (mGraduationSheetData == null){
+        if (mGraduationSheetData == null) {
             if (isNetworkAvailable(mContext)) {
                 mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
-                initializeProgressDialog();
+
+                mProgressBar = (AVLoadingIndicatorView) mRoot_view.findViewById(R.id.graduation_sheet_progressBar);
+                mDataView = (View) mRoot_view.findViewById(R.id.graduation_sheet_View);
+
                 getGraduationSheetDataSingleton();
                 Runnable runnable = new TimerTask() {
                     @Override
@@ -70,51 +70,30 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
                     }
                 };
                 mHandler.post(runnable);
-            }else {
+
+            } else {
                 mRoot_view = inflater.inflate(R.layout.offline_layout, container, false);
             }
-        }else {
+        } else {
             mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
+
+            mProgressBar = (AVLoadingIndicatorView) mRoot_view.findViewById(R.id.graduation_sheet_progressBar);
+            mDataView = (View) mRoot_view.findViewById(R.id.graduation_sheet_View);
+
             initializeRecycleView();
-           // mProgressDialog.dismiss();
+            mProgressBar.hide();
+            mDataView.setVisibility(View.VISIBLE);
         }
 
-//        if (isNetworkAvailable(mContext)) {
-//            mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
-//            initializeProgressDialog();
-//            Runnable runnable = new TimerTask() {
-//                @Override
-//                public void run() {
-//                    if (MainActivity.mapLoginPageCookies != null) {
-//                        initializeLoaderManager();
-//                    } else {
-//                        mHandler.postDelayed(this, 100);
-//                    }
-//                }
-//            };
-//            mHandler.post(runnable);
-//        } else {
-//            mRoot_view = inflater.inflate(R.layout.offline_layout, container, false);
-//        }
         return mRoot_view;
     }
 
 
-    public GraduationSheetData getGraduationSheetDataSingleton(){
-        if (mGraduationSheetData == null){
+    public GraduationSheetData getGraduationSheetDataSingleton() {
+        if (mGraduationSheetData == null) {
             mGraduationSheetData = new GraduationSheetData();
         }
         return mGraduationSheetData;
-    }
-
-    public void initializeProgressDialog() {
-        mProgressDialog = new ProgressDialog(getActivity());
-        mProgressDialog.setMessage("Loading data");
-        mProgressDialog.setCancelable(false);
-        mProgressDialog.setCanceledOnTouchOutside(false);
-        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        mProgressDialog.setIndeterminate(true);
-        mProgressDialog.show();
     }
 
     public void initializeLoaderManager() {
@@ -180,8 +159,6 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
     }
 
-
-
     @Override
     public Loader<GraduationSheetData> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoaderGraduationSheet(mContext);
@@ -189,9 +166,13 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
     @Override
     public void onLoadFinished(Loader<GraduationSheetData> loader, GraduationSheetData data) {
+
         mGraduationSheetData = data;
         initializeRecycleView();
-        mProgressDialog.dismiss();
+
+        mProgressBar.hide();
+        mDataView.setVisibility(View.VISIBLE);
+
     }
 
     @Override
