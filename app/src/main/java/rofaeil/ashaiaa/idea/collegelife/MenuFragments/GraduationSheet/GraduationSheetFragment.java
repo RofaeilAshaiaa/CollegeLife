@@ -30,7 +30,6 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationRequirem
 import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationSheetData;
 import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.GraduationSheetSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
-import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.GRADUATION_SHEET_LOADER_ID;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
@@ -40,9 +39,10 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
     private View mRoot_view;
     private FragmentActivity mContext;
-    private  ProgressDialog mProgressDialog;
+    private ProgressDialog mProgressDialog;
     private GraduationSheetFragment mFragment;
     private Handler mHandler;
+    private static GraduationSheetData mGraduationSheetData = null;
 
     @Override
     public void onAttach(Context context) {
@@ -54,28 +54,61 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mFragment = this;
-        if (isNetworkAvailable(mContext)){
-            mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
-            initializeProgressDialog();
-            Runnable runnable = new TimerTask() {
-                @Override
-                public void run() {
-                    if (MainActivity.mapLoginPageCookies != null) {
-                        initializeLoaderManager();
-                    } else {
-                        mHandler.postDelayed(this, 100);
+        if (mGraduationSheetData == null){
+            if (isNetworkAvailable(mContext)) {
+                mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
+                initializeProgressDialog();
+                getGraduationSheetDataSingleton();
+                Runnable runnable = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (MainActivity.mapLoginPageCookies != null) {
+                            initializeLoaderManager();
+                        } else {
+                            mHandler.postDelayed(this, 100);
+                        }
                     }
-                }
-            };
-            mHandler.post(runnable);
+                };
+                mHandler.post(runnable);
+            }else {
+                mRoot_view = inflater.inflate(R.layout.offline_layout, container, false);
+            }
         }else {
-            mRoot_view = inflater.inflate(R.layout.offline_layout, container, false);
+            mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
+            initializeRecycleView();
+           // mProgressDialog.dismiss();
         }
+
+//        if (isNetworkAvailable(mContext)) {
+//            mRoot_view = inflater.inflate(R.layout.graduation_sheet_fragment, container, false);
+//            initializeProgressDialog();
+//            Runnable runnable = new TimerTask() {
+//                @Override
+//                public void run() {
+//                    if (MainActivity.mapLoginPageCookies != null) {
+//                        initializeLoaderManager();
+//                    } else {
+//                        mHandler.postDelayed(this, 100);
+//                    }
+//                }
+//            };
+//            mHandler.post(runnable);
+//        } else {
+//            mRoot_view = inflater.inflate(R.layout.offline_layout, container, false);
+//        }
         return mRoot_view;
     }
 
-    public void initializeProgressDialog(){
-        mProgressDialog  = new ProgressDialog(getActivity());
+
+    public GraduationSheetData getGraduationSheetDataSingleton(){
+        if (mGraduationSheetData == null){
+            mGraduationSheetData = new GraduationSheetData();
+        }
+        return mGraduationSheetData;
+    }
+
+    public void initializeProgressDialog() {
+        mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setMessage("Loading data");
         mProgressDialog.setCancelable(false);
         mProgressDialog.setCanceledOnTouchOutside(false);
@@ -94,9 +127,7 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
         }
     }
 
-    public void initializeRecycleView(Document document) {
-        GraduationSheetData mGraduationSheetData = new GraduationSheetData();
-        mGraduationSheetData = getGraduationSheetData(document);
+    public void initializeRecycleView() {
 
         RecyclerView mRecyclerView = (RecyclerView) mRoot_view.findViewById(R.id.graduation_sheet_subject_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -202,7 +233,8 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
     @Override
     public void onLoadFinished(Loader<Document> loader, Document data) {
-        initializeRecycleView(data);
+        mGraduationSheetData = getGraduationSheetData(data);
+        initializeRecycleView();
         mProgressDialog.dismiss();
     }
 
