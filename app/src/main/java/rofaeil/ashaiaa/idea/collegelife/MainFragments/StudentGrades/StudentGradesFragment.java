@@ -93,6 +93,9 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
 
     public void initializeLoader() {
         loaderManager = mContext.getSupportLoaderManager();
+    }
+
+    public void startLoader(){
         Loader<Document> loader = loaderManager.getLoader(STUDENT_GRADES_LOADER_ID);
         if (loader == null) {
             loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, this).forceLoad();
