@@ -31,6 +31,7 @@ import rofaeil.ashaiaa.idea.collegelife.R;
 import rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.deleteOfflineLayout;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightCornerBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSemesterLogoBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
@@ -104,12 +105,11 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
         }
     }
 
-    public void initializeRecycleView(Document document) {
-        ArrayList<Semester> mSemesters = new ArrayList<>();
-        mSemesters = getStudentSemesters(document);
+    public void initializeRecycleView() {
 
         RecyclerView mRecyclerView = (RecyclerView) mRoot_View.findViewById(R.id.student_grades_recycler_view);
         mRecyclerView.setHasFixedSize(true);
+        
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
@@ -203,7 +203,9 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(Loader<Document> loader, Document data) {
-        initializeRecycleView(data);
+
+        mSemesters = getStudentSemesters(data);
+        initializeRecycleView();
         initializeSwipeRefreshLayout();
         makeProgressBarInvisible();
     }
