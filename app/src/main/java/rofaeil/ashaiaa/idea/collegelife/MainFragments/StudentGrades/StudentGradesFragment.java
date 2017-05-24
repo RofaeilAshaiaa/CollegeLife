@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -109,7 +111,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
 
         RecyclerView mRecyclerView = (RecyclerView) mRoot_View.findViewById(R.id.student_grades_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        
+
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(mContext);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
@@ -137,7 +139,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     }
 
     public void makeProgressBarInvisible() {
-        ProgressBar mProgressBar = (ProgressBar) mRoot_View.findViewById(R.id.student_grades_semesters_fragment_progress_bar);
+        AVLoadingIndicatorView mProgressBar = (AVLoadingIndicatorView) mRoot_View.findViewById(R.id.student_grades_semesters_fragment_progress_bar);
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 
