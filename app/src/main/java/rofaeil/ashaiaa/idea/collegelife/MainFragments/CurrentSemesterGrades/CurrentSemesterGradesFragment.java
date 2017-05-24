@@ -34,11 +34,12 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvai
 
 public class CurrentSemesterGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
 
-    public View mRoot_View;
+    private View mRoot_View;
     public FragmentActivity mContext;
     private Handler mHandler;
     private CurrentSemesterGradesFragment mFragment;
     private LoaderManager loaderManager;
+    private ArrayList<CurrentSemesterGradesSubject> mCurrentSemesterGradesSubjects = null;
 
     @Override
     public void onAttach(Context context) {
@@ -78,6 +79,13 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
         }
 
         return mRoot_View;
+    }
+
+    public ArrayList<CurrentSemesterGradesSubject> getCurrentSemesterSubjectsSingleton(){
+        if (mCurrentSemesterGradesSubjects == null){
+            mCurrentSemesterGradesSubjects = new ArrayList<>();
+        }
+        return mCurrentSemesterGradesSubjects;
     }
 
     public void initializeLoaderManager() {
