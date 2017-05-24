@@ -16,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.wang.avi.AVLoadingIndicatorView;
+
 import org.jsoup.nodes.Document;
 
 import java.util.ArrayList;
@@ -139,8 +141,8 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     }
 
     public void makeProgressBarInvisible() {
-        ProgressBar mProgressBar = (ProgressBar) mRoot_View.findViewById(R.id.current_semester_progress_bar);
-        mProgressBar.setVisibility(View.INVISIBLE);
+        AVLoadingIndicatorView mProgressBar = (AVLoadingIndicatorView) mRoot_View.findViewById(R.id.current_semester_progress_bar);
+        mProgressBar.hide();
     }
 
     @Override
