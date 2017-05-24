@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import org.jsoup.nodes.Document;
 
@@ -53,36 +52,43 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        mFragment = this;
+        initializeLoaderManager();
+        if (mCurrentSemesterGradesSubjects == null) {
 
-        if (isNetworkAvailable(mContext)){
+            if (isNetworkAvailable(mContext)) {
 
-            mRoot_View = inflater.inflate(R.layout.current_semester_gardes_fragment, container, false);
-
-            Runnable runnable = new TimerTask() {
-                @Override
-                public void run() {
-                    if (MainActivity.mapLoginPageCookies != null) {
-                        if (isNetworkAvailable(mContext)){
-                            loaderManager = mContext.getSupportLoaderManager();
-                            loaderManager.initLoader(CURRENT_SEMESTER_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                mRoot_View = inflater.inflate(R.layout.current_semester_gardes_fragment, container, false);
+                getCurrentSemesterSubjectsSingleton();
+                initializeSwipeRefreshLayout();
+                Runnable runnable = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (MainActivity.mapLoginPageCookies != null) {
+                            if (isNetworkAvailable(mContext)) {
+                                startLoaderManager();
+                            }
+                        } else {
+                            mHandler.postDelayed(this, 100);
                         }
-                    } else {
-                        mHandler.postDelayed(this, 100);
                     }
-                }
-            };
-            mHandler.post(runnable);
+                };
+                mHandler.post(runnable);
 
-        }else {
-            mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
+            } else {
+                mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
+            }
+        } else {
+            mRoot_View = inflater.inflate(R.layout.current_semester_gardes_fragment, container, false);
+            initializeRecycleView();
+            initializeSwipeRefreshLayout();
+            makeProgressBarInvisible();
         }
 
         return mRoot_View;
     }
 
-    public ArrayList<CurrentSemesterGradesSubject> getCurrentSemesterSubjectsSingleton(){
-        if (mCurrentSemesterGradesSubjects == null){
+    public ArrayList<CurrentSemesterGradesSubject> getCurrentSemesterSubjectsSingleton() {
+        if (mCurrentSemesterGradesSubjects == null) {
             mCurrentSemesterGradesSubjects = new ArrayList<>();
         }
         return mCurrentSemesterGradesSubjects;
@@ -90,6 +96,9 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
 
     public void initializeLoaderManager() {
         loaderManager = mContext.getSupportLoaderManager();
+    }
+
+    public void startLoaderManager(){
         Loader<Document> loader = loaderManager.getLoader(CURRENT_SEMESTER_GRADES_LOADER_ID);
         if (loader == null) {
             loaderManager.initLoader(CURRENT_SEMESTER_GRADES_LOADER_ID, null, this).forceLoad();
@@ -108,25 +117,24 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
             @Override
             public void onRefresh() {
                 if (isNetworkAvailable(mContext)) {
-                    loaderManager.restartLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
-                }else {
-                    Snackbar.make(mRoot_View, "No InterNet Connection", Snackbar.LENGTH_LONG).show();
+                    loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                } else {
+                    Snackbar.make(mRoot_View, "No Internet Connection", Snackbar.LENGTH_LONG).show();
                 }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
     }
 
-    public void initializeRecycleView(Document document) {
-        ArrayList<CurrentSemesterGradesSubject> mSubjects = new ArrayList<>();
-        mSubjects = getCurrentSemesterSubjects(document);
+    public void initializeRecycleView() {
 
         RecyclerView mRecycleView = (RecyclerView) mRoot_View.findViewById(R.id.current_semester_recycle_view);
         mRecycleView.setHasFixedSize(true);
+
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext);
         mRecycleView.setLayoutManager(mLayoutManager);
 
-        CurrentSemesterRecycleViewAdapter mRecycleAdapter = new CurrentSemesterRecycleViewAdapter(mSubjects);
+        CurrentSemesterRecycleViewAdapter mRecycleAdapter = new CurrentSemesterRecycleViewAdapter(mCurrentSemesterGradesSubjects);
         mRecycleView.setAdapter(mRecycleAdapter);
     }
 
@@ -142,9 +150,11 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
 
     @Override
     public void onLoadFinished(Loader<Document> loader, Document data) {
-        initializeRecycleView(data);
-        initializeSwipeRefreshLayout();
+
+        mCurrentSemesterGradesSubjects = getCurrentSemesterSubjects(data);
+        initializeRecycleView();
         makeProgressBarInvisible();
+
     }
 
     @Override
