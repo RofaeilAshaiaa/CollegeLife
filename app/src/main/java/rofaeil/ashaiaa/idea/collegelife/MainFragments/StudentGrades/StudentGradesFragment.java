@@ -41,11 +41,12 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvai
 public class StudentGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
 
 
-    public View mRoot_View;
-    public FragmentActivity mContext;
+    private View mRoot_View;
+    private FragmentActivity mContext;
     private Handler mHandler;
     private LoaderManager loaderManager;
     private StudentGradesFragment mFragment;
+    private ArrayList<Semester> mSemesters = null;
 
     @Override
     public void onAttach(Context context) {
@@ -65,7 +66,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
                 @Override
                 public void run() {
                     if (MainActivity.mapLoginPageCookies != null) {
-                        if( StaticMethods.isNetworkAvailable(mContext) ){
+                        if (StaticMethods.isNetworkAvailable(mContext)) {
                             loaderManager = mContext.getSupportLoaderManager();
                             loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
                         }
@@ -77,10 +78,17 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
 
             mHandler.post(runnable);
         } else {
-           mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
-       }
+            mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
+        }
 
         return mRoot_View;
+    }
+
+    public ArrayList<Semester> getCurrentSemesterSubjectsSingleton() {
+        if (mSemesters == null) {
+            mSemesters = new ArrayList<>();
+        }
+        return mSemesters;
     }
 
     public void initializeLoader() {
