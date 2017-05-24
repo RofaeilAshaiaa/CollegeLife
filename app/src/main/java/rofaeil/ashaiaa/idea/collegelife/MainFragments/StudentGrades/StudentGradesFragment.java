@@ -146,7 +146,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
                 if (isNetworkAvailable(mContext)) {
                     loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
                 } else {
-                    Snackbar.make(mRoot_View, "No InterNet Connection", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(mRoot_View, "No Internet Connection", Snackbar.LENGTH_LONG).show();
                 }
                 mSwipeRefreshLayout.setRefreshing(false);
             }
