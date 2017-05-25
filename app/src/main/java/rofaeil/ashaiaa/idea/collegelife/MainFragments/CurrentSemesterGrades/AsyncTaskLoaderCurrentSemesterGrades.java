@@ -18,7 +18,7 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CurrentSemesterGr
  * Created by emad on 1/2/2017.
  */
 
-public class AsyncTaskLoaderCurrentSemesterGrades extends AsyncTaskLoader<Document> {
+public class AsyncTaskLoaderCurrentSemesterGrades extends AsyncTaskLoader<Connection.Response> {
     public Context mContext;
 
     public AsyncTaskLoaderCurrentSemesterGrades(Context context) {
@@ -27,7 +27,7 @@ public class AsyncTaskLoaderCurrentSemesterGrades extends AsyncTaskLoader<Docume
     }
 
     @Override
-    public Document loadInBackground() {
+    public Connection.Response loadInBackground() {
         try {
             Connection.Response mStudent_grades_response = Jsoup.connect(CurrentSemesterGradesURL)
                     .cookies(MainActivity.mapLoginPageCookies)
@@ -35,7 +35,7 @@ public class AsyncTaskLoaderCurrentSemesterGrades extends AsyncTaskLoader<Docume
                     .userAgent("Mozilla/5.0")
                     .execute();
 
-            return mStudent_grades_response.parse();
+            return mStudent_grades_response;
         } catch (IOException e) {
             e.printStackTrace();
         }
