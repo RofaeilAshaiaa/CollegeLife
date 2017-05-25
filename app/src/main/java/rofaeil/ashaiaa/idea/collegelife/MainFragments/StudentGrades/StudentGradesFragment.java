@@ -144,7 +144,11 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             @Override
             public void onRefresh() {
                 if (isNetworkAvailable(mContext)) {
-                    loaderManager.restartLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                    if (MainActivity.mapLoginPageCookies != null) {
+                        loaderManager.restartLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                    }else {
+                        Snackbar.make(mRoot_View, "No Cookies", Snackbar.LENGTH_LONG).show();
+                    }
                 } else {
                     Snackbar.make(mRoot_View, "No Internet Connection", Snackbar.LENGTH_LONG).show();
                 }
