@@ -60,6 +60,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        mFragment = this;
         initializeLoaderManager();
 
         if (mSemesters == null) {
@@ -67,7 +68,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             if (isNetworkAvailable(mContext)) {
 
                 mRoot_View = inflater.inflate(R.layout.student_grades_semesters_fragment, container, false);
-                getCurrentSemesterSubjectsSingleton();
+
                 initializeSwipeRefreshLayout();
 
                 Runnable runnable = new TimerTask() {
@@ -144,7 +145,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
             @Override
             public void onRefresh() {
                 if (isNetworkAvailable(mContext)) {
-                    loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                    loaderManager.restartLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
                 } else {
                     Snackbar.make(mRoot_View, "No Internet Connection", Snackbar.LENGTH_LONG).show();
                 }
@@ -224,6 +225,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
         mSemesters = getStudentSemesters(data);
         initializeRecycleView();
         makeProgressBarInvisible();
+
     }
 
     @Override
