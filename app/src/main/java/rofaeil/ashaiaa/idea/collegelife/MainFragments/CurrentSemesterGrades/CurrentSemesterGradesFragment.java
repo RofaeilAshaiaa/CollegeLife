@@ -14,7 +14,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -29,7 +28,6 @@ import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CURRENT_SEMESTER_GRADES_LOADER_ID;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getCurrentSemesterSubjects;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
@@ -40,7 +38,7 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     private Handler mHandler;
     private CurrentSemesterGradesFragment mFragment;
     private LoaderManager loaderManager;
-    private ArrayList<CurrentSemesterGradesSubject> mCurrentSemesterGradesSubjects = null;
+    private static ArrayList<CurrentSemesterGradesSubject> mCurrentSemesterGradesSubjects = null;
 
     @Override
     public void onAttach(Context context) {
@@ -54,14 +52,16 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        mFragment = this;
         initializeLoaderManager();
         if (mCurrentSemesterGradesSubjects == null) {
 
             if (isNetworkAvailable(mContext)) {
 
                 mRoot_View = inflater.inflate(R.layout.current_semester_gardes_fragment, container, false);
-                getCurrentSemesterSubjectsSingleton();
+
                 initializeSwipeRefreshLayout();
+
                 Runnable runnable = new TimerTask() {
                     @Override
                     public void run() {
@@ -119,7 +119,11 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
             @Override
             public void onRefresh() {
                 if (isNetworkAvailable(mContext)) {
-                    loaderManager.initLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                    if (MainActivity.mapLoginPageCookies != null) {
+                        loaderManager.restartLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
+                    } else {
+                        Snackbar.make(mRoot_View, "No Cookies", Snackbar.LENGTH_LONG).show();
+                    }
                 } else {
                     Snackbar.make(mRoot_View, "No Internet Connection", Snackbar.LENGTH_LONG).show();
                 }
@@ -153,9 +157,16 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     @Override
     public void onLoadFinished(Loader<Document> loader, Document data) {
 
-        mCurrentSemesterGradesSubjects = getCurrentSemesterSubjects(data);
-        initializeRecycleView();
-        makeProgressBarInvisible();
+        AsyncTaskCurrentSemesterGradesDataParser asyncTaskCurrentSemesterGradesDataParser = new AsyncTaskCurrentSemesterGradesDataParser(){
+            @Override
+            protected void onPostExecute(ArrayList<CurrentSemesterGradesSubject> currentSemesterGradesSubjects) {
+                mCurrentSemesterGradesSubjects = currentSemesterGradesSubjects;
+                initializeRecycleView();
+                makeProgressBarInvisible();
+            }
+        };
+        asyncTaskCurrentSemesterGradesDataParser.execute(data);
+        
 
     }
 
@@ -163,4 +174,5 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     public void onLoaderReset(Loader<Document> loader) {
 
     }
+
 }
