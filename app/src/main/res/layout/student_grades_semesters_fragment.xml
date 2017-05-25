@@ -4,17 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/student_grades_semesters_fragment_progress_bar"
-        style="@style/AVLoadingIndicatorView.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="visible"
-        app:indicatorColor="@color/colorPrimary"
-        app:indicatorName="@string/AVLoadingIndicatorViewIndicatorName" />
-    
+    <FrameLayout
+        android:id="@+id/student_grades_semesters_error_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/student_grades_semesters_fragment_progress_bar"
+            style="@style/AVLoadingIndicatorView.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:indicatorColor="@color/colorPrimary"
+            app:indicatorName="@string/AVLoadingIndicatorViewIndicatorName" />
+    </FrameLayout>
+
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/student_grades_swipe_refresh_layout"
         android:layout_width="wrap_content"
