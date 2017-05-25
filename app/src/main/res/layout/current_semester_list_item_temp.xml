@@ -1,225 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/current_semester_card_view"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/current_semester_item_ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp"
-    card:cardCornerRadius="10dp">
+
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="26dp">
+
+
+    <TextView
+        android:id="@+id/current_semester_old_id_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/old_id_logo_background"
+        android:gravity="center"
+        android:text="ر150b"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/current_semester_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="8dp"
+        android:text="وسائط متعددة والوصول للمعلومات"
+        android:textColor="@android:color/tertiary_text_dark"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_old_id_logo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/current_semester_midterm_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_logo_background"
+        android:text="MidTerm"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_old_id_logo"
+        app:layout_constraintTop_toBottomOf="@+id/current_semester_name" />
+
+    <TextView
+        android:id="@+id/current_semester_midterm_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="3"
+        android:textSize="19dp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/current_semester_midterm_logo"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_midterm_logo"
+        app:layout_constraintTop_toTopOf="@+id/current_semester_midterm_logo"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <TextView
+        android:id="@+id/current_semester_oral_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_logo_background"
+        android:text="شفوي"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.65"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_midterm_num"
+        app:layout_constraintTop_toBottomOf="@+id/current_semester_name" />
+
+    <TextView
+        android:id="@+id/current_semester_oral_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="10"
+        android:textSize="20dp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/current_semester_oral_logo"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_oral_logo"
+        app:layout_constraintTop_toTopOf="@+id/current_semester_oral_logo" />
+
+    <TextView
+        android:id="@+id/current_semester_total_term_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_logo_background"
+        android:text="أعمال فصلية"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="@+id/current_semester_midterm_logo"
+        app:layout_constraintTop_toBottomOf="@+id/current_semester_midterm_logo" />
+
+    <TextView
+        android:id="@+id/current_semester_total_term_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="13"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/current_semester_total_term_logo"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_total_term_logo"
+        app:layout_constraintTop_toTopOf="@+id/current_semester_total_term_logo" />
+
+
+    <TextView
+        android:id="@+id/current_semester_lab_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_logo_background"
+        android:text="عملي"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="@+id/current_semester_oral_logo"
+        app:layout_constraintTop_toBottomOf="@+id/current_semester_oral_logo" />
+
+    <TextView
+        android:id="@+id/current_semester_lab_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="10"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/current_semester_lab_logo"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_lab_logo"
+        app:layout_constraintTop_toTopOf="@+id/current_semester_lab_logo" />
+
+
+    <TextView
+        android:id="@+id/current_semester_final_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_logo_background"
+        android:text="نظري"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="@+id/current_semester_lab_logo"
+        app:layout_constraintTop_toBottomOf="@+id/current_semester_lab_logo" />
+
+    <TextView
+        android:id="@+id/current_semester_final_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="40"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/current_semester_final_logo"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_final_logo"
+        app:layout_constraintTop_toTopOf="@+id/current_semester_final_logo" />
+
+
+    <TextView
+        android:id="@+id/current_semester_total_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/text_logo_background"
+        android:text="المجموع"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="@+id/current_semester_total_term_logo"
+        app:layout_constraintTop_toBottomOf="@+id/current_semester_total_term_logo" />
+
+    <TextView
+        android:id="@+id/current_semester_total_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="63"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/current_semester_total_logo"
+        app:layout_constraintRight_toLeftOf="@+id/current_semester_total_logo"
+        app:layout_constraintTop_toTopOf="@+id/current_semester_total_logo"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#E0E0E0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_semester_total_logo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/current_semester_old_id_logo"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginBottom="6dp"
-                android:layout_marginRight="3dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/old_id_logo_background"
-                android:gravity="center"
-                android:text="ر150b"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_semester_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="5dp"
-                android:layout_toLeftOf="@+id/current_semester_old_id_logo"
-                android:layout_toStartOf="@+id/current_semester_old_id_logo"
-                android:text="وسائط متعددة والوصول للمعلومات"
-                android:textColor="@android:color/tertiary_text_dark"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_semester_midterm_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/current_semester_name"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toLeftOf="@+id/current_semester_old_id_logo"
-                android:layout_toStartOf="@+id/current_semester_old_id_logo"
-                android:background="@drawable/text_logo_background"
-                android:text="MidTerm"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_semester_midterm_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/current_semester_name"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="2dp"
-                android:layout_toLeftOf="@+id/current_semester_midterm_logo"
-                android:layout_toStartOf="@+id/current_semester_midterm_logo"
-                android:text="3"
-                android:textSize="19sp"
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/current_semester_oral_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/current_semester_midterm_logo"
-                android:layout_alignBottom="@+id/current_semester_midterm_logo"
-                android:layout_alignEnd="@+id/current_semester_lab_logo"
-                android:layout_alignRight="@+id/current_semester_lab_logo"
-                android:layout_below="@+id/current_semester_name"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/text_logo_background"
-                android:text="شفوي"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_semester_oral_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/current_semester_name"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="2dp"
-                android:layout_toLeftOf="@+id/current_semester_oral_logo"
-                android:layout_toStartOf="@+id/current_semester_oral_logo"
-                android:text="10"
-                android:textSize="20sp"
-                android:textStyle="normal" />
-
-            <TextView
-                android:id="@+id/current_semester_total_term_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/current_semester_oral_logo"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toLeftOf="@id/current_semester_old_id_logo"
-                android:layout_toStartOf="@id/current_semester_old_id_logo"
-                android:background="@drawable/text_logo_background"
-                android:text="أعمال فصلية"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_semester_total_term_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/current_semester_oral_logo"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="2dp"
-                android:layout_toLeftOf="@id/current_semester_total_term_logo"
-                android:layout_toStartOf="@id/current_semester_total_term_logo"
-                android:text="13"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:id="@+id/current_semester_lab_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/current_semester_total_term_logo"
-                android:layout_below="@id/current_semester_oral_logo"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="5dp"
-                android:layout_toLeftOf="@id/current_semester_total_term_num"
-                android:layout_toStartOf="@id/current_semester_total_term_num"
-                android:background="@drawable/text_logo_background"
-                android:text="عملي"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_semester_lab_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/current_semester_oral_logo"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="2dp"
-                android:layout_toLeftOf="@id/current_semester_lab_logo"
-                android:layout_toStartOf="@id/current_semester_lab_logo"
-                android:text="10"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:id="@+id/current_semester_final_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/current_semester_total_term_logo"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toLeftOf="@id/current_semester_old_id_logo"
-                android:layout_toStartOf="@id/current_semester_old_id_logo"
-                android:background="@drawable/text_logo_background"
-                android:text="نظري"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_semester_final_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/current_semester_total_term_logo"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="2dp"
-                android:layout_toLeftOf="@id/current_semester_final_logo"
-                android:layout_toStartOf="@id/current_semester_final_logo"
-                android:text="40"
-                android:textSize="20sp" />
-
-
-            <TextView
-                android:id="@+id/current_semester_total_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/current_semester_final_logo"
-                android:layout_alignEnd="@+id/current_semester_lab_logo"
-                android:layout_alignRight="@+id/current_semester_lab_logo"
-                android:layout_below="@id/current_semester_total_term_logo"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/text_logo_background"
-                android:text="المجموع"
-                android:textColor="@android:color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/current_semester_total_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/current_semester_total_term_logo"
-                android:layout_marginRight="5dp"
-                android:layout_marginTop="2dp"
-                android:layout_toLeftOf="@id/current_semester_total_logo"
-                android:layout_toStartOf="@id/current_semester_total_logo"
-                android:text="63"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+</android.support.constraint.ConstraintLayout>
