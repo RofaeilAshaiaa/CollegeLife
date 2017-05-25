@@ -20,11 +20,9 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jsoup.Connection;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.TimerTask;
 
 import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
@@ -32,10 +30,6 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconRightCornerBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSemesterLogoBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextLeftCornerBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
@@ -161,7 +155,6 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     }
 
 
-
     @Override
     public Loader<Connection.Response> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoaderStudentGrades(mContext);
@@ -170,9 +163,19 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<Connection.Response> loader, Connection.Response data) {
 
-       // mSemesters = getStudentSemesters(data);
-        initializeRecycleView();
-        makeProgressBarInvisible();
+        AsyncTaskStudentGradesDataParser asyncTaskStudentGradesDataParser = new AsyncTaskStudentGradesDataParser(){
+            @Override
+            protected void onPostExecute(ArrayList<Semester> semesters) {
+                mSemesters = semesters;
+                initializeRecycleView();
+                makeProgressBarInvisible();
+            }
+        };
+        try {
+            asyncTaskStudentGradesDataParser.execute(data.parse());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
