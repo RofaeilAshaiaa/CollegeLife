@@ -14,11 +14,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.jsoup.Connection;
 import org.jsoup.nodes.Document;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -28,17 +31,20 @@ import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.CURRENT_SEMESTER_GRADES_LOADER_ID;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getResponseDescription;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isResponseSuccess;
 
 
-public class CurrentSemesterGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
+public class CurrentSemesterGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Connection.Response> {
 
     private View mRoot_View;
-    public FragmentActivity mContext;
+    private FragmentActivity mContext;
     private Handler mHandler;
     private CurrentSemesterGradesFragment mFragment;
     private LoaderManager loaderManager;
     private static ArrayList<CurrentSemesterGradesSubject> mCurrentSemesterGradesSubjects = null;
+    private boolean mErrorLayoutInflated = false;
 
     @Override
     public void onAttach(Context context) {
@@ -150,28 +156,56 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
     }
 
     @Override
-    public Loader<Document> onCreateLoader(int id, Bundle args) {
+    public Loader<Connection.Response> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoaderCurrentSemesterGrades(mContext);
     }
 
     @Override
-    public void onLoadFinished(Loader<Document> loader, Document data) {
+    public void onLoadFinished(Loader<Connection.Response> loader, Connection.Response data) {
 
-        AsyncTaskCurrentSemesterGradesDataParser asyncTaskCurrentSemesterGradesDataParser = new AsyncTaskCurrentSemesterGradesDataParser(){
-            @Override
-            protected void onPostExecute(ArrayList<CurrentSemesterGradesSubject> currentSemesterGradesSubjects) {
-                mCurrentSemesterGradesSubjects = currentSemesterGradesSubjects;
-                initializeRecycleView();
-                makeProgressBarInvisible();
+        if (data != null){
+
+            if (isResponseSuccess(data)){
+
+                AsyncTaskCurrentSemesterGradesDataParser asyncTaskCurrentSemesterGradesDataParser = new AsyncTaskCurrentSemesterGradesDataParser(){
+                    @Override
+                    protected void onPostExecute(ArrayList<CurrentSemesterGradesSubject> currentSemesterGradesSubjects) {
+                        mCurrentSemesterGradesSubjects = currentSemesterGradesSubjects;
+                        if (mErrorLayoutInflated){
+                            FrameLayout frameLayout = (FrameLayout)mRoot_View.findViewById(R.id.current_semester_error_frame);
+                            frameLayout.setVisibility(View.INVISIBLE);
+                        }
+                        initializeRecycleView();
+                        makeProgressBarInvisible();
+                    }
+                };
+                try {
+                    asyncTaskCurrentSemesterGradesDataParser.execute(data.parse());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }else {
+                mErrorLayoutInflated = true;
+                String ResponseErrorDescription = getResponseDescription(data);
+                FrameLayout frameLayout = (FrameLayout)mRoot_View.findViewById(R.id.current_semester_error_frame);
+                View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout,false);
+                frameLayout.addView(layoutInflater);
+
             }
-        };
-        asyncTaskCurrentSemesterGradesDataParser.execute(data);
-        
+        }else {
 
+            mErrorLayoutInflated = true;
+            Snackbar.make(mRoot_View, "WebSite IS Down", Snackbar.LENGTH_LONG).show();
+            FrameLayout frameLayout = (FrameLayout)mRoot_View.findViewById(R.id.current_semester_error_frame);
+            View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout,false);
+            frameLayout.addView(layoutInflater);
+        }
+        
     }
 
     @Override
-    public void onLoaderReset(Loader<Document> loader) {
+    public void onLoaderReset(Loader<Connection.Response> loader) {
 
     }
 
