@@ -146,7 +146,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
                 if (isNetworkAvailable(mContext)) {
                     if (MainActivity.mapLoginPageCookies != null) {
                         loaderManager.restartLoader(STUDENT_GRADES_LOADER_ID, null, mFragment).forceLoad();
-                    }else {
+                    } else {
                         Snackbar.make(mRoot_View, "No Cookies", Snackbar.LENGTH_LONG).show();
                     }
                 } else {
@@ -178,6 +178,10 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
                 AsyncTaskStudentGradesDataParser asyncTaskStudentGradesDataParser = new AsyncTaskStudentGradesDataParser() {
                     @Override
                     protected void onPostExecute(ArrayList<Semester> semesters) {
+                        if (mErrorLayoutInflated) {
+                            FrameLayout frameLayout = (FrameLayout) mRoot_View.findViewById(R.id.student_grades_semesters_error_frame);
+                            frameLayout.setVisibility(View.INVISIBLE);
+                        }
                         mSemesters = semesters;
                         initializeRecycleView();
                         makeProgressBarInvisible();
@@ -193,16 +197,16 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
 
                 mErrorLayoutInflated = true;
                 String ResponseErrorDescription = getResponseDescription(data);
-                FrameLayout frameLayout = (FrameLayout)mRoot_View.findViewById(R.id.student_grades_semesters_error_frame);
-                View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout,false);
+                FrameLayout frameLayout = (FrameLayout) mRoot_View.findViewById(R.id.student_grades_semesters_error_frame);
+                View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout, false);
                 frameLayout.addView(layoutInflater);
 
             }
         } else {
 
             mErrorLayoutInflated = true;
-            FrameLayout frameLayout = (FrameLayout)mRoot_View.findViewById(R.id.student_grades_semesters_error_frame);
-            View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout,false);
+            FrameLayout frameLayout = (FrameLayout) mRoot_View.findViewById(R.id.student_grades_semesters_error_frame);
+            View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout, false);
             frameLayout.addView(layoutInflater);
 
         }
