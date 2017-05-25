@@ -17,14 +17,14 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.StudentGradesURL;
  * Created by emad on 1/2/2017.
  */
 
-public class AsyncTaskLoaderStudentGrades extends AsyncTaskLoader<Document> {
+public class AsyncTaskLoaderStudentGrades extends AsyncTaskLoader<Connection.Response> {
 
     public AsyncTaskLoaderStudentGrades(Context context) {
         super(context);
     }
 
     @Override
-    public Document loadInBackground() {
+    public Connection.Response loadInBackground() {
         try {
             Connection.Response mStudent_grades_response = Jsoup.connect(StudentGradesURL)
                     .cookies(MainActivity.mapLoginPageCookies)
@@ -32,7 +32,7 @@ public class AsyncTaskLoaderStudentGrades extends AsyncTaskLoader<Document> {
                     .userAgent("Mozilla/5.0")
                     .execute();
 
-            return mStudent_grades_response.parse();
+            return mStudent_grades_response;
         } catch (IOException e) {
             e.printStackTrace();
         }
