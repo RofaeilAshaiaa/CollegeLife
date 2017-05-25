@@ -102,13 +102,6 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
         return mRoot_View;
     }
 
-    public ArrayList<Semester> getCurrentSemesterSubjectsSingleton() {
-        if (mSemesters == null) {
-            mSemesters = new ArrayList<>();
-        }
-        return mSemesters;
-    }
-
     public void initializeLoaderManager() {
         loaderManager = mContext.getSupportLoaderManager();
     }
@@ -161,8 +154,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
         AVLoadingIndicatorView mProgressBar = (AVLoadingIndicatorView) mRoot_View.findViewById(R.id.student_grades_semesters_fragment_progress_bar);
         mProgressBar.setVisibility(View.INVISIBLE);
     }
-
-
+    
     @Override
     public Loader<Connection.Response> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoaderStudentGrades(mContext);
