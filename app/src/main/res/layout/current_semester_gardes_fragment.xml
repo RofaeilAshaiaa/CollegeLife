@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
-    <com.wang.avi.AVLoadingIndicatorView
-        android:id="@+id/current_semester_progress_bar"
-        style="@style/AVLoadingIndicatorView.Large"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="visible"
-        app:indicatorColor="@color/colorPrimary"
-        app:indicatorName="@string/AVLoadingIndicatorViewIndicatorName"/>
+    <FrameLayout
+        android:id="@+id/current_semester_error_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/current_semester_progress_bar"
+            style="@style/AVLoadingIndicatorView.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:indicatorColor="@color/colorPrimary"
+            app:indicatorName="@string/AVLoadingIndicatorViewIndicatorName" />
+    </FrameLayout>
+
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/current_semester_swipe_refresh_layout"
@@ -22,8 +28,8 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/current_semester_recycle_view"
-            android:layout_width="match_parent"
             style="@style/recycler_views_style"
+            android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
