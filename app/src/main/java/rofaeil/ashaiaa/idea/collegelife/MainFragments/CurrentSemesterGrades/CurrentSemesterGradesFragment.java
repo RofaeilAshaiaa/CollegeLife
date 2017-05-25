@@ -54,7 +54,6 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
 
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -94,14 +93,7 @@ public class CurrentSemesterGradesFragment extends Fragment implements LoaderMan
 
         return mRoot_View;
     }
-
-    public ArrayList<CurrentSemesterGradesSubject> getCurrentSemesterSubjectsSingleton() {
-        if (mCurrentSemesterGradesSubjects == null) {
-            mCurrentSemesterGradesSubjects = new ArrayList<>();
-        }
-        return mCurrentSemesterGradesSubjects;
-    }
-
+    
     public void initializeLoaderManager() {
         loaderManager = mContext.getSupportLoaderManager();
     }
