@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.jsoup.Connection;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -38,7 +39,7 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextLeftCo
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
-public class StudentGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Document> {
+public class StudentGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Connection.Response> {
 
 
     private View mRoot_View;
@@ -162,12 +163,12 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
 
 
     @Override
-    public Loader<Document> onCreateLoader(int id, Bundle args) {
+    public Loader<Connection.Response> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoaderStudentGrades(mContext);
     }
 
     @Override
-    public void onLoadFinished(Loader<Document> loader, Document data) {
+    public void onLoadFinished(Loader<Connection.Response> loader, Connection.Response data) {
 
        // mSemesters = getStudentSemesters(data);
         initializeRecycleView();
@@ -176,7 +177,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     }
 
     @Override
-    public void onLoaderReset(Loader<Document> loader) {
+    public void onLoaderReset(Loader<Connection.Response> loader) {
 
     }
 }
