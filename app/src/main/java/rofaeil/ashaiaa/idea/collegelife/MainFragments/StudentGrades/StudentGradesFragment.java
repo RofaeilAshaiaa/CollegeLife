@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
@@ -30,7 +31,9 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Semester.Semester;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.STUDENT_GRADES_LOADER_ID;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getResponseDescription;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isResponseSuccess;
 
 
 public class StudentGradesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Connection.Response> {
@@ -42,6 +45,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     private LoaderManager loaderManager;
     private StudentGradesFragment mFragment;
     private ArrayList<Semester> mSemesters = null;
+    private boolean mErrorLayoutInflated = false;
 
     @Override
     public void onAttach(Context context) {
@@ -163,19 +167,42 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<Connection.Response> loader, Connection.Response data) {
 
-        AsyncTaskStudentGradesDataParser asyncTaskStudentGradesDataParser = new AsyncTaskStudentGradesDataParser(){
-            @Override
-            protected void onPostExecute(ArrayList<Semester> semesters) {
-                mSemesters = semesters;
-                initializeRecycleView();
-                makeProgressBarInvisible();
+        if (data != null) {
+
+            if (isResponseSuccess(data)) {
+
+                AsyncTaskStudentGradesDataParser asyncTaskStudentGradesDataParser = new AsyncTaskStudentGradesDataParser() {
+                    @Override
+                    protected void onPostExecute(ArrayList<Semester> semesters) {
+                        mSemesters = semesters;
+                        initializeRecycleView();
+                        makeProgressBarInvisible();
+                    }
+                };
+                try {
+                    asyncTaskStudentGradesDataParser.execute(data.parse());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+
+                mErrorLayoutInflated = true;
+                String ResponseErrorDescription = getResponseDescription(data);
+                FrameLayout frameLayout = (FrameLayout)mRoot_View.findViewById(R.id.student_grades_semesters_error_frame);
+                View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout,false);
+                frameLayout.addView(layoutInflater);
+
             }
-        };
-        try {
-            asyncTaskStudentGradesDataParser.execute(data.parse());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+
+            mErrorLayoutInflated = true;
+            FrameLayout frameLayout = (FrameLayout)mRoot_View.findViewById(R.id.student_grades_semesters_error_frame);
+            View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout,false);
+            frameLayout.addView(layoutInflater);
+
         }
+
 
     }
 
