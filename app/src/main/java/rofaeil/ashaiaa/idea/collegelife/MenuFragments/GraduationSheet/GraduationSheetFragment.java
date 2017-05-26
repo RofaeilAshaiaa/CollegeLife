@@ -63,7 +63,6 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
                 initializeProgressBar(mRoot_view);
 
-                getGraduationSheetDataSingleton();
                 Runnable runnable = new TimerTask() {
                     @Override
                     public void run() {
@@ -99,13 +98,6 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     public void makeProgressBarINVISIBLE(){
         mProgressBar.hide();
         mDataView.setVisibility(View.VISIBLE);
-    }
-
-    public GraduationSheetData getGraduationSheetDataSingleton() {
-        if (mGraduationSheetData == null) {
-            mGraduationSheetData = new GraduationSheetData();
-        }
-        return mGraduationSheetData;
     }
 
     public void initializeLoaderManager() {
