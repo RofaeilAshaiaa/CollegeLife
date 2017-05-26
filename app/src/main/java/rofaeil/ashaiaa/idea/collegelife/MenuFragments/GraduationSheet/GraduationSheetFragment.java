@@ -18,17 +18,27 @@ import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 
+import org.jsoup.Connection;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.TimerTask;
 
 import rofaeil.ashaiaa.idea.collegelife.Activities.MainActivity;
+import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationRequirements;
 import rofaeil.ashaiaa.idea.collegelife.Beans.GraduationSheet.GraduationSheetData;
+import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.GraduationSheetSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.GRADUATION_SHEET_LOADER_ID;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
 
 
-public class GraduationSheetFragment extends Fragment implements LoaderManager.LoaderCallbacks<GraduationSheetData> {
+public class GraduationSheetFragment extends Fragment implements LoaderManager.LoaderCallbacks<Connection.Response> {
 
     private View mRoot_view;
     private FragmentActivity mContext;
@@ -46,7 +56,6 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
 
         if (mGraduationSheetData == null) {
             if (isNetworkAvailable(mContext)) {
@@ -76,8 +85,7 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
             initializeProgressBar(mRoot_view);
 
             initializeRecycleView();
-            mProgressBar.hide();
-            mDataView.setVisibility(View.VISIBLE);
+            makeProgressBarINVISIBLE();
         }
 
         return mRoot_view;
@@ -86,6 +94,11 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     public void initializeProgressBar(View RootView){
         mProgressBar = (AVLoadingIndicatorView) RootView.findViewById(R.id.graduation_sheet_progressBar);
         mDataView = (View) RootView.findViewById(R.id.graduation_sheet_View);
+    }
+
+    public void makeProgressBarINVISIBLE(){
+        mProgressBar.hide();
+        mDataView.setVisibility(View.VISIBLE);
     }
 
     public GraduationSheetData getGraduationSheetDataSingleton() {
@@ -159,23 +172,31 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     }
 
     @Override
-    public Loader<GraduationSheetData> onCreateLoader(int id, Bundle args) {
+    public Loader<Connection.Response> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoaderGraduationSheet(mContext);
     }
 
     @Override
-    public void onLoadFinished(Loader<GraduationSheetData> loader, GraduationSheetData data) {
+    public void onLoadFinished(Loader<Connection.Response> loader, Connection.Response data) {
 
-        mGraduationSheetData = data;
-        initializeRecycleView();
-
-        mProgressBar.hide();
-        mDataView.setVisibility(View.VISIBLE);
+        AsyncTaskGraduationSheetDataParser asyncTaskGraduationSheetDataParser = new AsyncTaskGraduationSheetDataParser(){
+            @Override
+            protected void onPostExecute(GraduationSheetData graduationSheetData) {
+                mGraduationSheetData = graduationSheetData;
+                initializeRecycleView();
+                makeProgressBarINVISIBLE();
+            }
+        };
+        try {
+            asyncTaskGraduationSheetDataParser.execute(data.parse());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
-    public void onLoaderReset(Loader<GraduationSheetData> loader) {
+    public void onLoaderReset(Loader<Connection.Response> loader) {
 
     }
 
