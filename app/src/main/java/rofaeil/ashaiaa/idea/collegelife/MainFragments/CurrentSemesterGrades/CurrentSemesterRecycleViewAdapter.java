@@ -1,5 +1,6 @@
 package rofaeil.ashaiaa.idea.collegelife.MainFragments.CurrentSemesterGrades;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -82,22 +83,22 @@ public class CurrentSemesterRecycleViewAdapter extends RecyclerView.Adapter<Curr
 
         public RecycleViewHolder(View itemView) {
             super(itemView);
-            CardView mCardView = (CardView) itemView.findViewById(R.id.current_semester_card_view);
-            subject_old_id = (TextView) mCardView.findViewById(R.id.current_semester_old_id_logo);
-            subject_name = (TextView) mCardView.findViewById(R.id.current_semester_name);
-            subject_midTerm_num = (TextView) mCardView.findViewById(R.id.current_semester_midterm_num);
-            subject_oral_num = (TextView) mCardView.findViewById(R.id.current_semester_oral_num);
-            subject_total_term_num = (TextView) mCardView.findViewById(R.id.current_semester_total_term_num);
-            subject_lab_num = (TextView) mCardView.findViewById(R.id.current_semester_lab_num);
-            subject_final_num = (TextView) mCardView.findViewById(R.id.current_semester_final_num);
-            subject_total_num = (TextView) mCardView.findViewById(R.id.current_semester_total_num);
+            ConstraintLayout mItemRoot = (ConstraintLayout) itemView.findViewById(R.id.current_semester_item_ConstraintLayout);
+            subject_old_id = (TextView) mItemRoot.findViewById(R.id.current_semester_old_id_logo);
+            subject_name = (TextView) mItemRoot.findViewById(R.id.current_semester_name);
+            subject_midTerm_num = (TextView) mItemRoot.findViewById(R.id.current_semester_midterm_num);
+            subject_oral_num = (TextView) mItemRoot.findViewById(R.id.current_semester_oral_num);
+            subject_total_term_num = (TextView) mItemRoot.findViewById(R.id.current_semester_total_term_num);
+            subject_lab_num = (TextView) mItemRoot.findViewById(R.id.current_semester_lab_num);
+            subject_final_num = (TextView) mItemRoot.findViewById(R.id.current_semester_final_num);
+            subject_total_num = (TextView) mItemRoot.findViewById(R.id.current_semester_total_num);
 
-            subject_midTerm_logo = (TextView) mCardView.findViewById(R.id.current_semester_midterm_logo);
-            subject_oral_logo = (TextView) mCardView.findViewById(R.id.current_semester_oral_logo);
-            subject_total_term_logo = (TextView) mCardView.findViewById(R.id.current_semester_total_term_logo);
-            subject_lab_logo = (TextView) mCardView.findViewById(R.id.current_semester_lab_logo);
-            subject_final_logo = (TextView) mCardView.findViewById(R.id.current_semester_final_logo);
-            subject_total_logo = (TextView) mCardView.findViewById(R.id.current_semester_total_logo);
+            subject_midTerm_logo = (TextView) mItemRoot.findViewById(R.id.current_semester_midterm_logo);
+            subject_oral_logo = (TextView) mItemRoot.findViewById(R.id.current_semester_oral_logo);
+            subject_total_term_logo = (TextView) mItemRoot.findViewById(R.id.current_semester_total_term_logo);
+            subject_lab_logo = (TextView) mItemRoot.findViewById(R.id.current_semester_lab_logo);
+            subject_final_logo = (TextView) mItemRoot.findViewById(R.id.current_semester_final_logo);
+            subject_total_logo = (TextView) mItemRoot.findViewById(R.id.current_semester_total_logo);
         }
     }
 
