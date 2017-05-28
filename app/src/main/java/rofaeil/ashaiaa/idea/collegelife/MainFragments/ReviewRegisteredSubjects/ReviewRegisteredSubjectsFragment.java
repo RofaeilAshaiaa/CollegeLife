@@ -15,7 +15,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -43,7 +44,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
     private int mTotalHoursOfSemester ;
     private String mSemesterName ;
     private String mCGPA ;
-    private ProgressBar progressBar;
+    private AVLoadingIndicatorView progressBar;
     private Context mContext;
     private Handler mHandler;
     private FragmentActivity mActivity;
@@ -61,13 +62,12 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
 
         mBinding = DataBindingUtil.inflate
                 (inflater, R.layout.review_registered_subjects_fragment, container, false);
-        progressBar = mBinding.progressBarReviewSubjects;
+        progressBar = mBinding.reviewRegisteredSubjectProgressBar;
         mContext = getContext();
         mActivity = getActivity();
         mHandler = new Handler();
         mFragment = this;
 
-        progressBar.setVisibility(View.VISIBLE);
         mBinding.nestedScroll.setVisibility(View.INVISIBLE);
 
         Runnable runnable = new TimerTask() {
@@ -81,7 +81,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
                             .forceLoad();
                     else {
                         wasOffline= true ;
-                        progressBar.setVisibility(View.INVISIBLE);
+                        progressBar.hide();
                     }
 
                 } else {
@@ -179,7 +179,7 @@ public class ReviewRegisteredSubjectsFragment extends Fragment
             showSnackbarWithReloadAction();
         }
 
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.hide();
         setUpSwipeRefreshLayout();
 
     }
