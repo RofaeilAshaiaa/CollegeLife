@@ -44,7 +44,7 @@ public class StudentGradesFragment extends Fragment implements LoaderManager.Loa
     private Handler mHandler;
     private LoaderManager loaderManager;
     private StudentGradesFragment mFragment;
-    private ArrayList<Semester> mSemesters = null;
+    private static ArrayList<Semester> mSemesters = null;
     private boolean mErrorLayoutInflated = false;
 
     @Override
