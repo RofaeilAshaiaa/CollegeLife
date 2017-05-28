@@ -95,5 +95,18 @@
         app:layout_constraintTop_toTopOf="@+id/exam_table_subject_hours_logo"
         tools:text="3" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/subject_item_line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/exam_table_subject_date_logo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
