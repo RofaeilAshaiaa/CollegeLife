@@ -17,14 +17,15 @@
             android:layout_gravity="top"
             android:orientation="vertical">
 
-            <ProgressBar
-                android:id="@+id/progress_bar_review_subjects"
-                style="?android:attr/progressBarStyleLarge"
+            <com.wang.avi.AVLoadingIndicatorView
+                android:id="@+id/review_registered_subject_progress_bar"
+                style="@style/AVLoadingIndicatorView.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:max="100"
-                android:visibility="invisible" />
+                android:visibility="visible"
+                app:indicatorColor="@color/colorPrimary"
+                app:indicatorName="@string/AVLoadingIndicatorViewIndicatorName" />
         </FrameLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout
