@@ -16,7 +16,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
+
+import com.wang.avi.AVLoadingIndicatorView;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -42,7 +43,6 @@ import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.ExamTableTimeURL;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getCurrentSemesterSubjectsFinalTable;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getIconBackgroundResource;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getSubjectOldIdBackgroundResource;
-import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getTextBackgroundResource;
 
 public class ExamTableTimeFragment extends Fragment
         implements LoaderManager.LoaderCallbacks<Document>{
@@ -52,7 +52,7 @@ public class ExamTableTimeFragment extends Fragment
     private ArrayList<ExamTableTimeSubject> mExamTableTimeSubjects;
     private RecyclerView recyclerView;
     private ExamTableAdapter examTableAdapter;
-    private ProgressBar progressBar;
+    private AVLoadingIndicatorView progressBar;
     private ExamTableTimeFragment mFragment;
     private Context mContext;
     private Handler mHandler;
@@ -73,9 +73,8 @@ public class ExamTableTimeFragment extends Fragment
         mActivity = getActivity() ;
         mFragment = this ;
         recyclerView = mBinding.recyclerview;
-        progressBar = mBinding.progressBarReviewSubjects;
+        progressBar = mBinding.examTableProgressBar;
         recyclerView = mBinding.recyclerview;
-        progressBar.setVisibility(View.VISIBLE);
         mBinding.recyclerview.setVisibility(View.INVISIBLE);
 
 
@@ -90,7 +89,7 @@ public class ExamTableTimeFragment extends Fragment
                                 .forceLoad();
                     else {
                         wasOffline= true ;
-                        progressBar.setVisibility(View.INVISIBLE);
+                        progressBar.hide();
                     }
                 } else {
                     mHandler.postDelayed(this, 100);
@@ -230,7 +229,7 @@ public class ExamTableTimeFragment extends Fragment
                     Snackbar.LENGTH_LONG);
         }
 
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.hide();
         setUpSwipeRefreshLayout();
 
 
