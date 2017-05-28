@@ -32,47 +32,57 @@ public class MyProfileFragment extends Fragment {
 
 
     private ProgressDialog mProgressDialog;
-    private StudentData mStudentData;
+    private static StudentData mStudentData = null;
     private MyProfileFragmentBinding myProfileFragmentBinding;
+    private static StudentHome mStudentHome = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        if (isNetworkAvailable(getActivity())){
-            myProfileFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.my_profile_fragment, container, false);
+        if (mStudentData == null){
 
-            initializeProgressDialog();
-            StudentHome mStudentHome = new StudentHome();
-            mStudentHome = getStudentHome(studentHomeDocument);
-            insertStudentHomeInMyProfile(mStudentHome);
+            if (isNetworkAvailable(getActivity())) {
+                myProfileFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.my_profile_fragment, container, false);
 
-            AsyncTaskStudentDataGET asyncTaskStudentDataGET = new AsyncTaskStudentDataGET() {
-                @Override
-                protected void onPostExecute(Document document) {
+                initializeProgressDialog();
+                mStudentHome = getStudentHome(studentHomeDocument);
+                insertStudentHomeInMyProfile(mStudentHome);
 
-                    mStudentData = new StudentData();
-                    mStudentData = getStudentData(document);
-                    SharedPreferences mSharedPreferencesLogIn = getActivity().getSharedPreferences("log_in", MODE_PRIVATE);
-                    SharedPreferences.Editor mEditor = mSharedPreferencesLogIn.edit();
-                    mEditor.putString("FirstNameEN", mStudentData.getFirstNameEN());
-                    mEditor.putString("SecondNameEN", mStudentData.getSecondNameEN());
-                    insertStudentDataInMyProfile(mStudentData);
-                    initializeFAB();
-                    mProgressDialog.dismiss();
-                }
-            };
-            asyncTaskStudentDataGET.execute();
+                AsyncTaskStudentDataGET asyncTaskStudentDataGET = new AsyncTaskStudentDataGET() {
+                    @Override
+                    protected void onPostExecute(Document document) {
+
+                        mStudentData = new StudentData();
+                        mStudentData = getStudentData(document);
+                        SharedPreferences mSharedPreferencesLogIn = getActivity().getSharedPreferences("log_in", MODE_PRIVATE);
+                        SharedPreferences.Editor mEditor = mSharedPreferencesLogIn.edit();
+                        mEditor.putString("FirstNameEN", mStudentData.getFirstNameEN());
+                        mEditor.putString("SecondNameEN", mStudentData.getSecondNameEN());
+                        insertStudentDataInMyProfile(mStudentData);
+                        initializeFAB();
+                        mProgressDialog.dismiss();
+                    }
+                };
+                asyncTaskStudentDataGET.execute();
+
+            }else {
+                View mRoot_View = inflater.inflate(R.layout.offline_layout, container, false);
+                return mRoot_View;
+            }
         }else {
-            View mRoot_View = inflater.inflate(R.layout.offline_layout,container,false);
-            return mRoot_View;
+            myProfileFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.my_profile_fragment, container, false);
+            initializeProgressDialog();
+            insertStudentHomeInMyProfile(mStudentHome);
+            insertStudentDataInMyProfile(mStudentData);
+            initializeFAB();
+            mProgressDialog.dismiss();
         }
-
 
         return myProfileFragmentBinding.getRoot();
     }
 
-    public void initializeProgressDialog(){
-        mProgressDialog  = new ProgressDialog(getActivity());
+    public void initializeProgressDialog() {
+        mProgressDialog = new ProgressDialog(getActivity());
         mProgressDialog.setMessage("Loading data");
         mProgressDialog.setCancelable(false);
         mProgressDialog.setCanceledOnTouchOutside(false);
@@ -80,6 +90,7 @@ public class MyProfileFragment extends Fragment {
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.show();
     }
+
     public void initializeFAB() {
         myProfileFragmentBinding.studentMyProfileFab.setOnClickListener(new View.OnClickListener() {
             @Override
