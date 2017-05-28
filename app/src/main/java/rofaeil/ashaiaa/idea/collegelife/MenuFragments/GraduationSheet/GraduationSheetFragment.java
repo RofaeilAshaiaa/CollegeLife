@@ -4,6 +4,7 @@ package rofaeil.ashaiaa.idea.collegelife.MenuFragments.GraduationSheet;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
@@ -13,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -35,7 +37,9 @@ import rofaeil.ashaiaa.idea.collegelife.Beans.Subject.GraduationSheetSubject;
 import rofaeil.ashaiaa.idea.collegelife.R;
 
 import static rofaeil.ashaiaa.idea.collegelife.Utils.FinalData.GRADUATION_SHEET_LOADER_ID;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.getResponseDescription;
 import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isNetworkAvailable;
+import static rofaeil.ashaiaa.idea.collegelife.Utils.StaticMethods.isResponseSuccess;
 
 
 public class GraduationSheetFragment extends Fragment implements LoaderManager.LoaderCallbacks<Connection.Response> {
@@ -171,18 +175,35 @@ public class GraduationSheetFragment extends Fragment implements LoaderManager.L
     @Override
     public void onLoadFinished(Loader<Connection.Response> loader, Connection.Response data) {
 
-        AsyncTaskGraduationSheetDataParser asyncTaskGraduationSheetDataParser = new AsyncTaskGraduationSheetDataParser(){
-            @Override
-            protected void onPostExecute(GraduationSheetData graduationSheetData) {
-                mGraduationSheetData = graduationSheetData;
-                initializeRecycleView();
-                makeProgressBarINVISIBLE();
+        if (data != null){
+
+            if (isResponseSuccess(data)){
+
+                AsyncTaskGraduationSheetDataParser asyncTaskGraduationSheetDataParser = new AsyncTaskGraduationSheetDataParser(){
+                    @Override
+                    protected void onPostExecute(GraduationSheetData graduationSheetData) {
+                        mGraduationSheetData = graduationSheetData;
+                        initializeRecycleView();
+                        makeProgressBarINVISIBLE();
+                    }
+                };
+                try {
+                    asyncTaskGraduationSheetDataParser.execute(data.parse());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }else {
+                String ResponseErrorDescription = getResponseDescription(data);
+                FrameLayout frameLayout = (FrameLayout)mRoot_view.findViewById(R.id.graduation_sheet_error_frame);
+                View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout,false);
+                frameLayout.addView(layoutInflater);
             }
-        };
-        try {
-            asyncTaskGraduationSheetDataParser.execute(data.parse());
-        } catch (IOException e) {
-            e.printStackTrace();
+        }else {
+            Snackbar.make(mRoot_view, "WebSite IS Down", Snackbar.LENGTH_LONG).show();
+            FrameLayout frameLayout = (FrameLayout)mRoot_view.findViewById(R.id.graduation_sheet_error_frame);
+            View layoutInflater = LayoutInflater.from(mContext).inflate(R.layout.offline_layout, frameLayout,false);
+            frameLayout.addView(layoutInflater);
         }
 
     }
