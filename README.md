@@ -52,12 +52,11 @@
 * widget for dashboard
 * change Exam table List according to exams date
 
-![ ](https://drive.google.com/open?id=15f4dOTf-ucVVFH4r-VwHWTWnrmtuhI9C)
-![ ](https://drive.google.com/open?id=1pAkm49PpD-IoKgXjS9Tn0gtv91HztCwT)
-![ ](https://drive.google.com/open?id=1QJ7eYF53AVprP2ms2B4Zt9CXdR-MdtAJ)
-![ ](https://drive.google.com/open?id=1G58KX1ODZ0qJEuGuS-qczJOtVbu3E_PW)
-![ ](https://drive.google.com/open?id=1sQmDUomgyaMFJPn6_lL3rY2s1eNXdhcA)
-![ ](https://drive.google.com/open?id=1_-e32J_W_Nq4GGBVUrnOol-GOFZFNmVi)
-![ ](https://drive.google.com/open?id=1QmBWzDlvAh8mD-mZZ8oqhIR6mPIYmxII)
-![ ](https://drive.google.com/open?id=1ASMrS6NAISVb94ezXG0Ug6-x1KnualQD)
-![ ](https://drive.google.com/open?id=1Lvb3EJkMgEbwOni3Azou4gobedqXwz9u)
+![ ](https://lh6.googleusercontent.com/rvLNc24YK8pg9uS40-kIOnW7PMG3qhvrUvE3dY3z1M9RjSyHler6XStOMSbIt0DZ1WSAhprMfWT9Xep2IgSX=w1325-h656-rw)
+![ ](https://lh4.googleusercontent.com/Z2haRo3iZJQascgmOza4XDPDknxq-tBAkTAqah-cDZ-yTD7V0CeutMT1qYlCBrGtNXxgnD7sJhgJp99fCP5h=w1325-h656-rw)
+![ ](https://lh3.googleusercontent.com/p3reeR9tUlYNfMLgAL3zh0IujQ-rdMNsOi1EiAwCMfSIWiDpDESum4PG16Ygv7hnJkYH1f-LeeiDN-Dfs702=w1325-h656-rw)
+![ ](https://lh3.googleusercontent.com/igU_gHG4uSOq1LwyXVvECqRk1H1rwjeTsY8eLusyekhTJDw1TETIBK_9k1aZgf7LGqC7VtNH8lk3D-7ClwwL=w1325-h656-rw)
+![ ](https://lh5.googleusercontent.com/pW6dWLTvVlOg_A5jejBllC52l9bdNznGJGdTNYM7kCcU-rCX-TeuYOqtoiLP1tQPCSF_0ZAJAqbks-4k3NEP=w1325-h656-rw)
+![ ](https://lh6.googleusercontent.com/_ud5X5qAApPh2snJQtkfX0RAlYekIms3KYOunSQNaHxbUPB3Kxa0TpjCySLrnisD2pckuy1ltb_c-JccE92O=w1325-h656-rw)
+![ ](https://lh3.googleusercontent.com/THB9q3I7IzkDxUgYGhBw1itu8HUQoyrE4JtnMu_jqAlZkxNWwMVPk9BNO2ARnooFdgycmVjb77ga6750gOxg=w1325-h656-rw)
+![ ](https://lh4.googleusercontent.com/qdK9IS76I5bECEL3j0wfzSdyzJh1IFevPkxLPUaYk0DQjryQAhd4hu-Umd7ApqKnf3FTqLFqPjRF0r54BO2D=w1325-h656-rw)
