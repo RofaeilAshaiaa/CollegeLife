@@ -51,3 +51,13 @@
 * Dashboard
 * widget for dashboard
 * change Exam table List according to exams date
+
+![ ](https://drive.google.com/open?id=15f4dOTf-ucVVFH4r-VwHWTWnrmtuhI9C)
+![ ](https://drive.google.com/open?id=1pAkm49PpD-IoKgXjS9Tn0gtv91HztCwT)
+![ ](https://drive.google.com/open?id=1QJ7eYF53AVprP2ms2B4Zt9CXdR-MdtAJ)
+![ ](https://drive.google.com/open?id=1G58KX1ODZ0qJEuGuS-qczJOtVbu3E_PW)
+![ ](https://drive.google.com/open?id=1sQmDUomgyaMFJPn6_lL3rY2s1eNXdhcA)
+![ ](https://drive.google.com/open?id=1_-e32J_W_Nq4GGBVUrnOol-GOFZFNmVi)
+![ ](https://drive.google.com/open?id=1QmBWzDlvAh8mD-mZZ8oqhIR6mPIYmxII)
+![ ](https://drive.google.com/open?id=1ASMrS6NAISVb94ezXG0Ug6-x1KnualQD)
+![ ](https://drive.google.com/open?id=1Lvb3EJkMgEbwOni3Azou4gobedqXwz9u)
