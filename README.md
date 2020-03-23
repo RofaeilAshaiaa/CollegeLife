@@ -1,4 +1,12 @@
-# Work List #
+![alt text](https://github.com/RofaeilAshaiaa/CollegeLife/blob/master/thumbnail_original)
+
+## Project description ##
+
+* Android App For Faculty of Science Alexandria University Website that Aims to Help Students Get A better UX and Much Better Performance on Mobile Phones.
+* College life is a mobile application, that enables both students and doctors of faculty of science to use all features of the faculty Website such as registration of courses , remove course , choose major and minor department , view their courses of current semester ,upload files and lectures ,upload grades of subjects and view table of the exam ...etc. Plus some Features not included in the website such as create a timetable of the current semester, calculate GPA, calculate CGPA, predict CGPA, getting notifications of exams and lectures, and more.
+* Despite there is no API for the Website, we managed to solve this problem and Developed the app Successfully.
+
+### Work List ###
 
 * Add fall exam table in nav
 * Add contact us
@@ -21,7 +29,7 @@
 * Enable Firebase Analytics and Crash Reporting
 
 
-# Finished #
+### Finished ###
 
 * Nav header design
 * Toolbar in semester grades activity in API higher than 19
@@ -40,7 +48,7 @@
 * Fix Action bar in myprofile
 
 
-# Features to Add: #
+### Features to Add: ###
 
 * Add JobService to check the exam table if changed or not and notify the student if exam(s) date(s) changed!
 * Support tablet by making number of colums in LayoutManager to 2 or more
@@ -51,12 +59,3 @@
 * Dashboard
 * widget for dashboard
 * change Exam table List according to exams date
-
-![ ](https://lh6.googleusercontent.com/rvLNc24YK8pg9uS40-kIOnW7PMG3qhvrUvE3dY3z1M9RjSyHler6XStOMSbIt0DZ1WSAhprMfWT9Xep2IgSX=w1325-h656-rw)
-![ ](https://lh4.googleusercontent.com/Z2haRo3iZJQascgmOza4XDPDknxq-tBAkTAqah-cDZ-yTD7V0CeutMT1qYlCBrGtNXxgnD7sJhgJp99fCP5h=w1325-h656-rw)
-![ ](https://lh3.googleusercontent.com/p3reeR9tUlYNfMLgAL3zh0IujQ-rdMNsOi1EiAwCMfSIWiDpDESum4PG16Ygv7hnJkYH1f-LeeiDN-Dfs702=w1325-h656-rw)
-![ ](https://lh3.googleusercontent.com/igU_gHG4uSOq1LwyXVvECqRk1H1rwjeTsY8eLusyekhTJDw1TETIBK_9k1aZgf7LGqC7VtNH8lk3D-7ClwwL=w1325-h656-rw)
-![ ](https://lh5.googleusercontent.com/pW6dWLTvVlOg_A5jejBllC52l9bdNznGJGdTNYM7kCcU-rCX-TeuYOqtoiLP1tQPCSF_0ZAJAqbks-4k3NEP=w1325-h656-rw)
-![ ](https://lh6.googleusercontent.com/_ud5X5qAApPh2snJQtkfX0RAlYekIms3KYOunSQNaHxbUPB3Kxa0TpjCySLrnisD2pckuy1ltb_c-JccE92O=w1325-h656-rw)
-![ ](https://lh3.googleusercontent.com/THB9q3I7IzkDxUgYGhBw1itu8HUQoyrE4JtnMu_jqAlZkxNWwMVPk9BNO2ARnooFdgycmVjb77ga6750gOxg=w1325-h656-rw)
-![ ](https://lh4.googleusercontent.com/qdK9IS76I5bECEL3j0wfzSdyzJh1IFevPkxLPUaYk0DQjryQAhd4hu-Umd7ApqKnf3FTqLFqPjRF0r54BO2D=w1325-h656-rw)
